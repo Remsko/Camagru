@@ -1,9 +1,11 @@
 <html>
 	<head>
+		<link rel="stylesheet" type="text/css" href="/style/body.css">
 		<link rel="stylesheet" type="text/css" href="/style/footer.css">
+		<link rel="stylesheet" type="text/css" href="/style/menu.css">
 		<title>Camagru</title>
 	</head>
-	<body>
+	<body class="body">
 		<div>
 			<?php include 'layout/menu.php';?>
 		</div>
