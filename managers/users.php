@@ -12,10 +12,12 @@ class UsersManager {
 
 	public	function add(Users $user)
 	{
-		$q = $this->_db->prepare('INSERT INTO users(userName, Email) VALUES(:userName, :Email)');
+		$q = $this->_db->prepare('INSERT INTO users(Pseudo, Email, Username, Password) VALUES(:Pseudo, :Email, :Username, :Password)');
 
-		$q->bindValue(':userName', $perso->nom());
+		$q->bindValue(':Pseudo', $perso->nom());
 		$q->bindValue(':Email', $perso->email());
+		$q->bindValue(':Username', $perso->username());
+		$q->bindValue(':Password', $perso->password());
 
 		$q->execute();
 	}
@@ -29,7 +31,9 @@ class Users {
 			$_password;
 	public function id() { return $this->_id; }
 	public function pseudo() { return $this->_pseudo; }
-	public function email(){ return $this->_username; }
+	public function email(){ return $this->_email; }
+	public function username() {return $this->_username; }
+	public function password() {return $this->_password; }
 
 	public function setEmail($mail)
 	{
@@ -46,4 +50,21 @@ class Users {
 			$this->_pseudo = $pseudo;
 		}
 	}
+
+	public function setUsername($username)
+	{
+		if (is_string($username))
+		{
+			$this->_username = $username;
+		}
+	}
+
+	public function setPassword($password)
+	{
+		if (is_string($password))
+		{
+			$this->_password = $password;
+		}
+	}
 }
+$db = new PDO('mysql:host=127.0.0.1;dbname=USERS', 'root', 'bdroot');

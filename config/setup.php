@@ -12,5 +12,6 @@
     } catch (PDOException $e) {
         echo "Connection failed: " . $e->getMessage() . "<br/>";
         die();
-    }
+	}
+	$db->exec("CREATE DATABASE USERS DEFAULT CHARACTER SET utf8");
 ?>
