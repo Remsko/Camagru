@@ -13,5 +13,5 @@
         echo "Connection failed: " . $e->getMessage() . "<br/>";
         die();
 	}
-	$db->exec("CREATE DATABASE USERS DEFAULT CHARACTER SET utf8");
+	$db->exec("CREATE DATABASE IF NOT EXISTS USERS DEFAULT CHARACTER SET utf8");
 ?>
