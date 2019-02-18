@@ -5,13 +5,21 @@
     try {
         $db = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD);
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        //foreach($db->query('SELECT * from FOO') as $row) {
-        //    print_r($row);
-        //}
-        //$db = null;
-    } catch (PDOException $e) {
+		$ndb = "CREATE DATABASE IF NOT EXISTS CAMAGRU DEFAULT CHARACTER SET utf8"; 
+		$db->exec($ndb);
+	} 
+	catch (PDOException $e) {
         echo "Connection failed: " . $e->getMessage() . "<br/>";
         die();
 	}
-	$db->exec("CREATE DATABASE IF NOT EXISTS USERS DEFAULT CHARACTER SET utf8");
+	$db = null;
+	$db = new PDO($DB_DSN.";dbname=CAMAGRU", $DB_USER, $DB_PASSWORD);
+	$ntable = "CREATE TABLE Users (
+	id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
+	username VARCHAR(30) NOT NULL, 
+	pseudo VARCHAR(30) NOT NULL, 
+	email VARCHAR(30) NOT NULL, 
+	password VARCHAR(30) NOT NULL
+	)";
+	$db->exec($ntable);
 ?>
