@@ -1,5 +1,5 @@
 <div id="container">
-    <div><H1>Sign up</H1><div>
+    <div><h1>Sign up</h1><div>
     <div id="block">
         <form method="post" action="index.php?page=sign-up">
             <span>Username: </span><br />
