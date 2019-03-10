@@ -2,10 +2,6 @@
 abstract class Manager {
     protected $db;
 
-    public function __construct() {
-        $this->dbConnect();
-    }
-
     public function dbConnect() {
         require_once("../config/database.php");
 		try {
@@ -13,7 +9,7 @@ abstract class Manager {
 			$this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		}
 		catch (PDOException $e) {
-			throw new Exception('Connection to database failed: ' . $e->getMessage() . '<br/>');
+			throw new Exception('Connection to database failed: ' . $e->getMessage());
 		}
     }
 
