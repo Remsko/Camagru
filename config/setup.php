@@ -28,7 +28,7 @@
 	    descrip text NOT NULL,
 	    img_blob longblob NOT NULL
 		)";
-		$db->exec($ntable);
+		$db->exec($newImagesTable);
 	}
 	catch (PDOException $e) {
 		echo "Connection failed (filling): " . $e->getMessage();
