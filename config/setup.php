@@ -15,8 +15,8 @@
 		$db = new PDO($DB_DSN. ';' .$DB_NAME, $DB_USER, $DB_PASSWORD);
 		$newUsersTable = "CREATE TABLE IF NOT EXISTS Users(
 			id smallint(5) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
-			username VARCHAR(15) NOT NULL, 
-			mail VARCHAR(30) NOT NULL, 
+			username VARCHAR(15) NOT NULL,
+			mail VARCHAR(30) NOT NULL,
 			password VARCHAR(150) NOT NULL
 	)";
 	$db->exec($newUsersTable);
