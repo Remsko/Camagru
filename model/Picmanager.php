@@ -32,7 +32,7 @@ public function delete($img)
 {
 	$q = $this->_db->prepare('DELETE FROM Images WHERE name = :name');
 	if (!$q->bindvalue(':name', $img->GetName()))
-		throw new Exception('Blob Input Error');
+		throw new Exception('Name Input Error');
 	$q->execute();
 }
 
