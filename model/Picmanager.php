@@ -22,7 +22,7 @@ class ImageManager extends Manager {
 	if (!$q->bindValue(':type', $img->GetType()))
 		throw new Exception('Type Input Error');
 	if (!$q->bindValue(':descrip', $img->GetDescrip()))
-		throw new Exception('Descrip Input Error');
+		throw new Exception('Description Input Error');
 	if (!$q->bindValue(':img_blob', $img->GetBlob()))
 		throw new Exception('Blob Input Error');
 	$q->execute();
