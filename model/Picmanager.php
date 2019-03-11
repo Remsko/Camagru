@@ -15,15 +15,15 @@ class ImageManager extends Manager {
 {
 	$q = $this->_db->prepare('INSERT INTO images(name, username, type, descrip, img_blob) VALUES(:name, :username, :type, :descrip, :img_blob)');
 
-	if (!$q->bindValue(':name', $img->name()))
+	if (!$q->bindValue(':name', $img->GetName()))
 		throw new Exception('Name Input Error');
-	if (!$q->bindValue(':username', $img->username()))
+	if (!$q->bindValue(':username', $img->GetUsername()))
 		throw new Exception('Username Input Error');
-	if (!$q->bindValue(':type', $img->type()))
+	if (!$q->bindValue(':type', $img->GetType()))
 		throw new Exception('Type Input Error');
-	if (!$q->bindValue(':descrip', $img->descrip()))
+	if (!$q->bindValue(':descrip', $img->GetDescrip()))
 		throw new Exception('Descrip Input Error');
-	if (!$q->bindValue(':img_blob', $img->blob()))
+	if (!$q->bindValue(':img_blob', $img->GetBlob()))
 		throw new Exception('Blob Input Error');
 	$q->execute();
 }
@@ -31,7 +31,7 @@ class ImageManager extends Manager {
 public function delete($img)
 {
 	$q = $this->_db->prepare('DELETE FROM Images WHERE name = :name');
-	if (!$q->bindvalue(':name', $img->name()))
+	if (!$q->bindvalue(':name', $img->GetName()))
 		throw new Exception('Blob Input Error');
 	$q->execute();
 }
@@ -40,15 +40,15 @@ public function update($img)
 {
 	$q = $this->_db->prepare('UPDATE Images SET name = :name, username = :username,blob = :blob, description = :description WHERE name = :name');
 
-	if (!$q->bindValue(':name', $img->name()))
+	if (!$q->bindValue(':name', $img->GetName()))
 		throw new Exception('Name Input Error');
-	if (!$q->bindValue(':username', $img->username()))
+	if (!$q->bindValue(':username', $img->GetUsername()))
 		throw new Exception('Username Input Error');
-	if (!$q->bindValue(':type', $img->type()))
+	if (!$q->bindValue(':type', $img->GetType()))
 		throw new Exception('Type Input Error');
-	if (!$q->bindValue(':description', $img->descrip()))
+	if (!$q->bindValue(':description', $img->GetDescrip()))
 		throw new Exception('Description Input Error');
-	if (!$q->bindValue(':blob', $img->blob()))
+	if (!$q->bindValue(':blob', $img->GetBlob()))
 		throw new Exception('Blob Input Error');
 	$q->execute();
 }
@@ -56,7 +56,7 @@ public function update($img)
 public function get($img)
 {
 	$query = $this->_db->prepare('SELECT username, type, descrip FROM Images WHERE name = :name');
-	if ($query->bindValue(':name', is_int($images->name())))
+	if ($query->bindValue(':name', is_int($images->GetName())))
 		throw new Exception('Name Input Error');
 	$query->execute();
 	$donnees = $query->fetch(PDO::FETCH_ASSOC);
