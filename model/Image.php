@@ -1,8 +1,6 @@
 <?php
-	include("picmanager.php");
 
-	class Image {
-
+class Image {
 		private $_id;
 		private	$_username;
 		private	$_name;
