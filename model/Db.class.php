@@ -33,7 +33,7 @@ class Db {
 
 	public static function insert($sql, $values) {
 		self::get();
-		self::prepare($sql, $values);
+		self::execute($sql, $values);
 		return self::$_instance->lastInsertId();
 	}
 
