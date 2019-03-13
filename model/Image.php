@@ -22,27 +22,27 @@
 			}
 		}
 
-		public function GetId() {
+		public function getId() {
 			return $this->_id;
 		}
 
-		public function GetName() {
+		public function getName() {
 			return $this->_name;
 		}
 
-		public function GetUsername() {
+		public function getUsername() {
 			return $this->_username;
 		}
 
-		public function GetType() {
+		public function getType() {
 			return $this->_type;
 		}
 
-		public function GetDescrip() {
+		public function getDescrip() {
 			return $this->_descrip;
 		}
 
-		public function GetBlob() {
+		public function getBlob() {
 			return $this->_blob;
 		}
 
