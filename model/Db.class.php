@@ -42,28 +42,28 @@ class Db {
 		return self::execute($sql, $values);
 	}
 
-	public static function select_one($sql, $values) {
+	public static function selectOne($sql, $values) {
 		self::get();
 		if ($stmt = self::prepare($sql, $values))
 			return $stmt->fetch();
 		return false;
 	}
 
-	public static function select_one_object($sql, $values, $object) {
+	public static function selectOneObject($sql, $values, $object) {
 		self::get();
 		if ($stmt = self::prepare($sql, $values))
 			return $stmt->fetchObject($object);
 		return false;
 	}
 
-	public static function select_all($sql, $values) {
+	public static function selectAll($sql, $values) {
 		self::get();
 		if ($stmt = self::prepare($sql, $values))
 			return $stmt->fetchAll();
 		return false;
 	}
 
-	public static function select_all_object($sql, $values, $object) {
+	public static function selectAllObject($sql, $values, $object) {
 		self::get();
 		if ($stmt = self::prepare($sql, $values))
 			return $stmt->fetchAll(PDO::FETCH_CLASS, $object);
