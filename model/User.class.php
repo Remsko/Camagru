@@ -1,4 +1,5 @@
 <?php
+
 class User {
 	private $_id;
 	private $_username;
@@ -62,3 +63,5 @@ class User {
 		}
 	}
 }
+
+?>
