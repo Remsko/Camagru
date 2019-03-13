@@ -1,5 +1,4 @@
 <?php
-	include("users.php");
 
 class ImageManager extends Manager {
 		
@@ -11,6 +10,7 @@ class ImageManager extends Manager {
 			throw $e;
 		}
 	}
+	
 	public	function add($img)
 {
 	$query = $this->_db->prepare('INSERT INTO images(name, username, type, descrip, img_blob) VALUES(:name, :username, :type, :descrip, :img_blob)');
