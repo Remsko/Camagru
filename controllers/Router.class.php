@@ -28,7 +28,7 @@ class Router {
                 }
             }
             else {
-                require_once('controllers/ControllerHome.php');
+                require_once('controllers/ControllerHome.class.php');
                 $this->_controller = new ControllerHome($url);
             }
         }
