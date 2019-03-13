@@ -1,9 +1,10 @@
 <?php
+
 abstract class Manager {
     protected $_db;
 
     public function dbConnect() {
-        require_once("../config/database.php");
+        require_once('config/database.php');
 		try {
 			$this->_db = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD);
 			$this->_db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -18,3 +19,5 @@ abstract class Manager {
 	public abstract function update($var);
 	public abstract function get($var);
 }
+
+?>
