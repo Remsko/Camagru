@@ -10,7 +10,17 @@ class CommentaryManager {
 			$commentary->getContents(),
 			$commentary->getDate()
 		);
-		Db::execute($query, $values);
+		$result = Db::execute($query, $values);
+		return $result;
+	}
+
+	public static function delete ($commentary) {
+		$id = $commentary->getId();
+		$result =  Db::update('DELETE FROM commentary WHERE id =?', [$id]);
+		return $result;
+	}
+	public static function update($commentary) {
+
 	}
 }
 ?>
