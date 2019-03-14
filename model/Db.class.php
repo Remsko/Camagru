@@ -42,6 +42,12 @@ class Db {
 		return self::execute($sql, $values);
 	}
 
+	public static function update($sql, $values) {
+		self::get();
+		if ($result = self::prepare($sql, $values))
+			return $result->rowCount();
+			return FALSE;
+	}
 	public static function selectOne($sql, $values) {
 		self::get();
 		if ($stmt = self::prepare($sql, $values))
