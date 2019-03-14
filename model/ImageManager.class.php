@@ -56,7 +56,7 @@ public function update($img)
 public function get($img)
 {
 	$query = $this->_db->prepare('SELECT username, type, descrip FROM Images WHERE name = :name');
-	if ($query->bindValue(':name', is_int($images->getName())))
+	if ($query->bindValue(':name', is_int($img->getName())))
 		throw new Exception('Name Input Error');
 	$query->execute();
 	$donnees = $query->fetch(PDO::FETCH_ASSOC);
