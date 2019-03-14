@@ -19,8 +19,10 @@ class CommentaryManager {
 		$result =  Db::update('DELETE FROM commentary WHERE id =?', [$id]);
 		return $result;
 	}
-	public static function update($commentary) {
 
+	public static function get($commentary) {
+		$id = $commentary->getId();
+		return Db::selectOne('SELECT * FROM commentary WHERE id =?', [$id]);
 	}
 }
 ?>
