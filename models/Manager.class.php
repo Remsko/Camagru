@@ -1,18 +1,38 @@
 <?php
 
 abstract class Manager {
-    protected $_db;
+    private static $_db;
 
-    public function dbConnect() {
-        require_once('config/database.php');
+    private static function setDb() {
 		try {
-			$this->_db = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD);
-			$this->_db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+			require_once('config/database.php');
+			$options = [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION];
+			self::$_db = new PDO($DB_DSN.$DB_NAME.'charset=utf8', $DB_USER, $DB_PASSWORD, $options);
 		}
 		catch (PDOException $e) {
-			throw new Exception('Connection to database failed: ' . $e->getMessage());
+			echo 'Connection to database failed: '.$e->getMessage();
+			die();
 		}
-    }
+	}
+	
+	protected function getDb() {
+		if (!isset(self::$_db)) {
+			self::setDb();
+		}
+		return self::$_db;
+	}
+
+	protected function getAll($table, $obj) {
+		$this->getDb();
+		$var = [];
+		$req = self::$_bdd->prepare('SELECT * FROM'.$table.'ORDER BY id desc');
+		$req->execute();
+		while ($data = $req->fetch(PDO::FETCH_ASSOC)) {
+			$var[] = new $obj($data);
+		}
+		return $var;
+		$req->closeCursor();
+	}
 
     public abstract function add($var);
 	public abstract function delete($var);

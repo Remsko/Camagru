@@ -65,8 +65,10 @@ class UserManager extends Manager {
         }
             
 		$query->execute();
-        $donnees = $query->fetch(PDO::FETCH_ASSOC);
+        $data = $query->fetch(PDO::FETCH_ASSOC);
         
-		return new Users($donnees);
+		return new Users($data);
     }
 }
+
+?>

@@ -10,7 +10,7 @@ class Router {
                 require_once('models/'.$class.'.class.php');
             });
 
-            $url = '';
+            $url = [];
             if (isset($_GET['url'])) {
                 $urlVariables = filter_var($_GET['url']);
                 $url = explode('/', $urlVariables, FILTER_SANITIZE_URL);
@@ -38,3 +38,5 @@ class Router {
         }
     }
 }
+
+?>
