@@ -1,5 +1,7 @@
 <?php
 
+require_once('views/View.php');
+
 class Router {
     private $_controller;
     private $_view;
@@ -11,6 +13,7 @@ class Router {
             });
 
             $url = [];
+            echo $_GET['url'];
             if (isset($_GET['url'])) {
                 $urlVariables = filter_var($_GET['url']);
                 $url = explode('/', $urlVariables, FILTER_SANITIZE_URL);
@@ -34,7 +37,8 @@ class Router {
         }
         catch (Exception $e) {
             $errorMsg = $e->getMessage();
-            require_once('views/error/error.php');
+           $this->_view = new View('Error');
+           $this->_view->generate(array('errorMsg' => $errorMsg));
         }
     }
 }

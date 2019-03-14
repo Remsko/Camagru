@@ -1,5 +1,7 @@
 <?php
 
+require_once('views/View.php');
+
 class ControllerHome {
     private $_imageManager;
     private $_view;
@@ -17,7 +19,8 @@ class ControllerHome {
         $this->_imageManager = new ImageManager();
         $images = $this->_imageManager->getImages();
 
-        require_once('views/viewHome.php');
+        $this->_view = new View('Home');
+        $this->_view->generate(array('images' -> $images));
     }
 }
 

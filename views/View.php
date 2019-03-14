@@ -9,21 +9,22 @@ class View {
     }
 
     public function generate($data) {
-        $content = $this->generateFile($data);
-        $view = $this->generateFile('view/template.php', array(
-            't' => $this->_title,
-            'content' => $content
-        ));
+        $content = $this->generateFile($this->_file, $data);
+
+        $templateData = array('title' => $this->_title, 'content' => $content);
+        $view = $this->generateFile('view/template.php', $templateData);
 
         echo $view;
     }
 
-    private function generateFile($data) {
-        if (file_exists($this->_file)) {
+    private function generateFile($file, $data) {
+        if (file_exists($file)) {
             extract($data);
+
             ob_start();
-            require $this->_file;
+            require $file;
             $content = ob_get_clean();
+            
             return $content;
         }
         else {
