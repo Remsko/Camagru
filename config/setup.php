@@ -29,6 +29,17 @@
 	    img_blob longblob NOT NULL
 		)";
 		$db->exec($newImagesTable);
+	$newCommentaryTable = "CREATE TABLE IF NOT EXISTS Commentary (
+		id smallint (5) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+		username VARCHAR(50) NOT NULL,
+		contents VARCHAR(250) NOT NULL,
+		date DATETIME
+		)";
+	$newLikeTable = "CREATE TABLE IF NOT EXISTS Likes (
+		id smallint (5) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+		UserID smallint (5) NOT NULL,
+		ImageID smallint (5) NOT NULL
+	)"
 	}
 	catch (PDOException $e) {
 		echo "Connection failed (filling): " . $e->getMessage();
