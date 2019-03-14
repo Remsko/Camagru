@@ -1,12 +1,12 @@
 <?php
 
-class Comentary {
+class Commentary {
 	private $_id;
 	private $_username;
 	private $_contents;
 	private $_date;
 
-	public function __construc(array $donnees) {
+	public function __construct(array $donnees) {
 		$this->hydrate($donnees);
 	}
 	
@@ -54,7 +54,7 @@ class Comentary {
 	}
 
 	public function setDate($date) {
-		$this->_date = NOW();
+		$this->_date = $date;
 	}
 }
 
