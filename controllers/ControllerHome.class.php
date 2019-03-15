@@ -1,6 +1,6 @@
 <?php
 
-require_once('views/View.php');
+require_once('views/View.class.php');
 
 class ControllerHome {
     private $_imageManager;
@@ -10,9 +10,7 @@ class ControllerHome {
         if (isset($url) && count($url) > 1) {
             throw new Exception('Page not found');
         }
-        else {
-            $this->images();
-        }
+        $this->images();
     }
 
     private function images() {

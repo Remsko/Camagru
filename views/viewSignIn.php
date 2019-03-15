@@ -1,7 +1,7 @@
 <div id="container">
     <div><h1>Sign in</h1><div>
     <div id="block">
-        <form method="post" action="index.php?page=sign-in">
+        <form method="post" action="">
             <span>Username:<span><br />
             <input type="text" name="username" value="<?php if (isset($username)) { echo $username; } ?>" /><br />
 

@@ -9,12 +9,17 @@ class View {
     }
 
     public function generate($data) {
-        $content = $this->generateFile($this->_file, $data);
+        try {
+            $content = $this->generateFile($this->_file, $data);
 
-        $templateData = array('title' => $this->_title, 'content' => $content);
-        $view = $this->generateFile('views/template.php', $templateData);
+            $templateData = array('title' => $this->_title, 'content' => $content);
+            $view = $this->generateFile('views/template.php', $templateData);
 
-        echo $view;
+            echo $view;
+        }
+        catch (Exception $e) {
+            echo $e->getMessage();
+        }
     }
 
     private function generateFile($file, $data) {

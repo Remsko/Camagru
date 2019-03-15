@@ -1,11 +1,36 @@
 <?php
 
-require_once('views/View.php');
+require_once('views/View.class.php');
 
 class Router {
     private $_controller;
     private $_method;
+    private $_url;
     private $_view;
+
+    private function url() {
+        $url = ['Home'];
+
+        if (isset($_GET['url'])) {
+            $urlVariables = filter_var($_GET['url']);
+            $url = explode('/', $urlVariables, FILTER_SANITIZE_URL);
+        }
+        return $url;
+    }
+
+    private function controller() {
+        $controller = ucfirst(strtolower($this->_url[0]));
+        $controllerClass = 'Controller'.$controller;
+        $controllerFile = 'controllers/'.$controllerClass.'.class.php';
+
+        if (file_exists($controllerFile)) {
+            require_once($controllerFile);
+        }
+        else {
+            throw new Exception('Page not found');
+        }
+        return new $controllerClass($this->_url);
+    }
 
     public function routeRequest() {
         try {
@@ -13,36 +38,18 @@ class Router {
                 require_once('models/'.$class.'.class.php');
             });
 
-            $url = [];
-            if (isset($_GET['url'])) {
-                $urlVariables = filter_var($_GET['url']);
-                $url = explode('/', $urlVariables, FILTER_SANITIZE_URL);
-            
-                $controller = ucfirst(strtolower($url[0]));
-                $controllerClass = 'Controller'.$controller;
-                $controllerFile = 'controllers/'.$controllerClass.'.class.php';
-            
-                if (file_exists($controllerFile)) {
-                    require_once($controllerFile);
-                    $this->_controller = new $controllerClass();
+            $this->_url = $this->url();
+            $this->_controller = $this->controller();
 
-                    if (isset($url[1])) {
-                        $this->_method = $url[1];
-                        if (method_exists($this->_controller, $this->_method)) {
-                            call_user_func_array([$this->_controller, $this->_method], $url);
-                        }
-                        else {
-                            throw new Exception('Page not found');
-                        }
-                    }
+            $view = $this->_url[1];
+            if (isset($view)) {
+                $this->_method = $view;
+                if (method_exists($this->_controller, $this->_method)) {
+                    call_user_func_array([$this->_controller, $this->_method], $this->_url);
                 }
                 else {
                     throw new Exception('Page not found');
                 }
-            }
-            else {
-                require_once('controllers/ControllerHome.class.php');
-                $this->_controller = new ControllerHome($url);
             }
         }
         catch (Exception $e) {
