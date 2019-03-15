@@ -1,4 +1,5 @@
 <?php
+
 class Commentary {
 	private $_id;
 	private $_username;
