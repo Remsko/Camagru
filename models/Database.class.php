@@ -35,23 +35,28 @@ class Database {
     }
 
     public static function selectOne($query, $values) {
+        $one = null;
         if ($stmt = self::safeExecute($query, $values)) {
-            return $stmt->fetch();
+            $one = $stmt->fetch();
+            $stmt->closeCursor();
         }
-        return null;
+        return $one;
     }
 
     public static function selectOneObject($query, $values, $object) {
+        $one = null;
         if ($stmt = self::safeExecute($query, $values)) {
-            return $stmt->fetchObject($object);
+            $one = $stmt->fetchObject($object);
+            $stmt->closeCursor();
         }
-        return null;
+        return $one;
     }
 
     public static function selectAll($query, $values) {
         $all = [];
         if ($stmt = self::safeExecute($query, $values)) {
             $all = $stmt->fetchAll();
+            $stmt->closeCursor();
         }
         return $all;
     }
