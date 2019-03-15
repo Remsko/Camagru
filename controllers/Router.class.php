@@ -4,6 +4,7 @@ require_once('views/View.php');
 
 class Router {
     private $_controller;
+    private $_method;
     private $_view;
 
     public function routeRequest() {
@@ -23,7 +24,17 @@ class Router {
             
                 if (file_exists($controllerFile)) {
                     require_once($controllerFile);
-                    $this->_controller = new $controllerClass($url);
+                    $this->_controller = new $controllerClass();
+
+                    if (isset($url[1])) {
+                        $this->_method = $url[1];
+                        if (method_exists($this->_controller, $this->_method)) {
+                            call_user_func_array([$this->_controller, $this->_method], $url);
+                        }
+                        else {
+                            throw new Exception('Page not found');
+                        }
+                    }
                 }
                 else {
                     throw new Exception('Page not found');
