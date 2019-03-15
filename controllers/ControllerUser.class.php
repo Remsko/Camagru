@@ -21,4 +21,12 @@ class ControllerUser {
         $this->_view = new View('SignUp');
         $this->_view->generate([]);
     }
+
+    public function logout() {
+
+    }
+
+    public function settings() {
+
+    }
 }

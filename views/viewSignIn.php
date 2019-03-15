@@ -10,5 +10,10 @@
 
             <input type="submit" name="submit" value="OK">
         </form>
+        <?php
+            if(isset($error)) {
+               echo '<font color="red">'.$error."</font>";
+            }
+        ?>
     </div>
 </div>
