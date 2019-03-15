@@ -4,9 +4,11 @@
         <meta charset='utf-8' />
         <title><?= $title ?></title>
     </head>
-    <header>
-    </header>
-    <?= $content ?>
-    <footer>
-    </footer>
+    <body>
+        <header>
+        </header>
+        <?= $content ?>
+        <footer>
+        </footer>
+    </body>
 </html>

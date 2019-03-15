@@ -3,7 +3,7 @@
     <div id="block">
         <form method="post" action="index.php?page=sign-in">
             <span>Username:<span><br />
-            <input type="text" name="username" value="" /><br />
+            <input type="text" name="username" value="<?php if (isset($username)) { echo $username; } ?>" /><br />
 
             <span>Password:</span><br />
             <input type="password" name="password" value="" /><br />
