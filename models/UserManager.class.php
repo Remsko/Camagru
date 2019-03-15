@@ -61,7 +61,6 @@ class UserManager {
             return 'Email is already taken !';
         }
         
-        $this->_user->push();
         return null;
     }
     

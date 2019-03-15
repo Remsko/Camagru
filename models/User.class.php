@@ -64,11 +64,15 @@ class User {
 	}
 
 	public function getByUsername() {
-
+		$query = 'SELECT * FROM users WHERE username=?';
+		$values = [$this->getUsername()];
+		return Database::selectOneObject($query, $values, 'User');
 	}
 
 	public function getByEmail() {
-		
+		$query = 'SELECT * FROM users WHERE mail=?';
+		$values = [$this->getMail()];
+		return Database::selectOneObject($query, $values, 'User');
 	}
 }
 
