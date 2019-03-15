@@ -17,3 +17,15 @@ CREATE TABLE IF NOT EXISTS Images(
 		descrip text NOT NULL,
 		img_blob longblob NOT NULL
 );
+
+CREATE TABLE IF NOT EXISTS Commentary (
+		id smallint (5) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+		username VARCHAR(50) NOT NULL,
+		contents VARCHAR(250) NOT NULL,
+		date DATETIME
+);
+CREATE TABLE IF NOT EXISTS Likes (
+		id smallint (5) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+		UserID smallint (5) NOT NULL,
+		ImageID smallint (5) NOT NULL
+	);
