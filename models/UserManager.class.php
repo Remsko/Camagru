@@ -39,7 +39,7 @@ class UserManager {
 
 	public function createUser()
 	{
-        $error = checkSignUpForm();
+        $error = $this->checkSignUpForm();
         if (isset($error)) {
             return $error;
         }
@@ -48,24 +48,50 @@ class UserManager {
 		$mail = htmlspecialchars($_POST['mail']);
         $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
+        if ($this->getByUsername($username)) {
+            return 'Username is already taken !';
+        }
+        if ($this->getByMail($mail)) {
+            return 'Email is already taken !';
+        }
+
         $this->_user = new User(array(
             'username' => $username,
             'mail' => $mail,
             'password' => $password
         ));
 
-        if ($this->_user->getByUsername()) {
-            return 'Username is already taken !';
+        if (!$this->push()) {
+            return 'Failed to add your account to the database !';
         }
-        if ($this->_user->getByMail()) {
-            return 'Email is already taken !';
-        }
-        
+
         return null;
     }
-    
+
+	private function push() {
+		$query = 'INSERT INTO users(?, ?, ?)';
+		$values = [
+			$this->_user->getUsername(),
+			$this->_user->getMail(),
+			$this->_user->getPassword()
+		];
+		return Database::safeExecute($query, $values);
+	}
+
+	public function getByUsername($username) {
+		$query = 'SELECT * FROM users WHERE username=?';
+		$values = [$username];
+		return Database::selectOneObject($query, $values, 'User');
+	}
+
+	public function getByEmail($mail) {
+		$query = 'SELECT * FROM users WHERE mail=?';
+		$values = [$mail];
+		return Database::selectOneObject($query, $values, 'User');
+	}
+
     public function authUser($password) {
-        return password_verify($this->_user->getPassword(), $password);
+        return password_verify($password, $this->_user->getPassword());
     }
 }
 
