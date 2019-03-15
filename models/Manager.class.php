@@ -7,7 +7,7 @@ abstract class Manager {
 		try {
 			require_once('config/database.php');
 			$options = [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION];
-			self::$_db = new PDO($DB_DSN.$DB_NAME.'charset=utf8', $DB_USER, $DB_PASSWORD, $options);
+			self::$_db = new PDO($DB_DSN.';'.$DB_NAME.';charset=utf8', $DB_USER, $DB_PASSWORD, $options);
 		}
 		catch (PDOException $e) {
 			echo 'Connection to database failed: '.$e->getMessage();
@@ -25,7 +25,7 @@ abstract class Manager {
 	protected function getAll($table, $obj) {
 		$this->getDb();
 		$var = [];
-		$req = self::$_bdd->prepare('SELECT * FROM'.$table.'ORDER BY id desc');
+		$req = self::$_db->prepare('SELECT * FROM '.$table.' ORDER BY id desc');
 		$req->execute();
 		while ($data = $req->fetch(PDO::FETCH_ASSOC)) {
 			$var[] = new $obj($data);

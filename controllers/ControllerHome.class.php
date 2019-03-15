@@ -20,7 +20,7 @@ class ControllerHome {
         $images = $this->_imageManager->getImages();
 
         $this->_view = new View('Home');
-        $this->_view->generate(array('images' -> $images));
+        $this->_view->generate(array('images' => $images));
     }
 }
 

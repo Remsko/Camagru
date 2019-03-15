@@ -5,14 +5,14 @@ class View {
     private $_title;
 
     public function __construct($action) {
-        $this->_file = 'views/view'.$action.'php';
+        $this->_file = 'views/view'.$action.'.php';
     }
 
     public function generate($data) {
         $content = $this->generateFile($this->_file, $data);
 
         $templateData = array('title' => $this->_title, 'content' => $content);
-        $view = $this->generateFile('view/template.php', $templateData);
+        $view = $this->generateFile('views/template.php', $templateData);
 
         echo $view;
     }

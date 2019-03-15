@@ -13,7 +13,6 @@ class Router {
             });
 
             $url = [];
-            echo $_GET['url'];
             if (isset($_GET['url'])) {
                 $urlVariables = filter_var($_GET['url']);
                 $url = explode('/', $urlVariables, FILTER_SANITIZE_URL);
@@ -37,8 +36,8 @@ class Router {
         }
         catch (Exception $e) {
             $errorMsg = $e->getMessage();
-           $this->_view = new View('Error');
-           $this->_view->generate(array('errorMsg' => $errorMsg));
+            $this->_view = new View('Error');
+            $this->_view->generate(array('errorMsg' => $errorMsg));
         }
     }
 }
