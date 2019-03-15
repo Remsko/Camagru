@@ -3,7 +3,7 @@
 
 class CommentaryManager {
 
-	public static function add($commentary) {
+	public function add($commentary) {
 		$query = 'INSERT INTO commentary(username, contents, date) VALUES(?, ?, ?)';
 		$values = array(
 			$commentary->getUsernarme(),
@@ -14,13 +14,13 @@ class CommentaryManager {
 		return $result;
 	}
 
-	public static function delete ($commentary) {
+	public function delete ($commentary) {
 		$id = $commentary->getId();
 		$result =  Db::update('DELETE FROM commentary WHERE id =?', [$id]);
 		return $result;
 	}
 
-	public static function get($commentary) {
+	public function get($commentary) {
 		$id = $commentary->getId();
 		return Db::selectOne('SELECT * FROM commentary WHERE id =?', [$id]);
 	}
