@@ -36,6 +36,6 @@ CREATE TABLE IF NOT EXISTS likes (
 		imgid INT(11) NOT NULL,
 		KEY (`userid`),
 		KEY (`imgid`),
-		CONSTRAINT 'likes_userid' FOREIGN KEY (`userid`) REFERENCES 'users' (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-		CONSTRAINT 'likes_img' FOREIGN KEY (`imgid`) REFERENCES `images` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+		CONSTRAINT `likes_userid` FOREIGN KEY (`userid`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+		CONSTRAINT `likes_img` FOREIGN KEY (`imgid`) REFERENCES `images` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 );
