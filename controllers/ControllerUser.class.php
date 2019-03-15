@@ -21,7 +21,8 @@ class ControllerUser {
         if (isset($_POST['signUpForm']))
 		{
             $this->_userManager = new UserManager();
-			$error = $this->_userManager->createUser();
+            $error = $this->_userManager->createUser();
+            
 			if (!$error) {
 				echo '<span>Your account has been created !</span><br />';
 			}

@@ -62,6 +62,14 @@ class User {
 			$this->_password = $password;
 		}
 	}
+
+	public function getByUsername() {
+
+	}
+
+	public function getByEmail() {
+		
+	}
 }
 
 ?>

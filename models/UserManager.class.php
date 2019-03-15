@@ -43,16 +43,26 @@ class UserManager {
         if (isset($error)) {
             return $error;
         }
+
 		$username = htmlspecialchars($_POST['username']);
 		$mail = htmlspecialchars($_POST['mail']);
         $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-        if () {
+
+        $this->_user = new User(array(
+            'username' => $username,
+            'mail' => $mail,
+            'password' => $password
+        ));
+
+        if ($this->_user->getByUsername()) {
             return 'Username is already taken !';
         }
-        if () {
+        if ($this->_user->getByMail()) {
             return 'Email is already taken !';
         }
-		return null;
+        
+        $this->_user->push();
+        return null;
     }
     
     public function authUser($password) {
