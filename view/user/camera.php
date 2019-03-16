@@ -1,7 +1,8 @@
+<!DOCTYPE HTML>
 <html>
 <head>
 	<meta charset="utf-8" />
-	<link rel="stylesheet" href="camera.css">
+	<link rel="stylesheet" href="/public/css/camera.css">
 	<title>CAMERA</title>
 </head>
 <body>
@@ -9,6 +10,6 @@
 	<button id="startbutton">Prendre une photo</button>
 	<canvas id="canvas"></canvas>
 	<img src="http://placekitten.com/g/320/261" id="photo" alt="photo">
-	<script src="camera.js"></script>
+	<script src="/public/js/camera.js"></script>
 </body>
 </html>
