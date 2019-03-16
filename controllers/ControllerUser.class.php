@@ -18,18 +18,18 @@ class ControllerUser {
     }
 
     public function signup() {
-        if (isset($_POST['signUpForm']))
-		{
+        $error = null;
+        if (isset($_POST['signUpForm'])) {
             $this->_userManager = new UserManager();
             $error = $this->_userManager->createUser();
-            
+
 			if (!$error) {
 				echo '<span>Your account has been created !</span><br />';
 			}
         }
         
         $this->_view = new View('SignUp');
-        $this->_view->generate([]);
+        $this->_view->generate(['error' => $error]);
     }
 
     public function logout() {

@@ -24,8 +24,9 @@ class Database {
 
     public static function safeExecute($query, $values) {
         self::getDbh();
-        $stmt = self::$_dbh->prepare($query);
-        $stmt->execute($values);
+        if ($stmt = self::$_dbh->prepare($query)) {
+            $stmt->execute($values);
+        }
         return $stmt;
     }
 
@@ -46,7 +47,9 @@ class Database {
     public static function selectOneObject($query, $values, $object) {
         $one = null;
         if ($stmt = self::safeExecute($query, $values)) {
-            $one = $stmt->fetchObject($object);
+            if ($data = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                $one = new $object($data);
+            }
             $stmt->closeCursor();
         }
         return $one;
@@ -64,7 +67,9 @@ class Database {
     public static function selectAllObject($query, $values, $object) {
         $all = [];
         if ($stmt = self::safeExecute($query, $values)) {
-            $all = $stmt->fetchAll(PDO::FETCH_CLASS, $object);
+            while ($data = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                $all[] = new $object($data);
+            }
             $stmt->closeCursor();
         }
 		return $all;

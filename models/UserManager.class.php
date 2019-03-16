@@ -39,8 +39,7 @@ class UserManager {
 
 	public function createUser()
 	{
-        $error = $this->checkSignUpForm();
-        if (isset($error)) {
+        if ($error = $this->checkSignUpForm()) {
             return $error;
         }
 
@@ -69,24 +68,24 @@ class UserManager {
     }
 
 	private function push() {
-		$query = 'INSERT INTO users(?, ?, ?)';
+		$query = 'INSERT INTO users(username, mail, password) VALUES(:username, :mail, :password)';
 		$values = [
-			$this->_user->getUsername(),
-			$this->_user->getMail(),
-			$this->_user->getPassword()
+			'username' => $this->_user->getUsername(),
+			'mail' => $this->_user->getMail(),
+			'password' => $this->_user->getPassword()
 		];
 		return Database::safeExecute($query, $values);
 	}
 
 	public function getByUsername($username) {
-		$query = 'SELECT * FROM users WHERE username=?';
-		$values = [$username];
+		$query = 'SELECT * FROM users WHERE username=:username';
+		$values = ['username' => $username];
 		return Database::selectOneObject($query, $values, 'User');
 	}
 
-	public function getByEmail($mail) {
-		$query = 'SELECT * FROM users WHERE mail=?';
-		$values = [$mail];
+	public function getByMail($mail) {
+		$query = 'SELECT * FROM users WHERE mail=:mail';
+		$values = ['mail' => $mail];
 		return Database::selectOneObject($query, $values, 'User');
 	}
 
