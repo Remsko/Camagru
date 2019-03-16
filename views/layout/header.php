@@ -1,3 +1,11 @@
 <div class="header-div">
-    <p>Camagru<p>
+    <span>Camagru<span>
+    <!--
+        div Logo
+
+        if connect
+            menu logged
+        else
+            menu not log
+    -->
 </div>

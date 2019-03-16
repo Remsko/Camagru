@@ -1,3 +1,3 @@
 <div class="footer-div">
-    <p>2019 rpinoit & mabessir<p>
+    <span>Camagru by rpinoit & mabessir - 2019<span>
 </div>
