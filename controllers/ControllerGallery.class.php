@@ -2,7 +2,7 @@
 
 require_once('views/View.class.php');
 
-class ControllerHome {
+class ControllerGallery {
     private $_imageManager;
     private $_view;
 

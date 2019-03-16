@@ -9,7 +9,7 @@ class Router {
     private $_view;
 
     private function url() {
-        $url = ['Home'];
+        $url = ['Gallery'];
 
         if (isset($_GET['url'])) {
             $urlVariables = filter_var($_GET['url']);
@@ -41,9 +41,8 @@ class Router {
             $this->_url = $this->url();
             $this->_controller = $this->controller();
 
-            $view = $this->_url[1];
-            if (isset($view)) {
-                $this->_method = $view;
+            if (isset($this->_url[1])) {
+                $this->_method = $this->_url[1];
                 if (method_exists($this->_controller, $this->_method)) {
                     call_user_func_array([$this->_controller, $this->_method], $this->_url);
                 }

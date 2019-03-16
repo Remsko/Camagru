@@ -65,11 +65,11 @@ class UserManager {
             return 'Email is already taken !';
         }
 
-        $this->_user = new User(array(
+        $this->_user = new User([
             'username' => $username,
             'mail' => $mail,
             'password' => $password
-        ));
+        ]);
 
         if (!$this->push()) {
             return 'Failed to add your account to the database !';
