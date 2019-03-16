@@ -1,11 +1,8 @@
 <div class="header-div">
     <span>Camagru<span>
-    <!--
-        div Logo
-
-        if connect
-            menu logged
-        else
-            menu not log
-    -->
+    <ul>
+        <li><a href="" title="Gallery">Gallery</a></li>
+        <li><a href="user/signin" title="Sign in">Sign in</a></li>
+        <li><a href="user/signup" title="sign up">Sign Up</a></li>
+    </ul>
 </div>
