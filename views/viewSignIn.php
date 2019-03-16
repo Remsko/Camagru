@@ -8,7 +8,7 @@
             <span>Password:</span><br />
             <input type="password" name="password" value="" /><br />
 
-            <input type="submit" name="submit" value="OK">
+            <input type="submit" name="signInForm" value="OK">
         </form>
         <?php
             if(isset($error)) {

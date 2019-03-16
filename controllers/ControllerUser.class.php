@@ -13,8 +13,17 @@ class ControllerUser {
     }
 
     public function signin() {
+        $error = null;
+        if (isset($_POST['signInForm'])) {
+            $this->_userManager = new UserManager();
+            $error = $this->_userManager->connectUser();
+
+            if (!$error) {
+                //
+            }
+        }
         $this->_view = new View('SignIn');
-        $this->_view->generate([]);
+        $this->_view->generate(['error' => $error]);
     }
 
     public function signup() {

@@ -37,6 +37,17 @@ class UserManager {
         return null;
     }
 
+    public function checkSignInForm() {
+        $username = $_POST['username'];
+        $password = $_POST['password'];
+        
+        if (empty($username) || empty($password)) {
+            return 'All fields need to be completed';
+        }
+
+        return null;
+    }
+
 	public function createUser()
 	{
         if ($error = $this->checkSignUpForm()) {
@@ -62,6 +73,20 @@ class UserManager {
 
         if (!$this->push()) {
             return 'Failed to add your account to the database !';
+        }
+
+        return null;
+    }
+
+    public function connectUser() {
+        if ($error = $this->checkSignInForm()) {
+            return $error;
+        }
+        if (!$this->_user = $this->getByUsername($_POST['username'])) {
+            return 'Your account doesn\'t exist !';
+        }
+        if (!$this->authUser($_POST['password'])) {
+            return 'Your password is wrong !';
         }
 
         return null;
