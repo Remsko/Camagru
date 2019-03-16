@@ -1,3 +1,4 @@
+<?php $this->_title = 'Sign Up'; ?>
 <div id="container">
     <div><h1>Sign up</h1><div>
     <div id="block">
