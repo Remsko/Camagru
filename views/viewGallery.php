@@ -1,2 +1,2 @@
-<?php $this->_title = 'Home'; ?>
-Home
+<?php $this->_title = 'Gallery'; ?>
+Gallery

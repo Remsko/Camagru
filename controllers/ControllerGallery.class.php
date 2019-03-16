@@ -17,7 +17,7 @@ class ControllerGallery {
         $this->_imageManager = new ImageManager();
         $images = $this->_imageManager->getImages();
 
-        $this->_view = new View('Home');
+        $this->_view = new View('Gallery');
         $this->_view->generate(array('images' => $images));
     }
 }
