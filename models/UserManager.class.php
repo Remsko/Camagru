@@ -71,11 +71,15 @@ class UserManager {
             'password' => $password
         ]);
 
-        if (!$this->push()) {
+        if (!$this->pushUser()) {
             return 'Failed to add your account to the database !';
         }
 
         return null;
+    }
+
+    public function setupUser() {
+        $_SESSION['user'] = $this->_user->getUsername();
     }
 
     public function connectUser() {
@@ -88,11 +92,11 @@ class UserManager {
         if (!$this->authUser($_POST['password'])) {
             return 'Your password is wrong !';
         }
-
+        $this->setupUser();
         return null;
     }
 
-	private function push() {
+	private function pushUser() {
 		$query = 'INSERT INTO users(username, mail, password) VALUES(:username, :mail, :password)';
 		$values = [
 			'username' => $this->_user->getUsername(),

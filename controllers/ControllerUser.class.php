@@ -17,10 +17,9 @@ class ControllerUser {
         if (isset($_POST['signInForm'])) {
             $this->_userManager = new UserManager();
             $error = $this->_userManager->connectUser();
-
-            if (!$error) {
-                //
-            }
+        }
+        if (isset($_SESSION['user'])) {
+            //Router::go('Gallery'); redir to gallery
         }
         $this->_view = new View('SignIn');
         $this->_view->generate(['error' => $error]);
@@ -42,10 +41,16 @@ class ControllerUser {
     }
 
     public function logout() {
-
+        if (isset($_SESSION['user'])) {
+            unset($_SESSION['user']);
+        }
+        //Router::go('Gallery'); redir to gallery
     }
 
     public function settings() {
+        $error = null;
 
+        $this->_view = new View('Settings');
+        $this->_view->generate(['error' => $error]);
     }
 }

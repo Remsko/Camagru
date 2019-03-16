@@ -13,3 +13,9 @@ footer {
 
 .footer-div {
 }
+
+.view {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}

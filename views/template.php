@@ -9,7 +9,9 @@
         <header>
             <?php require_once('layout/header.php'); ?>
         </header>
-        <?= $content ?>
+        <div class="view-div">
+            <?= $content ?>
+        </div>
         <footer>
             <?php require_once('layout/footer.php'); ?>
         </footer>
