@@ -2,9 +2,9 @@
 
 class Commentary {
 	private $_id;
-	private $_username;
-	private $_contents;
-	private $_date;
+	private $_userId;
+	private $_imageId;
+	private $_content;
 
 	public function __construct(array $donnees) {
 		$this->hydrate($donnees);
@@ -23,16 +23,16 @@ class Commentary {
 		return $this->_id;
 	}
 
-	public function getUsername() {
-		return $this->_username;
+	public function getUserId() {
+		return $this->_userId;
 	}
 	
-	public function getContents() {
-		return $this->_contents;
+	public function getImageId() {
+		return $this->_imageId;
 	}
 
-	public function getDate() {
-		return $this->_date;
+	public function getContent() {
+		return $this->_content;
 	}
 
 	public function setId($id) {
@@ -41,20 +41,22 @@ class Commentary {
 		}
 	}
 
-	public function setUsername($username) {
-		if (is_string($username)) {
-			$this->_username = $username;
+	public function setUserId($id) {
+		if (is_int($id)) {
+			$this->_id = $id;
 		}
 	}
 
-	public function setContents($contents) {
-		if (is_string($contents)) {
-		$this->_contents = $contents;
+	public function setImageId($id) {
+		if (is_int($id)) {
+			$this->_id = $id;
 		}
 	}
 
-	public function setDate($date) {
-		$this->_date = $date;
+	public function setContent($content) {
+		if (is_string($content)) {
+		$this->_content = $content;
+		}
 	}
 }
 
