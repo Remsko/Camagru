@@ -9,10 +9,12 @@
 	width = 640,
 	height = 400;
 
-	navigator.getMedia = ( navigator.getUserMedia ||
+	navigator.getMedia = (
+			navigator.getUserMedia ||
 			navigator.webkitGetUserMedia ||
 			navigator.mozGetUserMedia ||
-			navigator.msGetUserMedia);
+			navigator.msGetUserMedia
+		);
 
 	navigator.getMedia(
 			{
@@ -30,7 +32,7 @@
 			function(err) {
 				console.log("An error occured! " + err);
 			}
-			);
+		);
 
 	video.addEventListener('canplay', function(ev){
 		if (!streaming) {
