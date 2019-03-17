@@ -2,11 +2,9 @@
 
 class Image {
 		private $_id;
-		private	$_username;
-		private	$_name;
-		private	$_type;
-		private	$_descrip;
-		private	$_blob;
+		private $_userId;
+		private $_path;
+		private $_date;
 
 		public function __construct(array $data) {
 			$this->hydrate($data);
@@ -25,25 +23,18 @@ class Image {
 			return $this->_id;
 		}
 
-		public function getName() {
-			return $this->_name;
+		public function getUserId() {
+			return $this->_userId;
 		}
 
-		public function getUsername() {
-			return $this->_username;
+		public function getPath() {
+			return $this->_path;
 		}
 
-		public function getType() {
-			return $this->_type;
+		public function getDate() {
+			return $this->_date;
 		}
 
-		public function getDescrip() {
-			return $this->_descrip;
-		}
-
-		public function getBlob() {
-			return $this->_blob;
-		}
 
 		public function setId($id) {
 			if (is_int($id)) {
@@ -51,38 +42,20 @@ class Image {
 			}
 		}
 
-		public function setName($name) {
-			if (is_string($name)){
-				$this->_name = $name;
+		public function setUserId($userId) {
+			if (is_int($userId)) {
+				$this->_userId = $userId;
 			}
 		}
 
-		public function setUsername($username) {
-			if (is_string($username)){
-				$this->_username = $username;
-			}	
-		}
-		
-		public function setType($type) {
-			$extensions = array('/png', '/jpg', '/jpeg');
-			$extension = strrchr($type, '/');
-			if(!in_array($extension, $extensions)) {
-				echo 'Wrong file type. You can only upload png jpg or jpeg files.';
-			}
-			else {
-				$this->_type = $type;
+		public function setPath($path) {
+			if (is_string($path)) {
+				$this->_path = $path;
 			}
 		}
 
-		public function setDescrip($descrip) {
-			if (is_string($descrip)) {
-				$this->_descrip = $descrip;
-			}
-		}
-
-		public function setBlob($path) {
-			$blob = file_get_contents($path);
-			$this->_blob = $blob;
+		public function setDate($date) {
+			$this->_date = $date;
 		}
 }
 
