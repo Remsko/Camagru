@@ -23,8 +23,8 @@ CREATE TABLE IF NOT EXISTS comments (
 		date timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
 		KEY (`userid`),
 		KEY (`imgid`),
-		CONSTRAINT `commentary_userid` FOREIGN KEY (`userid`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-		CONSTRAINT `commentary_img` FOREIGN KEY (`imgid`) REFERENCES `images` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+		CONSTRAINT `comments_userid` FOREIGN KEY (`userid`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+		CONSTRAINT `comments_img` FOREIGN KEY (`imgid`) REFERENCES `images` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS likes (
