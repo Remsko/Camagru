@@ -41,15 +41,15 @@ class Commentary {
 		}
 	}
 
-	public function setUserId($id) {
+	public function setUserId($userId) {
 		if (is_int($id)) {
-			$this->_id = $id;
+			$this->_userId = $userId;
 		}
 	}
 
-	public function setImageId($id) {
-		if (is_int($id)) {
-			$this->_id = $id;
+	public function setImageId($imageId) {
+		if (is_int($imageId)) {
+			$this->_imageId = $imageId;
 		}
 	}
 
