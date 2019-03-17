@@ -1,4 +1,2 @@
-<?php
-    $this->_title = 'Error';
-    echo $errorMsg;
-?>
+<?php $this->_title = 'Error'?>
+<?= $errorMsg ?>

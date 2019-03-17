@@ -56,7 +56,7 @@ class UserManager {
 
 		$username = htmlspecialchars($_POST['username']);
 		$mail = htmlspecialchars($_POST['mail']);
-        $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+        $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
 
         if ($this->getByUsername($username)) {
             return 'Username is already taken !';
