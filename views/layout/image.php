@@ -1,1 +1,1 @@
-<img src="<?= $image->path ?>">
+<img src="<?= $image->getPath() ?>">
