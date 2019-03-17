@@ -50,12 +50,35 @@
 		canvas.height = height;
 		canvas.getContext('2d').drawImage(video, 0, 0, width, height);
 		var data = canvas.toDataURL('image/png');
-		photo.setAttribute('src', data);
 	}
 
 	startbutton.addEventListener('click', function(ev){
 		takepicture();
 		ev.preventDefault();
 	}, false);
+
+	function saveImage() {
+		var canvasData = canvas.toDataURL("image/png");
+		var xmlHttpReq = true;
+	  
+		if (window.XMLHttpRequest) {
+		  ajax = new XMLHttpRequest();
+		}
+		else if (window.ActiveXObject) {
+		  ajax = new ActiveXObject("Microsoft.XMLHTTP");
+		}
+	  
+		ajax.open("POST", "camera.php", true);
+		ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+		ajax.onreadystatechange = function() {
+		  console.log(ajax.responseText);
+		}
+		ajax.send("imgData=" + canvasData);
+	  }
+
+	  savebutton.addEventListener('click', function(ev) {
+		saveImage();
+		ev.preventDefault;
+	  }, false);
 
 })();
