@@ -53,4 +53,12 @@ class ControllerUser {
         $this->_view = new View('Settings');
         $this->_view->generate(['error' => $error]);
     }
+
+    public function studio() {
+        $error = null;
+
+        $this->_view = new View('Studio');
+        $this->_view->generate(['error' => $error]);
+    }
+
 }
