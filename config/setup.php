@@ -16,8 +16,8 @@
 		}
 	}
 	try {
-		$NewTables = file_get_contents('setup.sql');
-		$db->exec($NewTables);
+		$newTables = file_get_contents('config/setup.sql');
+		$db->exec($newTables);
 	}
 	catch (PDOException $e) {
 		echo "Connection failed (filling): " . $e->getMessage();

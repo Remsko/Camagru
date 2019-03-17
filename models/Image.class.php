@@ -4,7 +4,6 @@ class Image {
 		private $_id;
 		private $_userId;
 		private $_path;
-		private $_date;
 
 		public function __construct(array $data) {
 			$this->hydrate($data);
@@ -31,11 +30,6 @@ class Image {
 			return $this->_path;
 		}
 
-		public function getDate() {
-			return $this->_date;
-		}
-
-
 		public function setId($id) {
 			if (is_int($id)) {
 				$this->_id = $id;
@@ -52,10 +46,6 @@ class Image {
 			if (is_string($path)) {
 				$this->_path = $path;
 			}
-		}
-
-		public function setDate($date) {
-			$this->_date = $date;
 		}
 }
 
