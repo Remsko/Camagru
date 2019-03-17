@@ -1,6 +1,10 @@
 <?php $this->_title = 'Studio'; ?>
-<video id="video"></video>
-<button id="startbutton">Take Picture</button>
-<canvas id="canvas"></canvas>
-<img src="/public/images/om" id="photo" alt="photo">
-<script src="/public/js/camera.js"></script>
+
+<?php
+    if (isset($_SESSION['user'])) {
+        require_once('layout/camera.php');
+    }
+    else {
+        echo '<font color="red">'.'You must be logged in to access the studio.'."</font>";
+    }
+?>
