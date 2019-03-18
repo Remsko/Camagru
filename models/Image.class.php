@@ -4,9 +4,12 @@ class Image {
 		private $_id;
 		private $_userId;
 		private $_path;
+		private $_comments;
 
 		public function __construct(array $data) {
 			$this->hydrate($data);
+
+			$this->_comments = CommentaryManager::getCommentsByUserId($this->getId());
 		}
 		
 		public function hydrate(array $data) {
