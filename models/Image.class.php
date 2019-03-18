@@ -9,7 +9,8 @@ class Image {
 		public function __construct(array $data) {
 			$this->hydrate($data);
 
-			$this->_comments = CommentaryManager::getCommentsByUserId($this->getId());
+			$comments = CommentaryManager::getCommentsByUserId($this->getId());
+			$this->setComments($comments);
 		}
 		
 		public function hydrate(array $data) {
@@ -33,6 +34,10 @@ class Image {
 			return $this->_path;
 		}
 
+		public function getComments() {
+			return $this->_comments;
+		}
+
 		public function setId($id) {
 			if (is_int($id)) {
 				$this->_id = $id;
@@ -49,6 +54,10 @@ class Image {
 			if (is_string($path)) {
 				$this->_path = $path;
 			}
+		}
+
+		public function setComments($comments) {
+			$this->_comments = $comments;
 		}
 }
 
