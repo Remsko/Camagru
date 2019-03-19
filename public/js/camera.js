@@ -64,16 +64,16 @@
 		else if (window.ActiveXObject) {
 		  ajax = new ActiveXObject("Microsoft.XMLHTTP");
 		}
-		ajax.open('POST', 'camera.php', true);
+		ajax.open('POST', 'http://127.0.0.1:8080/public/js/createimg.php', true);
 		ajax.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 		ajax.onreadystatechange = function() {
-			if (ajax.readyState == 4 && (ajax.status == 200)) {
+		if (ajax.readyState == 4 && (ajax.status == 200)) {
 			console.log(ajax.responseText);
 		}
 			else
-					console.log(ajax.readyState);
+				console.log(ajax.readyState);
 	}
-		ajax.send('img=' + data);
+		ajax.send('img' + data);
 	  }
 
 	  savebutton.addEventListener('click', function(ev) {
