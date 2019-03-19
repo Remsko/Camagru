@@ -64,7 +64,7 @@
 		else if (window.ActiveXObject) {
 		  ajax = new ActiveXObject("Microsoft.XMLHTTP");
 		}
-		ajax.open('POST', 'http://127.0.0.1:8080/public/js/createimg.php', true);
+		ajax.open('POST', '/views/layout/saveimg.php', true);
 		ajax.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 		ajax.onreadystatechange = function() {
 		if (ajax.readyState == 4 && (ajax.status == 200)) {
@@ -73,7 +73,7 @@
 			else
 				console.log(ajax.readyState);
 	}
-		ajax.send('img' + data);
+		ajax.send('img=' + data);
 	  }
 
 	  savebutton.addEventListener('click', function(ev) {
