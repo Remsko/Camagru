@@ -1,13 +1,3 @@
-<?php
-	define('UPLOAD_DIR', '../../public/images/');
-	$img = $_POST['img'];
-	$img = str_replace('data:image/png;base64,', '', $img);
-	$img = str_replace(' ', '+', $img);
-	$data = base64_decode($img);
-	echo($img);
-	$file = UPLOAD_DIR . uniqid() . '.png';
-	$success = file_put_contents($file, $data);
-?>
 <!DOCTYPE html>
 <html>
 <video id="video"></video>
