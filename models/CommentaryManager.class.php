@@ -1,5 +1,5 @@
 <?php
-	include ("Db.class.php");
+	include ("Database.class.php");
 
 class CommentaryManager {
 
