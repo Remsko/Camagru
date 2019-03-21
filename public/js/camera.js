@@ -1,5 +1,3 @@
-(function() {
-
 	var streaming = false,
 	video        = document.querySelector('#video'),
 	cover        = document.querySelector('#cover'),
@@ -46,11 +44,11 @@
 	}, false);
 
 	function takepicture() {
+		video.pause();
+		video.style.display = 'none';
 		canvas.width = width;
 		canvas.height = height;
 		canvas.getContext('2d').drawImage(video, 0, 0, width, height);
-		var data = canvas.toDataURL('image/png');
-		photo.setAttribute('src', data);
 	}
 
 	startbutton.addEventListener('click', function(ev){
@@ -58,4 +56,27 @@
 		ev.preventDefault();
 	}, false);
 
-})();
+	function saveImage() {
+		var data = canvas.toDataURL("image/png");
+		if (window.XMLHttpRequest) {
+		  ajax = new XMLHttpRequest();
+		}
+		else if (window.ActiveXObject) {
+		  ajax = new ActiveXObject("Microsoft.XMLHTTP");
+		}
+		ajax.open('POST', '/views/layout/saveimg.php', true);
+		ajax.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+		ajax.onreadystatechange = function() {
+		if (ajax.readyState == 4 && (ajax.status == 200)) {
+			console.log(ajax.responseText);
+		}
+			else
+				console.log(ajax.readyState);
+	}
+		ajax.send('img=' + data);
+	  }
+
+	  savebutton.addEventListener('click', function(ev) {
+		saveImage();
+		ev.preventDefault;
+	  }, false);
