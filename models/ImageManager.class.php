@@ -25,7 +25,7 @@ class ImageManager {
 				'userId' => $userId
 			];
 			if ($stmt = Database::safeExecute($query, $values)) {
-				return $stmt->rowCount();
+				return $stmt->rowCount() ? true : false;
 			}
 		}
 		return false;
