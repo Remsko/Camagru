@@ -52,8 +52,8 @@ class CommentManager {
 	}
 
 	public static function getCommentsByImageId($imageId) {
-		$query = "SELECT * FROM comments WHERE imageid=:imageid ORDER BY id ASC";
-		$values = ["imageid" => $imageId];
+		$query = "SELECT * FROM comments WHERE imageid=:imageId ORDER BY id ASC";
+		$values = ["imageId" => $imageId];
 		return Database::selectAllObject($query, $values, 'Comment');
 	}
 }

@@ -1,0 +1,1 @@
+</strong><?= $image->getLikes() ?> likes</strong>

@@ -5,12 +5,15 @@ class Image {
 		private $_userId;
 		private $_path;
 		private $_comments;
+		private $_likes;
 
 		public function __construct(array $data) {
 			$this->hydrate($data);
 
 			$comments = CommentManager::getCommentsByImageId($this->getId());
+			$likes = LikeManager::getLikesByImageId($this->getId());
 			$this->setComments($comments);
+			$this->setLikes($likes);
 		}
 		
 		public function hydrate(array $data) {
@@ -38,6 +41,10 @@ class Image {
 			return $this->_comments;
 		}
 
+		public function getLikes() {
+			return $this->_likes;
+		}
+
 		public function setId($id) {
 			if (is_numeric($id)) {
 				$this->_id = $id;
@@ -58,6 +65,12 @@ class Image {
 
 		public function setComments($comments) {
 			$this->_comments = $comments;
+		}
+
+		public function setLikes($likes) {
+			if (is_numeric($likes)) {
+				$this->_likes = $likes;
+			}
 		}
 }
 
