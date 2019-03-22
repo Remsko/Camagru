@@ -18,7 +18,7 @@
             <span>Password confirmation: </span><br />
             <input type="password" name="passwordConfirm" value=""/><br />
 
-            <input type="submit" name="signUpForm" value="Sign up">
+            <input type="submit" name="signUpForm" value="Sign up" />
         </form>
         <?php
             if(isset($error)) {
