@@ -6,13 +6,13 @@ class Commentary {
 	private $_imageId;
 	private $_content;
 
-	public function __construct(array $donnees) {
-		$this->hydrate($donnees);
+	public function __construct(array $datas) {
+		$this->hydrate($datas);
 	}
 	
-	public function hydrate(array $donnees) {
-		foreach ($donnees as $key => $value) {
-			$method = 'set'.ucfirst($value);
+	public function hydrate(array $datas) {
+		foreach ($datas as $key => $value) {
+			$method = 'set'.ucfirst($key);
 			if (method_exists($this, $method)) {
 				$this->$method($value);
 			}
@@ -36,26 +36,26 @@ class Commentary {
 	}
 
 	public function setId($id) {
-		if (is_int($id)) {
+		if (is_numeric($id)) {
 			$this->_id = $id;
 		}
 	}
 
 	public function setUsername($username) {
-		if (is_int($username)) {
+		if (is_numeric($username)) {
 			$this->_username = $username;
 		}
 	}
 
 	public function setImageId($imageId) {
-		if (is_int($imageId)) {
+		if (is_numeric($imageId)) {
 			$this->_imageId = $imageId;
 		}
 	}
 
-	public function setContent($content) {
+	public function setContents($content) {
 		if (is_string($content)) {
-		$this->_content = $content;
+			$this->_content = $content;
 		}
 	}
 }

@@ -6,6 +6,8 @@ class ImageManager {
 		$images = Database::selectAllObject('SELECT * FROM images ORDER BY id DESC', [], 'Image');
 		return $images;
 	}
+
+	
 }
 
 ?>

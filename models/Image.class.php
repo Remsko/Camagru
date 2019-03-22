@@ -9,7 +9,7 @@ class Image {
 		public function __construct(array $data) {
 			$this->hydrate($data);
 
-			$comments = CommentaryManager::getCommentsByUserId($this->getId());
+			$comments = CommentaryManager::getCommentsByImageId($this->getId());
 			$this->setComments($comments);
 		}
 		
@@ -39,13 +39,13 @@ class Image {
 		}
 
 		public function setId($id) {
-			if (is_int($id)) {
+			if (is_numeric($id)) {
 				$this->_id = $id;
 			}
 		}
 
 		public function setUserId($userId) {
-			if (is_int($userId)) {
+			if (is_numeric($userId)) {
 				$this->_userId = $userId;
 			}
 		}
