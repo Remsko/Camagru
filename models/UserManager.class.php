@@ -79,7 +79,7 @@ class UserManager {
     }
 
     public function setupUser() {
-        $_SESSION['user'] = $this->_user->getUsername();
+        $_SESSION['userId'] = $this->_user->getId();
     }
 
     public function connectUser() {

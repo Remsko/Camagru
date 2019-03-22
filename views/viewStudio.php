@@ -1,7 +1,7 @@
 <?php $this->_title = 'Studio'; ?>
 
 <?php
-    if (isset($_SESSION['user'])) {
+    if (isset($_SESSION['userId'])) {
         require_once('layout/camera.php');
     }
     else {

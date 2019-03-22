@@ -3,7 +3,7 @@
     <ul>
         <li><a href="/" title="Gallery">Gallery</a></li>
         <?php
-            if(!isset($_SESSION['user'])) {
+            if(!isset($_SESSION['userId'])) {
                 echo '<li><a href="/user/signin" title="Sign in">Sign in</a></li>';
                 echo '<li><a href="/user/signup" title="Sign up">Sign up</a></li>';
             }

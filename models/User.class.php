@@ -37,7 +37,7 @@ class User {
 
 	public function setId($id)
 	{
-		if (is_int($id)) {
+		if (is_numeric($id)) {
 			$this->_id = $id;
 		}
 	}

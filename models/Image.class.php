@@ -4,9 +4,13 @@ class Image {
 		private $_id;
 		private $_userId;
 		private $_path;
+		private $_comments;
 
 		public function __construct(array $data) {
 			$this->hydrate($data);
+
+			$comments = CommentManager::getCommentsByImageId($this->getId());
+			$this->setComments($comments);
 		}
 		
 		public function hydrate(array $data) {
@@ -30,14 +34,18 @@ class Image {
 			return $this->_path;
 		}
 
+		public function getComments() {
+			return $this->_comments;
+		}
+
 		public function setId($id) {
-			if (is_int($id)) {
+			if (is_numeric($id)) {
 				$this->_id = $id;
 			}
 		}
 
 		public function setUserId($userId) {
-			if (is_int($userId)) {
+			if (is_numeric($userId)) {
 				$this->_userId = $userId;
 			}
 		}
@@ -46,6 +54,10 @@ class Image {
 			if (is_string($path)) {
 				$this->_path = $path;
 			}
+		}
+
+		public function setComments($comments) {
+			$this->_comments = $comments;
 		}
 }
 
