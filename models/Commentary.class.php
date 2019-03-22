@@ -2,7 +2,7 @@
 
 class Commentary {
 	private $_id;
-	private $_userId;
+	private $_username;
 	private $_imageId;
 	private $_content;
 
@@ -23,8 +23,8 @@ class Commentary {
 		return $this->_id;
 	}
 
-	public function getUserId() {
-		return $this->_userId;
+	public function getUsername() {
+		return $this->_username;
 	}
 	
 	public function getImageId() {
@@ -41,9 +41,9 @@ class Commentary {
 		}
 	}
 
-	public function setUserId($userId) {
-		if (is_int($id)) {
-			$this->_userId = $userId;
+	public function setUsername($username) {
+		if (is_int($username)) {
+			$this->_username = $username;
 		}
 	}
 
