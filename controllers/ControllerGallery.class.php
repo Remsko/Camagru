@@ -17,16 +17,22 @@ class ControllerGallery {
 
     /* imageid + error to display error on good image commentForm */
     private function gallery() {
+        $error = null;
+        $imageId = isset($_POST['imageId']) ? htmlspecialchars($_POST['imageId']) : null;
         if (isset($_POST['commentForm'])) {
             $this->_commentManager = new CommentManager();
-            $this->_commentManager->postComment();
+            $error = $this->_commentManager->postComment();
         }
         
         $this->_imageManager = new ImageManager();
         $images = $this->_imageManager->getImages();
 
         $this->_view = new View('Gallery');
-        $this->_view->generate(['images' => $images]);
+        $this->_view->generate([
+            'images' => $images,
+            'error' => $error,
+            'imageId' => $imageId
+        ]);
     }
 }
 

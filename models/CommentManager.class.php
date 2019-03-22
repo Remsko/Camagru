@@ -8,8 +8,11 @@ class CommentManager {
 		$imageId = $_POST['imageId'];
 		$content = $_POST['comment'];
 
-		if (empty($userId) || empty($imageId) || empty($content)) {
-			return ' ';
+		if (empty($userId) || empty($imageId)) {
+			return 'An error occurred.';
+		}
+		if (empty($content)) {
+			return 'Comment is empty !';
 		}
 		if (strlen($content) > 300) {
 			return 'Comment is too long !';
@@ -32,7 +35,10 @@ class CommentManager {
 			'content' => $content
 		]);
 
-		$this->pushComment();
+		if (!$this->pushComment()) {
+            return 'Failed to add your comment to the picture !';
+		}
+		return null;
 	}
 	
 	private function pushComment() {
