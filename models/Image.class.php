@@ -6,17 +6,17 @@ class Image {
 		private $_path;
 		private $_comments;
 		private $_likes;
-		private $_isLiked;
+		private $_liked;
 
 		public function __construct(array $data) {
 			$this->hydrate($data);
 
 			$comments = CommentManager::getCommentsByImageId($this->getId());
 			$likes = ImageManager::getLikesByImageId($this->getId());
-			$isLiked = ImageManager::isLiked();
+			$isLiked = ImageManager::isLiked($this->Id());
 			$this->setComments($comments);
 			$this->setLikes($likes);
-			$this->setIsLiked($isLiked);
+			$this->setLiked($isLiked);
 		}
 		
 		public function hydrate(array $data) {
@@ -48,8 +48,8 @@ class Image {
 			return $this->_likes;
 		}
 
-		public function getIsLiked() {
-			return $this->_isLiked;
+		public function getLiked() {
+			return $this->_liked;
 		}
 
 		public function setId($id) {
@@ -80,9 +80,9 @@ class Image {
 			}
 		}
 
-		public function setIsLiked($isLiked) {
+		public function setLiked($isLiked) {
 			if (is_bool($isLiked)) {
-				$this->_isLiked = $isLiked;
+				$this->_liked = $isLiked;
 			}
 		}
 }

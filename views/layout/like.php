@@ -1,7 +1,7 @@
 </strong><?= $image->getLikes() ?> likes</strong>
 <form method="post" action="">
     <?php
-        if ($image->isLiked()) {
+        if (!$image->getLiked()) {
             echo '<input type="submit" name="like" value="like" />';
         }
         else {

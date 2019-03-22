@@ -30,6 +30,24 @@ class ImageManager {
 		}
 		return false;
 	}
+
+	public function like($userId, $imageId) {
+		$query = 'DELETE FROM likes WHERE userid=:userId AND imageid=:imageId';
+		$values = [
+			'userId' => $userId,
+			'imageId' => $imageId
+		];
+		return Database::safeExecute($query, $values);
+	}
+
+	public function dislike($userId, $imageId) {
+		$query = 'INSERT INTO likes(userid, imageid) VALUES(:userId, :imageId)';
+		$values = [
+			'userId' => $userId,
+			'imageId' => $imageId
+		];
+		return Database::safeExecute($query, $values);
+	}
  }
 
 ?>
