@@ -1,8 +1,8 @@
 <?php
 
-class Commentary {
+class Comment {
 	private $_id;
-	private $_username;
+	private $_userId;
 	private $_imageId;
 	private $_content;
 
@@ -23,8 +23,8 @@ class Commentary {
 		return $this->_id;
 	}
 
-	public function getUsername() {
-		return $this->_username;
+	public function getUserId() {
+		return $this->_userId;
 	}
 	
 	public function getImageId() {
@@ -41,9 +41,9 @@ class Commentary {
 		}
 	}
 
-	public function setUsername($username) {
-		if (is_numeric($username)) {
-			$this->_username = $username;
+	public function setUserId($userId) {
+		if (is_numeric($userId)) {
+			$this->_userId = $userId;
 		}
 	}
 
@@ -53,7 +53,7 @@ class Commentary {
 		}
 	}
 
-	public function setContents($content) {
+	public function setContent($content) {
 		if (is_string($content)) {
 			$this->_content = $content;
 		}

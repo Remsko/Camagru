@@ -12,7 +12,10 @@ class View {
         try {
             $content = $this->generateFile($this->_file, $data);
 
-            $templateData = array('title' => $this->_title, 'content' => $content);
+            $templateData = [
+                'title' => $this->_title,
+                'content' => $content
+            ];
             $view = $this->generateFile('views/template.php', $templateData);
 
             echo $view;

@@ -9,7 +9,7 @@ class Image {
 		public function __construct(array $data) {
 			$this->hydrate($data);
 
-			$comments = CommentaryManager::getCommentsByImageId($this->getId());
+			$comments = CommentManager::getCommentsByImageId($this->getId());
 			$this->setComments($comments);
 		}
 		

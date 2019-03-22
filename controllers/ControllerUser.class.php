@@ -18,7 +18,7 @@ class ControllerUser {
             $this->_userManager = new UserManager();
             $error = $this->_userManager->connectUser();
         }
-        if (isset($_SESSION['user'])) {
+        if (isset($_SESSION['userId'])) {
             //Router::go('Gallery'); redir to gallery
         }
         $this->_view = new View('SignIn');
@@ -41,8 +41,8 @@ class ControllerUser {
     }
 
     public function logout() {
-        if (isset($_SESSION['user'])) {
-            unset($_SESSION['user']);
+        if (isset($_SESSION['userId'])) {
+            unset($_SESSION['userId']);
         }
         //Router::go('Gallery'); redir to gallery
     }
