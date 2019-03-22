@@ -18,10 +18,6 @@ class CommentManager {
 	}
 
 	public function postComment() {
-		if ('') {
-			echo 'baise ta mere';
-		}
-
 		if ($error = $this->checkCommentForm()) {
             return $error;
 		}
