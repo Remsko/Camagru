@@ -1,3 +1,2 @@
-
-<?= $comment->getContent() ?>
-<br/>
+<strong><?= $comment->getUsername() ?> </strong>
+<?= $comment->getContent() ?><br/>
