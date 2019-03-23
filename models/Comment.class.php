@@ -4,10 +4,18 @@ class Comment {
 	private $_id;
 	private $_userId;
 	private $_imageId;
+	private $_username;
 	private $_content;
 
 	public function __construct(array $datas) {
 		$this->hydrate($datas);
+
+		$userId = $this->getUserId();
+		if (isset($userId)) {
+			if ($user = UserManager::getByUserId($userId)) {
+				$this->setUsername($user->getUsername());
+			}
+		}
 	}
 	
 	public function hydrate(array $datas) {
@@ -35,6 +43,10 @@ class Comment {
 		return $this->_content;
 	}
 
+	public function getUsername() {
+		return $this->_username;
+	}
+
 	public function setId($id) {
 		if (is_numeric($id)) {
 			$this->_id = $id;
@@ -56,6 +68,12 @@ class Comment {
 	public function setContent($content) {
 		if (is_string($content)) {
 			$this->_content = $content;
+		}
+	}
+
+	public function setUsername($username) {
+		if (is_string($username)) {
+			$this->_username = $username;
 		}
 	}
 }

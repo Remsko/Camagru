@@ -104,6 +104,12 @@ class UserManager {
 			'password' => $this->_user->getPassword()
 		];
 		return Database::safeExecute($query, $values);
+    }
+    
+    public static function getByUserId($userId) {
+		$query = 'SELECT * FROM users WHERE id=:userId';
+		$values = ['userId' => $userId];
+		return Database::selectOneObject($query, $values, 'User');
 	}
 
 	public function getByUsername($username) {
