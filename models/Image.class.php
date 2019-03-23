@@ -13,7 +13,7 @@ class Image {
 
 			$comments = CommentManager::getCommentsByImageId($this->getId());
 			$likes = ImageManager::getLikesByImageId($this->getId());
-			$isLiked = ImageManager::isLiked($this->Id());
+			$isLiked = ImageManager::isLiked($this->getId());
 			$this->setComments($comments);
 			$this->setLikes($likes);
 			$this->setLiked($isLiked);
