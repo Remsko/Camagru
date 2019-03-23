@@ -28,12 +28,10 @@ class ControllerGallery {
         if (isset($_POST['like'])) {
             $this->_imageManager = new ImageManager();
             $this->_imageManager->like($userId, $imageId);
-            echo 'like';
         }
         if (isset($_POST['dislike'])) {
             $this->_imageManager = new ImageManager();
             $this->_imageManager->dislike($userId, $imageId);
-            echo 'dislike';
         }
 
         $this->_imageManager = new ImageManager();
