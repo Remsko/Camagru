@@ -16,6 +16,15 @@ class ImageManager {
 		return 0;
 	}
 
+	public static function pushImage($image) {
+		$query = 'INSERT INTO images(userid, path) VALUES(:userid, :path)';
+		$values = [
+			'userid' => $image->getUserId(),
+			'path' => $image->getPath()
+		];
+		return Database::safeExecute($query, $values);
+	}
+
 	public static function isLiked($imageId) {
 		if (isset($_SESSION['userId'])) {
 			$userId = $_SESSION['userId'];
