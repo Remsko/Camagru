@@ -1,11 +1,11 @@
-	var streaming = false,
-	video        = document.querySelector('#video'),
-	cover        = document.querySelector('#cover'),
-	canvas       = document.querySelector('#canvas'),
-	photo        = document.querySelector('#photo'),
-	startbutton  = document.querySelector('#startbutton'),
-	width = 640,
-	height = 400;
+	streaming	= false,
+	video		= document.querySelector('#video'),
+	cover		= document.querySelector('#cover'),
+	canvas		= document.querySelector('#canvas'),
+	photo		= document.querySelector('#photo'),
+	startbutton	= document.querySelector('#startbutton'),
+	width		= 640,
+	height		= 400;
 
 	navigator.getMedia = (
 			navigator.getUserMedia ||
@@ -59,10 +59,10 @@
 	function saveImage() {
 		var data = canvas.toDataURL("image/png");
 		if (window.XMLHttpRequest) {
-		  ajax = new XMLHttpRequest();
+			ajax = new XMLHttpRequest();
 		}
 		else if (window.ActiveXObject) {
-		  ajax = new ActiveXObject("Microsoft.XMLHTTP");
+			ajax = new ActiveXObject("Microsoft.XMLHTTP");
 		}
 		ajax.open('POST', '/views/layout/saveimg.php', true);
 		ajax.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
@@ -72,11 +72,11 @@
 		}
 			else
 				console.log(ajax.readyState);
-	}
+		}
 		ajax.send('img=' + data);
-	  }
+	}
 
-	  savebutton.addEventListener('click', function(ev) {
+	savebutton.addEventListener('click', function(ev) {
 		saveImage();
 		ev.preventDefault;
-	  }, false);
+	}, false);
