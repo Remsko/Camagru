@@ -9,7 +9,7 @@ class ControllerStudio {
 		if (!isset($url) || count($url) > 2) {
 			throw new Exception('Page not found');
 		}
-		if (isset($url) && count($url) ===  1) {
+		if (count($url) === 1) {
 			$this->studio();
 		}
 	}
