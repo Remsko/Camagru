@@ -48,9 +48,16 @@ class ControllerUser {
     }
 
     public function settings() {
+        if (!isset($_SESSION['userId'])) {
+            throw new Exception('You need to be connected to access the settings !');
+        }
+        $user = UserManager::getByUserId($_SESSION['userId']);
         $error = null;
 
         $this->_view = new View('Settings');
-        $this->_view->generate(['error' => $error]);
+        $this->_view->generate([
+            'user' => $user,
+            'error' => $error
+        ]);
     }
 }
