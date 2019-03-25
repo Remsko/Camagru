@@ -20,7 +20,7 @@ class ControllerStudio {
 	}
 
 	public function saveimage() {
-		if (isset($_SESSION['userId'])) {
+		if (isset($_SESSION['user'])) {
 			if (isset($_POST['image'])) {
 				$this->_imageManager = new ImageManager();
 				$image = $_POST['image'];

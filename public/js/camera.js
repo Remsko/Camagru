@@ -63,7 +63,7 @@ function saveImage() {
 	else if (window.ActiveXObject) {
 		ajax = new ActiveXObject("Microsoft.XMLHTTP");
 	}
-	ajax.open('POST', '/studio/saveimage', true);
+	ajax.open('POST', 'studio/saveimage', true);
 	ajax.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 	ajax.onreadystatechange = function() {
 	if (ajax.readyState == 4 && (ajax.status == 200)) {
