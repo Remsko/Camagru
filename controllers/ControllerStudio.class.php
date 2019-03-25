@@ -31,9 +31,9 @@ class ControllerStudio {
 				$id = uniqid();
 				$file = 'public/images/' . $id . '.png';
 				$error = file_put_contents($file, $data);
-				if ($error === FALSE) {
+				if ($error === false) {
 					throw new Exception('An error occurred while trying to save image.');
-					return FALSE;
+					return false;
 				}
 				$image = new Image([
 					'userId' => $_SESSION['userId'],
