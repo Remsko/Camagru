@@ -20,7 +20,6 @@ class ControllerStudio {
 	}
 
 	public function saveimage() {
-		$error = null;
 		if (isset($_POST['image'])) {
 			$this->_imageManager = new ImageManager();
 			$image = $_POST['image'];
@@ -29,12 +28,17 @@ class ControllerStudio {
 			$data = base64_decode($image);
 			$id = uniqid();
 			$file = 'public/images/' . $id . '.png';
-			$success = file_put_contents($file, $data);
-			$image = new Image([
-				'userid' => $_SESSION['userId'],
-				'path' => $file,
-			]);
-			$this->_imageManager->pushImage($image);
+			file_put_contents($file, $data);
+			if (isset($_SESSION['userId'])) {
+				$image = new Image([
+					'userid' => $_SESSION['userId'],
+					'path' => $file,
+				]);
+				$this->_imageManager->pushImage($image);
+			}
+			else {
+				throw new Exception('You must be connected to push images');
+			}
         }
     }
 }
