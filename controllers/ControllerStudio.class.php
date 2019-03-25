@@ -36,10 +36,10 @@ class ControllerStudio {
 				]);
 				$this->_imageManager->pushImage($image);
 			}
+        }
 		else {
 			throw new Exception('You must be connected to save images');
 		}
-        }
     }
 }
 
