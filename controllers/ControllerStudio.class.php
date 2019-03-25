@@ -20,7 +20,8 @@ class ControllerStudio {
 	}
 
 	public function saveimage() {
-		if (isset($_SESSION['user'])) {
+		$error = NULL;
+		if (isset($_SESSION['userId'])) {
 			if (isset($_POST['image'])) {
 				$this->_imageManager = new ImageManager();
 				$image = $_POST['image'];
@@ -29,9 +30,13 @@ class ControllerStudio {
 				$data = base64_decode($image);
 				$id = uniqid();
 				$file = 'public/images/' . $id . '.png';
-				file_put_contents($file, $data);
+				$error = file_put_contents($file, $data);
+				if ($error === FALSE) {
+					throw new Exception('An error occurred while trying to save image.');
+					return false;
+				}
 				$image = new Image([
-					'userid' => $_SESSION['userId'],
+					'userId' => $_SESSION['userId'],
 					'path' => $file,
 				]);
 				$this->_imageManager->pushImage($image);
