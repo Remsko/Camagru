@@ -33,7 +33,7 @@ class ControllerStudio {
 				$error = file_put_contents($file, $data);
 				if ($error === FALSE) {
 					throw new Exception('An error occurred while trying to save image.');
-					return false;
+					return FALSE;
 				}
 				$image = new Image([
 					'userId' => $_SESSION['userId'],
