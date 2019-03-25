@@ -19,6 +19,7 @@
 				video: true,
 				audio: false
 			},
+			// Starting camera
 			function(stream) {
 				if (navigator.mozGetUserMedia) {
 					video.mozSrcObject = stream;
@@ -31,7 +32,7 @@
 				console.log("An error occured! " + err);
 			}
 		);
-
+			// Adapt Size 
 	video.addEventListener('canplay', function(ev){
 		if (!streaming) {
 			height = video.videoHeight / (video.videoWidth/width);
@@ -42,10 +43,8 @@
 			streaming = true;
 		}
 	}, false);
-
+	// Take Picture Button function
 	function takepicture() {
-		video.pause();
-		video.style.display = 'none';
 		canvas.width = width;
 		canvas.height = height;
 		canvas.getContext('2d').drawImage(video, 0, 0, width, height);
@@ -56,6 +55,7 @@
 		ev.preventDefault();
 	}, false);
 
+		// Save Image button function
 	function saveImage() {
 		var data = canvas.toDataURL("image/png");
 		if (window.XMLHttpRequest) {
