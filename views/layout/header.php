@@ -8,7 +8,7 @@
                 echo '<li><a href="/user/signup" title="Sign up">Sign up</a></li>';
             }
             else {
-                echo '<li><a href="/user/studio" title="Studio">Studio</a></li>';
+                echo '<li><a href="/studio" title="Studio">Studio</a></li>';
                 echo '<li><a href="/user/settings" title="Settings">Settings</a></li>';
                 echo '<li><a href="/user/logout" title="Logout">Logout</a></li>';
             }
