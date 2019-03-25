@@ -29,6 +29,7 @@ class ControllerStudio {
 				$data = base64_decode($image);
 				$id = uniqid();
 				$file = 'public/images/' . $id . '.png';
+				file_put_contents($file, $data);
 				$image = new Image([
 					'userid' => $_SESSION['userId'],
 					'path' => $file,
