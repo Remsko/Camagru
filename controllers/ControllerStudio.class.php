@@ -29,7 +29,7 @@ class ControllerStudio {
 				$data = base64_decode($image);
 				$id = uniqid();
 				$file = 'public/images/' . $id . '.png';
-				if(!file_put_contents($file, $data)) {
+				if (!file_put_contents($file, $data)) {
 					throw new Exception('An error occurred while trying to save image.');
 				}
 				$image = new Image([
