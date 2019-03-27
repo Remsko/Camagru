@@ -109,4 +109,8 @@ function addEventListenerToClass(className, event, f) {
 	}
 }
 
+<<<<<<< HEAD
 addEventListenerToClass('filters', 'click', addFilter); 
+=======
+addEventListenerToClass('filters', 'click', addFilter);
+>>>>>>> parent of a02b404... fail.
