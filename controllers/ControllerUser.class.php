@@ -50,7 +50,7 @@ class ControllerUser {
     public function settings() {
         $error = null;
         if (!isset($_SESSION['userId'])) {
-            throw new Exception('You need to be connected to access the settings !');
+            throw new Exception('You must be connected to access the settings !');
         }
         $this->_userManager = new UserManager();
         $user = $this->_userManager->getByUserId($_SESSION['userId']);
