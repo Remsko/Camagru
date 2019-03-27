@@ -9,6 +9,7 @@
 	<img id="cock" class="filters" src="/public/filters/cock.png"/>
 	<img id="sax" class="filters" src="/public/filters/sax.png"/>
 </div>
+
 <!-- <img src="/public/images/om" id="photo" alt="photo"> -->
 <script src="/public/js/camera.js"></script>
 </html>
