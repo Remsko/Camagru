@@ -6,19 +6,19 @@
             <span>Username: </span><br />
             <input type="text" name="username" value="<?php if (isset($username)) { echo $username; } ?>" /><br />
 
-            <span>Email address: </span><br />
+            <span>Email Address: </span><br />
             <input type="text" name="mail" value="<?php if (isset($mail)) { echo $mail; } ?>"/><br />
 
-            <span>Email address confirmation: </span><br />
+            <span>Confirm Email Address: </span><br />
             <input type="text" name="mailConfirm" value="<?php if (isset($mailConfirm)) { echo $mailConfirm; } ?>"/><br />
 
             <span>Password: </span><br />
             <input type="password" name="password" value=""/><br />
 
-            <span>Password confirmation: </span><br />
+            <span>Confirm Password: </span><br />
             <input type="password" name="passwordConfirm" value=""/><br />
 
-            <input type="submit" name="signUpForm" value="Sign up" />
+            <input type="submit" name="signUpForm" value="Sign Up" />
         </form>
         <?php
             if(isset($error)) {
