@@ -49,6 +49,11 @@ function takepicture() {
 	canvas.getContext('2d').drawImage(video, 0, 0, width, height);
 }
 
+startbutton.addEventListener('click', function(ev){
+	takepicture();
+	ev.preventDefault();
+}, false);
+
 // Save Image button function
 function saveImage() {
 	var data = canvas.toDataURL("image/png");
@@ -74,6 +79,7 @@ savebutton.addEventListener('click', function(ev) {
 	saveImage();
 	ev.preventDefault;
 }, false);
+<<<<<<< HEAD
 
 startbutton.addEventListener('click', function(ev){
 	takepicture();
@@ -114,3 +120,5 @@ addEventListenerToClass('filters', 'click', addFilter);
 =======
 addEventListenerToClass('filters', 'click', addFilter);
 >>>>>>> parent of a02b404... fail.
+=======
+>>>>>>> parent of b4fb169... New method in studio's controller. Modified camera.js/.php + new sticker
