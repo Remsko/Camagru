@@ -49,11 +49,6 @@ function takepicture() {
 	canvas.getContext('2d').drawImage(video, 0, 0, width, height);
 }
 
-startbutton.addEventListener('click', function(ev){
-	takepicture();
-	ev.preventDefault();
-}, false);
-
 // Save Image button function
 function saveImage() {
 	var data = canvas.toDataURL("image/png");
@@ -79,3 +74,39 @@ savebutton.addEventListener('click', function(ev) {
 	saveImage();
 	ev.preventDefault;
 }, false);
+
+startbutton.addEventListener('click', function(ev){
+	takepicture();
+	ev.preventDefault();
+}, false);
+
+function addFilter(e) {
+	var id = e.currentTarget.id;
+	var name = document.getElementById(id).src;
+	name = name.split('/')[5];
+	if (window.XMLHttpRequest) {
+		ajax = new XMLHttpRequest();
+	}
+	else if (window.ActiveXObject) {
+		ajax = new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	ajax.open('POST', 'studio/addFilter', true);
+	ajax.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+	ajax.onreadystatechange = function() {
+		if (ajax.readyState == 4 && (ajax.status == 200)) {
+			console.log(ajax.responseText);
+		}
+		else
+			console.log(ajax.readyState);
+		}
+	ajax.send('filter=' + name);
+}
+
+function addEventListenerToClass(className, event, f) {
+    var classElements = document.getElementsByClassName(className);
+    for (var i = 0; i < classElements.length; i++) {
+        classElements[i].addEventListener(event, f, false);
+	}
+}
+
+addEventListenerToClass('filters', 'click', addFilter);

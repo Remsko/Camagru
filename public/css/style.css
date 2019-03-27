@@ -3,15 +3,9 @@ header {
     justify-content: center;
 }
 
-.header-div {
-}
-
 footer {
     display: flex;
     justify-content: center;
-}
-
-.footer-div {
 }
 
 .view {
