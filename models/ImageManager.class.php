@@ -7,6 +7,12 @@ class ImageManager {
 		return $images;
 	}
 
+	public static function getByImageId($imageId) {
+		$query = 'SELECT * FROM images WHERE id=:imageId';
+		$values = ['imageId' => $imageId];
+		return Database::selectOneObject($query, $values, 'Image');
+	}
+
 	public static function getLikesByImageId($imageId) {
 		$query = 'SELECT * FROM likes WHERE imageid=:imageId';
 		$values = ['imageId' => $imageId];

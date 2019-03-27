@@ -110,7 +110,14 @@ class UserManager {
 		$query = 'SELECT * FROM users WHERE id=:userId';
 		$values = ['userId' => $userId];
 		return Database::selectOneObject($query, $values, 'User');
-	}
+    }
+    
+    public static function getByImageId($imageId) {
+        if ($image = ImageManager::getByImageId($imageId)) {
+            return UserManager::getByUserId($image->getUserId());
+        }
+        return null;
+    }
 
 	public function getByUsername($username) {
 		$query = 'SELECT * FROM users WHERE username=:username';
@@ -122,7 +129,7 @@ class UserManager {
 		$query = 'SELECT * FROM users WHERE mail=:mail';
 		$values = ['mail' => $mail];
 		return Database::selectOneObject($query, $values, 'User');
-	}
+    }
 
     public function authUser($password) {
         return password_verify($password, $this->_user->getPassword());

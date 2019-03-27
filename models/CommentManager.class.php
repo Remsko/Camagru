@@ -20,6 +20,23 @@ class CommentManager {
 		return null;
 	}
 
+	public function notif($imageId, $userId) {
+		$userManager = new UserManager();
+		$send = $userManager->getByUserId($userId);
+		$receive = $userManager->getByImageId($imageId);
+
+		if (empty($send) || empty($receive)) {
+			return ;
+		}
+		if ($receive->getNotifications()) {
+			$to = $receive->getMail();
+    		$subject = 'Camagru Notification';
+    		$message = 'Hello ! '.$send->getUsername().' commented your picture !';
+		
+			mail($to, $subject, $message);
+		}
+	}
+
 	public function postComment() {
 		if ($error = $this->checkCommentForm()) {
             return $error;
@@ -38,6 +55,7 @@ class CommentManager {
 		if (!$this->pushComment()) {
             return 'Failed to add your comment to the picture !';
 		}
+		$this->notif($imageId, $userId);
 		return null;
 	}
 	
