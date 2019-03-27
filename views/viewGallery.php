@@ -12,5 +12,8 @@
             require('layout/commentForm.php');
         }
     }
+    for ($i = 1; $i <= $pagesTotal; $i++) {
+        echo '<a href="/index.php?page='.$i.'">'.$i.'</a>';
+    }
 ?>
 <h3>That's it ! There is no more pictures !</h3>
