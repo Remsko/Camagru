@@ -78,11 +78,13 @@ class UserManager {
         if (empty($username) || empty($mail)) {
 			return 'All fields need to be completed !';
         }
-        if ($error = $this->checkUsername($username)) {
-            return $error;
+        $user = $this->getByUsername($username);
+        if (isset($user) && $this->_user->getId() !== $user->getId()) {
+            return 'Username is already taken !';
         }
-        if ($error = $this->checkMail($mail)) {
-            return $error;
+        $user = $this->getByMail($mail);
+        if (isset($user) && $this->_user->getId() !== $user->getId()) {
+            return 'Email adress is already taken !';
         }
         return null;
     }
@@ -139,6 +141,7 @@ class UserManager {
     }
 
     public function editUser($user) {
+        $this->_user = $user;
         if ($error = $this->checkEditProfilForm()) {
             return $error;
         }
