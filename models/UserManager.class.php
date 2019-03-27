@@ -72,7 +72,7 @@ class UserManager {
         return null;
     }
 
-    public function checkEditProfilForm() {
+    public function checkeditProfileForm() {
         $username = $_POST['username'];
         $mail = $_POST['mail'];
         if (empty($username) || empty($mail)) {
@@ -142,7 +142,7 @@ class UserManager {
 
     public function editUser($user) {
         $this->_user = $user;
-        if ($error = $this->checkEditProfilForm()) {
+        if ($error = $this->checkeditProfileForm()) {
             return $error;
         }
         $username = htmlspecialchars($_POST['username']);

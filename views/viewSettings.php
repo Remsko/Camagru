@@ -1,6 +1,6 @@
 <?php $this->_title = 'Settings'; ?>
 
-<h1>Edit profil</h1>
+<h1>Edit profile</h1>
 <form method="post" action="">
     <span>Username: </span><br />
     <input type="text" name="username" value="<?= $user->getUsername() ?>" /><br />
@@ -18,7 +18,7 @@
         }
     ?><br />
 
-    <input type='submit' name='editProfil' value='Send' />
+    <input type='submit' name='editProfile' value='Send' />
 </form>
 
 <h1>Change Password</h1>

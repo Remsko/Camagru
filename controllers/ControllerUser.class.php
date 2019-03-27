@@ -54,7 +54,7 @@ class ControllerUser {
         }
         $this->_userManager = new UserManager();
         $user = $this->_userManager->getByUserId($_SESSION['userId']);
-        if (isset($_POST['editProfil'])) {
+        if (isset($_POST['editProfile'])) {
             $error = $this->_userManager->editUser($user);
 
             if (!$error) {
