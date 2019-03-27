@@ -210,14 +210,14 @@ class UserManager {
     }
 
     public function updateUser($user) {
-        $query = 'UPDATE users SET username=:username, mail=:mail, password=:password, notifications=:notifications, valid=:valid WHERE id=:id';
+        $query = 'UPDATE users SET username=:username, mail=:mail, password=:password, notifications=:notifications, validation=:validation WHERE id=:id';
         $values = [
             'id' => $user->getId(),
             'username' => $user->getUsername(),
             'mail' => $user->getMail(),
             'password' => $user->getPassword(),
             'notifications' => $user->getNotifications(),
-            'valid' => $user->getValid()
+            'validation' => $user->getValidation()
         ];
         return Database::safeExecute($query, $values);
     }

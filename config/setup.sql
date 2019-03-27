@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS users(
 		mail VARCHAR(30) NOT NULL,
 		password VARCHAR(150) NOT NULL,
 		notifications BOOLEAN NOT NULL DEFAULT true,
-		valid BOOLEAN NOT NULL DEFAULT false
+		validation BOOLEAN NOT NULL DEFAULT false
 );
 
 CREATE TABLE IF NOT EXISTS images(

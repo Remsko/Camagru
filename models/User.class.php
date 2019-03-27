@@ -6,7 +6,7 @@ class User {
 	private $_mail;
 	private $_password;
 	private $_notifications;
-	private $_valid;
+	private $_validation;
 
 	public function __construct(array $data) {
 		$this->hydrate($data);
@@ -37,8 +37,8 @@ class User {
 		return $this->_password;
 	}
 
-	public function getValid() {
-		return $this->_valid;
+	public function getValidation() {
+		return $this->_validation;
 	}
 
 	public function getNotifications() {
@@ -73,8 +73,8 @@ class User {
 		}
 	}
 
-	public function setValid($valid) {
-		$this->_valid = $valid;
+	public function setValidation($validation) {
+		$this->_validation = $validation;
 	}
 
 	public function setNotifications($notifications) {
