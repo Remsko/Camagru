@@ -61,6 +61,13 @@ class ControllerUser {
 				echo '<span>Your account has been edited !</span><br />';
 			}
         }
+        if (isset($_POST['changePassword'])) {
+            $error = $this->_userManager->changePassword($user);
+
+            if (!$error) {
+				echo '<span>Your password has been changed !</span><br />';
+			}
+        }
         $this->_view = new View('Settings');
         $this->_view->generate([
             'user' => $user,

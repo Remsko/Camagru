@@ -73,6 +73,49 @@ class UserManager {
     }
 
     public function checkEditProfilForm() {
+        $username = $_POST['username'];
+        $mail = $_POST['mail'];
+        if (empty($username) || empty($mail)) {
+			return 'All fields need to be completed !';
+        }
+        if ($error = $this->checkUsername($username)) {
+            return $error;
+        }
+        if ($error = $this->checkMail($mail)) {
+            return $error;
+        }
+        return null;
+    }
+
+    public function checkPasswordForm() {
+        $oldPassword = $_POST['oldPassword'];
+        $newPassword = $_POST['newPassword'];
+        $confirmNewPassword = $_POST['confirmNewPassword'];
+        if (empty($oldPassword) || empty($newPassword) || empty($confirmNewPassword)) {
+            return 'All fields need to be completed !';
+        }
+        if ($newPassword !== $confirmNewPassword) {
+            return 'New passwords does not match !';
+        }
+        if (!$this->authUser($oldPassword)) {
+            return 'Your old password is wrong !';
+        }
+        if ($error = $this->checkPassword($newPassword)) {
+            return $error;
+        }
+        return null;
+    }
+
+    public function changePassword($user) {
+        $this->_user = $user;
+        if ($error = $this->checkPasswordForm()) {
+            return $error;
+        }
+        $newPassword = password_hash($_POST['newPassword'], PASSWORD_BCRYPT);
+        $user->setPassword($newPassword);
+        if (!$this->updateUser($user)) {
+            return 'Failed to update your password !';
+        }
         return null;
     }
 
@@ -107,7 +150,7 @@ class UserManager {
         $user->setMail($mail);
         $user->setNotifications($notifications);
         if (!$this->updateUser($user)) {
-            return 'Filed to update your account !';
+            return 'Failed to update your account !';
         }
         return null;
     }

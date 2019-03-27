@@ -1,11 +1,11 @@
 <?php $this->_title = 'Settings'; ?>
-<h1>Edit profil</h1>
 
+<h1>Edit profil</h1>
 <form method="post" action="">
     <span>Username: </span><br />
     <input type="text" name="username" value="<?= $user->getUsername() ?>" /><br />
 
-    <span>Email address: </span><br />
+    <span>Email Address: </span><br />
     <input type="text" name="mail" value="<?= $user->getMail() ?>"/><br />
 
     <span>Notifications</span>
@@ -20,6 +20,21 @@
 
     <input type='submit' name='editProfil' value='Send' />
 </form>
+
+<h1>Change Password</h1>
+<form method="post" action="">
+    <span>Old Password: </span><br />
+    <input type="password" name="oldPassword" value="" /><br />
+
+    <span>New Password: </span><br />
+    <input type="password" name="newPassword" value="" /><br />
+
+    <span>Confirm New Passord: </span><br />
+    <input type="password" name="confirmNewPassword" value="" /><br />
+
+    <input type='submit' name='changePassword' value='Send' />
+</form>
+
 <?php
     if(isset($error)) {
         echo '<font color="red">'.$error."</font>";
