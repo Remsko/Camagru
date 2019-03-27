@@ -12,7 +12,8 @@ class Comment {
 
 		$userId = $this->getUserId();
 		if (isset($userId)) {
-			if ($user = UserManager::getByUserId($userId)) {
+			$userManager = new UserManager();
+			if ($user = $userManager->getByUserId($userId)) {
 				$this->setUsername($user->getUsername());
 			}
 		}

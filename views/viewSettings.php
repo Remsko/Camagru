@@ -9,8 +9,14 @@
     <input type="text" name="mail" value="<?= $user->getMail() ?>"/><br />
 
     <span>Notifications</span>
-    <input type='checkbox' name='notifications' checked='checked' />
-    <br />
+    <?php
+        if ($user->getNotifications()) {
+            echo '<input type="checkbox" name="notifications" checked="checked" />';
+        }
+        else {
+            echo '<input type="checkbox" name="notifications" />';
+        }
+    ?><br />
 
     <input type='submit' name='editProfil' value='Send' />
 </form>

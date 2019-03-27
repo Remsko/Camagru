@@ -48,15 +48,19 @@ class ControllerUser {
     }
 
     public function settings() {
+        $error = null;
         if (!isset($_SESSION['userId'])) {
             throw new Exception('You need to be connected to access the settings !');
         }
-        $user = UserManager::getByUserId($_SESSION['userId']);
-        $error = null;
+        $this->_userManager = new UserManager();
+        $user = $this->_userManager->getByUserId($_SESSION['userId']);
         if (isset($_POST['editProfil'])) {
+            $error = $this->_userManager->editUser($user);
 
+            if (!$error) {
+				echo '<span>Your account has been edited !</span><br />';
+			}
         }
-
         $this->_view = new View('Settings');
         $this->_view->generate([
             'user' => $user,

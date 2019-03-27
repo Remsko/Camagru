@@ -74,15 +74,11 @@ class User {
 	}
 
 	public function setValid($valid) {
-		if (is_boolean($valid)) {
-			$this->_valid = $valid;
-		}
+		$this->_valid = $valid;
 	}
 
 	public function setNotifications($notifications) {
-		if (is_boolean($notifications)) {
-			$this->_notifications = $notifications;
-		}
+		$this->_notifications = $notifications;
 	}
 }
 
