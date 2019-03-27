@@ -15,7 +15,6 @@ class ControllerGallery {
         $this->gallery();
     }
 
-    /* imageid + error to display error on good image commentForm */
     private function gallery() {
         $error = null;
         $userId = isset($_POST['userId']) ? htmlspecialchars($_POST['userId']) : null;
@@ -24,6 +23,9 @@ class ControllerGallery {
         if (isset($_POST['commentForm'])) {
             $this->_commentManager = new CommentManager();
             $error = $this->_commentManager->postComment();
+            if (!$error) {
+                $this->_commentManager->notif($imageId, $userId);
+            }
         }
         if (isset($_POST['like'])) {
             $this->_imageManager = new ImageManager();

@@ -21,10 +21,12 @@ class CommentManager {
 	}
 
 	public function notif($imageId, $userId) {
+		if (empty($imageId) || empty($userId)) {
+			return ;
+		}
 		$userManager = new UserManager();
 		$send = $userManager->getByUserId($userId);
 		$receive = $userManager->getByImageId($imageId);
-
 		if (empty($send) || empty($receive)) {
 			return ;
 		}
@@ -41,21 +43,17 @@ class CommentManager {
 		if ($error = $this->checkCommentForm()) {
             return $error;
 		}
-		
 		$userId = $_SESSION['userId'];
 		$imageId = htmlspecialchars($_POST['imageId']);
 		$content = htmlspecialchars($_POST['comment']);
-
 		$this->_comment = new Comment([
 			'userId' => $userId,
 			'imageId' => $imageId,
 			'content' => $content
 		]);
-
 		if (!$this->pushComment()) {
             return 'Failed to add your comment to the picture !';
 		}
-		$this->notif($imageId, $userId);
 		return null;
 	}
 	
