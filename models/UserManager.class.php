@@ -185,7 +185,14 @@ class UserManager {
 		$query = 'SELECT * FROM users WHERE id=:userId';
 		$values = ['userId' => $userId];
 		return Database::selectOneObject($query, $values, 'User');
-	}
+    }
+    
+    public static function getByImageId($imageId) {
+        if ($image = ImageManager::getByImageId($imageId)) {
+            return UserManager::getByUserId($image->getUserId());
+        }
+        return null;
+    }
 
 	public function getByUsername($username) {
 		$query = 'SELECT * FROM users WHERE username=:username';
@@ -197,7 +204,7 @@ class UserManager {
 		$query = 'SELECT * FROM users WHERE mail=:mail';
 		$values = ['mail' => $mail];
 		return Database::selectOneObject($query, $values, 'User');
-	}
+    }
 
     private function insertUser($user) {
 		$query = 'INSERT INTO users(username, mail, password) VALUES(:username, :mail, :password)';
