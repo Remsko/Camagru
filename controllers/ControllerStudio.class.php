@@ -19,6 +19,19 @@ class ControllerStudio {
 		$this->_view->generate([]);
 	}
 
+	public function addFilter() {
+		if (isset($_SESSION['userId'])) {
+			if (isset($_POST['filter'])) {
+				$filter = $_POST['filter'];
+				$file = 'public/filters'.$filter.'.png';
+				$file = imagecreate($file, 600);
+			}
+			else {
+				throw new Exception('An error occured while trying to put a sticker.');
+			}
+		}
+	}
+
 	public function saveimage() {
 		if (isset($_SESSION['userId'])) {
 			if (isset($_POST['image'])) {
