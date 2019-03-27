@@ -5,6 +5,8 @@ class User {
 	private $_username;
 	private $_mail;
 	private $_password;
+	private $_notifications;
+	private $_valid;
 
 	public function __construct(array $data) {
 		$this->hydrate($data);
@@ -35,6 +37,14 @@ class User {
 		return $this->_password;
 	}
 
+	public function getValid() {
+		return $this->_valid;
+	}
+
+	public function getNotifications() {
+		return $this->_notifications;
+	}
+
 	public function setId($id)
 	{
 		if (is_numeric($id)) {
@@ -60,6 +70,18 @@ class User {
 	{
 		if (is_string($password)) {
 			$this->_password = $password;
+		}
+	}
+
+	public function setValid($valid) {
+		if (is_boolean($valid)) {
+			$this->_valid = $valid;
+		}
+	}
+
+	public function setNotifications($notifications) {
+		if (is_boolean($notifications)) {
+			$this->_notifications = $notifications;
 		}
 	}
 }

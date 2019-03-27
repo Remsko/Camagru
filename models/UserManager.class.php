@@ -127,6 +127,19 @@ class UserManager {
     public function authUser($password) {
         return password_verify($password, $this->_user->getPassword());
     }
+
+    public function updateUser($user) {
+        $query = 'UPDATE users SET username=:username, mail=:mail, password=:password, notifications=:notifications, valid=:valid WHERE id=:id';
+        $values = [
+            'id' => $user->getId(),
+            'username' => $user->getUsername(),
+            'mail' => $user->getMail(),
+            'password' => $user->getPassword(),
+            'notifications' => $user->getNotifications(),
+            'valid' => $user->getValid()
+        ];
+        return Database::safeExecute($query, $values);
+    }
 }
 
 ?>

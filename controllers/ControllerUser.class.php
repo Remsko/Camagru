@@ -53,6 +53,9 @@ class ControllerUser {
         }
         $user = UserManager::getByUserId($_SESSION['userId']);
         $error = null;
+        if (isset($_POST['editProfil'])) {
+
+        }
 
         $this->_view = new View('Settings');
         $this->_view->generate([

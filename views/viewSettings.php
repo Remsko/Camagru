@@ -1,5 +1,5 @@
 <?php $this->_title = 'Settings'; ?>
-<h1>Modify profil</h1>
+<h1>Edit profil</h1>
 
 <form method="post" action="">
     <span>Username: </span><br />
@@ -12,5 +12,10 @@
     <input type='checkbox' name='notifications' checked='checked' />
     <br />
 
-    <input type='submit' name='updateUser' value='Send' />
+    <input type='submit' name='editProfil' value='Send' />
 </form>
+<?php
+    if(isset($error)) {
+        echo '<font color="red">'.$error."</font>";
+    }
+?>
