@@ -37,13 +37,32 @@ class ControllerGallery {
         }
 
         $this->_imageManager = new ImageManager();
-        $images = $this->_imageManager->getImages();
+        $allImages = $this->_imageManager->getImages();
+
+        $limit = 5;
+        $total = count($allImages);
+        $pagesTotal = ceil($total / $limit);
+
+        if (isset($_GET['page']) && $_GET['page'] > 0) {
+            $currentPage = $_GET['page'];
+        }
+        else {
+            $currentPage = 1;
+        }
+        if ($currentPage > $pagesTotal) {
+            throw new Exception('Page not found');
+        }
+
+        $offset = ($currentPage - 1) * $limit;
+        $images = $this->_imageManager->getImagesFromStart($limit, $offset);
 
         $this->_view = new View('Gallery');
         $this->_view->generate([
             'images' => $images,
+            'imageId' => $imageId,
             'error' => $error,
-            'imageId' => $imageId
+            'currentPage' => $currentPage,
+            'pagesTotal' => $pagesTotal
         ]);
     }
 }
