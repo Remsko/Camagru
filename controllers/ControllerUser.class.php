@@ -15,7 +15,7 @@ class ControllerUser {
     public function signin() {
         $error = null;
         if (isset($_SESSION['userId'])) {
-            throw new Exception('Your are already connected !');
+            throw new Exception('You are already connected !');
         }
         if (isset($_POST['signInForm'])) {
             $this->_userManager = new UserManager();
@@ -83,7 +83,7 @@ class ControllerUser {
 
     public function verification() {
         if (isset($_SESSION['userId'])) {
-            throw new Exception('Your are already connected !');
+            throw new Exception('You are already connected !');
         }
         if (empty($_GET['username']) || empty($_GET['hash'])) {
             throw new Exception('Page not found');
