@@ -37,7 +37,6 @@ class Router {
             spl_autoload_register(function($class) {
                 require_once('models/'.$class.'.class.php');
             });
-            print_r($_GET);
             $this->_url = $this->url();
             $this->_controller = $this->controller();
 
