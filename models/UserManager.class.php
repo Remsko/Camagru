@@ -121,6 +121,19 @@ class UserManager {
         return null;
     }
 
+    public function verificationMail($user) {
+        $username = $user->getUsername();
+        $mail = $user->getMail();
+        $hash = $user->getHash();
+
+        $to = $mail;
+    	$subject = 'Camagru Account Verification';
+        $message = '<html><body><a href="http://localhost:8080/user/verification&username='.$username.'&hash='.$hash.'">Confirm your account !</a></body><html>';
+        $header = 'Content-type: text/html; charset=UTF-8'.'\r\n';
+        
+        mail($to, $subject, $message, $header);        
+    }
+
     public function createUser()
 	{
         if ($error = $this->checkSignUpForm()) {
@@ -129,14 +142,17 @@ class UserManager {
 		$username = htmlspecialchars($_POST['username']);
 		$mail = htmlspecialchars($_POST['mail']);
         $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
+        $hash = md5(time());
         $this->_user = new User([
             'username' => $username,
             'mail' => $mail,
-            'password' => $password
+            'password' => $password,
+            'hash' => $hash
         ]);
         if (!$this->insertUser($this->_user)) {
             return 'Failed to add your account to the database !';
         }
+        $this->verificationMail($this->_user);
         return null;
     }
 
@@ -207,11 +223,12 @@ class UserManager {
     }
 
     private function insertUser($user) {
-		$query = 'INSERT INTO users(username, mail, password) VALUES(:username, :mail, :password)';
+		$query = 'INSERT INTO users(username, mail, password, hash) VALUES(:username, :mail, :password, :hash)';
 		$values = [
 			'username' => $user->getUsername(),
 			'mail' => $user->getMail(),
-			'password' => $user->getPassword()
+            'password' => $user->getPassword(),
+            'hash' => $user->getHash()
 		];
 		return Database::safeExecute($query, $values);
     }

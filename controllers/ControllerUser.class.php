@@ -74,4 +74,9 @@ class ControllerUser {
             'error' => $error
         ]);
     }
+
+    public function verification() {
+        $this->_view = new View('Verification');
+        $this->_view->generate([]);
+    }
 }

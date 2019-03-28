@@ -7,6 +7,7 @@ CREATE TABLE IF NOT EXISTS users(
 		username VARCHAR(15) NOT NULL,
 		mail VARCHAR(30) NOT NULL,
 		password VARCHAR(150) NOT NULL,
+		hash VARCHAR(150) NOT NULL,
 		notifications BOOLEAN NOT NULL DEFAULT true,
 		validation BOOLEAN NOT NULL DEFAULT false
 );
