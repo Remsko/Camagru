@@ -8,6 +8,7 @@ width =	600,
 height = 600;
 filters = ['cock.png', 'banana.png', 'sax.png'];
 filtername = null;
+var path;
 
 navigator.getMedia = (
 	navigator.getUserMedia ||
@@ -33,6 +34,7 @@ navigator.getMedia( {
 		console.log("An error occured! " + err);
 	}
 );
+
 // Adapt Size 
 video.addEventListener('canplay', function(ev){
 	if (!streaming) {
@@ -44,12 +46,12 @@ video.addEventListener('canplay', function(ev){
 		streaming = true;
 	}
 }, false);
+
 // Take Picture Button function
 function takepicture() {
 	canvas.width = width;
 	canvas.height = height;
 	canvas.getContext('2d').drawImage(video, 0, 0, width, height);
-	canvas.style.display = 'none';
 }
 
 // Save Image button function
@@ -65,56 +67,29 @@ function saveImage(filtername) {
 	ajax.open('POST', 'studio/saveimage', true);
 	ajax.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 	ajax.onreadystatechange = function() {
-	if (ajax.readyState == 4 && (ajax.status == 200)) {
-		console.log(ajax.responseText);
-	}
-	else
-		console.log(ajax.readyState);
+		if (ajax.readyState == 4 && (ajax.status == 200)) {
+			path = ajax.responseText;
+		}
 	}
 	ajax.send('image=' + data + '&filter=' + filtername);
-	return true;
+	return path;
 }
-
-savebutton.addEventListener('click', function(ev) {
-	saveImage();
-	ev.preventDefault;
-}, false);
-
-startbutton.addEventListener('click', function(ev){
-	takepicture();
-	ev.preventDefault();
-}, false);
 
 function selectFilter(e) {
 	id = e.currentTarget.id;
 	filtername = document.getElementById(id).src;
 	filtername = filtername.split('/')[5];
 	if (filters.indexOf(filtername) !== -1) {
-		$success = saveImage(filtername);
-		if ($success === true) {
-			startbutton.style.opacity = 1;
+		path = saveImage(filtername);
+		if (path !== undefined) {
+			document.getElementById("startbutton").disabled = false;
+			photo.src = path;
 		}
 	}
 }
 
-function addFilter(filtername) {
-	if (window.XMLHttpRequest) {
-		ajax = new XMLHttpRequest();
-	}
-	else if (window.ActiveXObject) {
-		ajax = new ActiveXObject("Microsoft.XMLHTTP");
-	}
-	ajax.open('POST', 'studio/addFilter', true);
-	ajax.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-	ajax.onreadystatechange = function() {
-		if (ajax.readyState == 4 && (ajax.status == 200)) {
-			console.log(ajax.responseText);
-		}
-		else
-			console.log(ajax.readyState);
-		}
-	ajax.send('filter=' + filtername);
-	return(true);
+function showPicture() {
+	photo.style.display = 'inline-block';
 }
 
 function addEventListenerToClass(className, event, f) {
@@ -123,5 +98,16 @@ function addEventListenerToClass(className, event, f) {
         classElements[i].addEventListener(event, f, false);
 	}
 }
+
+savebutton.addEventListener('click', function(ev) {
+	saveImage();
+	ev.preventDefault;
+}, false);
+
+startbutton.addEventListener('click', function(ev){
+	showPicture();
+	ev.preventDefault();
+}, false);
+
 
 addEventListenerToClass('filters', 'click', selectFilter); 

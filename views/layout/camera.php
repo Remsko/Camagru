@@ -7,6 +7,7 @@
 <video id="video"></video>
 <button id="startbutton" disabled>Take Picture</button>
 <button id="savebutton">Save Image</button>
+<img id='photo' src='#'>
 <canvas id="canvas"></canvas>
 <div id=" bar" class="post_icontray">
 	<img id="banana" class="filters" src="/public/filters/banana.png"/>

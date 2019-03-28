@@ -4,6 +4,14 @@
     width: 80%;
 } 
 
+canvas {
+	display :none;
+}
+
+#photo {
+	display : none;
+}
+
 #savebutton {
 	opacity : 0;
 }
