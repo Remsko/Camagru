@@ -31,7 +31,7 @@ class ControllerUser {
     public function signup() {
         $error = null;
         if (isset($_SESSION['userId'])) {
-            throw new Exception('Your are already connected !');
+            throw new Exception('You are already connected !');
         }
         if (isset($_POST['signUpForm'])) {
             $this->_userManager = new UserManager();
