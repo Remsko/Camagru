@@ -40,9 +40,13 @@ class ControllerGallery {
         $allImages = $this->_imageManager->getImages();
 
         $limit = 5;
-        $total = count($allImages);
+        if ($allImages) {
+            $total = count($allImages);
+        }
+        else {
+            $total = 1;
+        }
         $pagesTotal = ceil($total / $limit);
-
         if (isset($_GET['page']) && $_GET['page'] > 0) {
             $currentPage = $_GET['page'];
         }
@@ -52,7 +56,6 @@ class ControllerGallery {
         if ($currentPage > $pagesTotal) {
             throw new Exception('Page not found');
         }
-
         $offset = ($currentPage - 1) * $limit;
         $images = $this->_imageManager->getImagesFromStart($limit, $offset);
 
