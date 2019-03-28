@@ -19,7 +19,6 @@ class Router {
     }
 
     private function controller() {
-        print_r($_GET);
         $controller = ucfirst(strtolower($this->_url[0]));
         $controllerClass = 'Controller'.$controller;
         $controllerFile = 'controllers/'.$controllerClass.'.class.php';
