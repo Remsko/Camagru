@@ -23,8 +23,10 @@ class ControllerStudio {
 		if (isset($_SESSION['userId'])) {
 			if (isset($_POST['filter'])) {
 				$filter = $_POST['filter'];
-				$file = 'public/filters'.$filter.'.png';
-				$file = imagecreate($file, 600);
+				$path = 'public/filters/'.$filter;
+				$file = imagecreatefrompng($path);
+				$file = imagescale($file, 600);
+				echo($file);
 			}
 			else {
 				throw new Exception('An error occured while trying to put a sticker.');

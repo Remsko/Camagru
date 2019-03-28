@@ -6,6 +6,8 @@ photo =	document.querySelector('#photo'),
 startbutton	= document.querySelector('#startbutton'),
 width =	640,
 height = 400;
+filters = ['cock.png', 'banana.png', 'sax.png'];
+filtername = null;
 
 navigator.getMedia = (
 	navigator.getUserMedia ||
@@ -47,6 +49,7 @@ function takepicture() {
 	canvas.width = width;
 	canvas.height = height;
 	canvas.getContext('2d').drawImage(video, 0, 0, width, height);
+	savebutton.style.opacity = 1;
 }
 
 // Save Image button function
@@ -80,10 +83,21 @@ startbutton.addEventListener('click', function(ev){
 	ev.preventDefault();
 }, false);
 
-function addFilter(e) {
-	var id = e.currentTarget.id;
-	var name = document.getElementById(id).src;
-	name = name.split('/')[5];
+function selectFilter(e) {
+	id = e.currentTarget.id;
+	filtername = document.getElementById(id).src;
+	filtername = filtername.split('/')[5];
+	console.log(filtername);
+	if (filters.indexOf(filtername) !== -1) {
+		console.log(filtername);
+		$success = addFilter(filtername);
+		if ($success === true) {
+			startbutton.style.opacity = 1;
+		}
+	}
+}
+
+function addFilter(filtername) {
 	if (window.XMLHttpRequest) {
 		ajax = new XMLHttpRequest();
 	}
@@ -99,7 +113,8 @@ function addFilter(e) {
 		else
 			console.log(ajax.readyState);
 		}
-	ajax.send('filter=' + name);
+	ajax.send('filter=' + filtername);
+	return(true);
 }
 
 function addEventListenerToClass(className, event, f) {
@@ -109,4 +124,4 @@ function addEventListenerToClass(className, event, f) {
 	}
 }
 
-addEventListenerToClass('filters', 'click', addFilter); 
+addEventListenerToClass('filters', 'click', selectFilter); 

@@ -3,3 +3,11 @@
     vertical-align: middle;
     width: 80%;
 } 
+
+#startbutton {
+	opacity: 0;
+}
+
+#savebutton {
+	opacity : 0;
+}
