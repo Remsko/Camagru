@@ -76,7 +76,26 @@ class ControllerUser {
     }
 
     public function verification() {
+        if (empty($_GET['username']) || empty($_GET['hash'])) {
+            throw new Exception('Page not found');
+        }
+        $username = $_GET['username'];
+        $hash = $_GET['hash'];
+
+        $this->_userManager = new UserManager();
+        $user = $this->_userManager->getByUsername($username);
+        $message = 'An error occured !';
+        if (isset($user)) {
+            if ($user->getValidation()) {
+                $message = 'Your account is already confirmed !';
+            }
+            else if (!strcmp($user->getHash(), $hash)) {
+                $message = 'Your account has been confirmed !';
+                $user->setValidation(1);
+                $this->_userManager->updateUser($user);
+            }
+        }
         $this->_view = new View('Verification');
-        $this->_view->generate([]);
+        $this->_view->generate(['message' => $message]);
     }
 }
