@@ -19,7 +19,7 @@ class ControllerUser {
             $error = $this->_userManager->connectUser();
         }
         if (isset($_SESSION['userId'])) {
-            //Router::go('Gallery'); redir to gallery
+            Router::redirectionRequest('');
         }
         $this->_view = new View('SignIn');
         $this->_view->generate(['error' => $error]);
@@ -44,7 +44,7 @@ class ControllerUser {
         if (isset($_SESSION['userId'])) {
             unset($_SESSION['userId']);
         }
-        //Router::go('Gallery'); redir to gallery
+        Router::redirectionRequest('');
     }
 
     public function settings() {
