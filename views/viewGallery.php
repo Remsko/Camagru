@@ -12,6 +12,9 @@
             require('layout/commentForm.php');
         }
     }
+    if ($currentPage == $pagesTotal) {
+        echo '<h3>That\'s it ! There is no more pictures !</h3>';
+    }
     if ($pagesTotal > 1) {
         if ($currentPage != 1) {
             echo '<a href="index.php?page='.($currentPage - 1).'"><<</a>';
@@ -29,4 +32,3 @@
         }
     }
 ?>
-<h3>That's it ! There is no more pictures !</h3>
