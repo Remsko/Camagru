@@ -11,7 +11,6 @@ class ControllerGallery {
         if (isset($url) && count($url) > 1) {
             throw new Exception('Page not found');
         }
-
         $this->gallery();
     }
 

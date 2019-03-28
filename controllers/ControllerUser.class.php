@@ -14,6 +14,9 @@ class ControllerUser {
 
     public function signin() {
         $error = null;
+        if (isset($_SESSION['userId'])) {
+            throw new Exception('Your are already connected !');
+        }
         if (isset($_POST['signInForm'])) {
             $this->_userManager = new UserManager();
             $error = $this->_userManager->connectUser();
@@ -27,6 +30,9 @@ class ControllerUser {
 
     public function signup() {
         $error = null;
+        if (isset($_SESSION['userId'])) {
+            throw new Exception('Your are already connected !');
+        }
         if (isset($_POST['signUpForm'])) {
             $this->_userManager = new UserManager();
             $error = $this->_userManager->createUser();
@@ -76,6 +82,9 @@ class ControllerUser {
     }
 
     public function verification() {
+        if (isset($_SESSION['userId'])) {
+            throw new Exception('Your are already connected !');
+        }
         if (empty($_GET['username']) || empty($_GET['hash'])) {
             throw new Exception('Page not found');
         }

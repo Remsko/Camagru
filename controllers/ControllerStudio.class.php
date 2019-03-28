@@ -10,6 +10,9 @@ class ControllerStudio {
 			throw new Exception('Page not found');
 		}
 		if (count($url) === 1) {
+			if (empty($_SESSION['userId'])) {
+				throw new Exception('You must be connected to access the studio !');
+			}
 			$this->studio();
 		}
 	}
@@ -38,11 +41,14 @@ class ControllerStudio {
 				]);
 				$this->_imageManager->pushImage($image);
 			}
-    }
+			else {
+				throw new Exception('There is no image to save !');
+			}
+    	}
 		else {
-			throw new Exception('You must be connected to save images');
+			throw new Exception('You must be connected to save images !');
 		}
-  }
+  	}
 }
 
 ?>
