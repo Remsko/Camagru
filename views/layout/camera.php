@@ -5,7 +5,7 @@
 </head>
 <body>
 <video id="video"></video>
-<button id="startbutton">Take Picture</button>
+<button id="startbutton" disabled>Take Picture</button>
 <button id="savebutton">Save Image</button>
 <canvas id="canvas"></canvas>
 <div id=" bar" class="post_icontray">

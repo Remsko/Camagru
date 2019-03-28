@@ -26,7 +26,6 @@ class ControllerStudio {
 				$path = 'public/filters/'.$filter;
 				$file = imagecreatefrompng($path);
 				$file = imagescale($file, 600);
-				echo($file);
 			}
 			else {
 				throw new Exception('An error occured while trying to put a sticker.');
@@ -36,7 +35,7 @@ class ControllerStudio {
 
 	public function saveimage() {
 		if (isset($_SESSION['userId'])) {
-			if (isset($_POST['image'])) {
+			if (isset($_POST['image']) && isset($_POST['filter'])) {
 				$this->_imageManager = new ImageManager();
 				$image = $_POST['image'];
 				$image = str_replace('data:image/png;base64,', '', $image);
@@ -47,11 +46,19 @@ class ControllerStudio {
 				if(!file_put_contents($file, $data)) {
 					throw new Exception('An error occurred while trying to save image.');
 				}
-				$image = new Image([
+				$filter = $_POST['filter'];
+				$path = 'public/filters/'.$filter;
+				$filter = imagecreatefrompng($path);
+				$image = imagecreatefrompng($file);
+				$image = imagescale($image, 600);
+				imagecopy($image, $filter, 0, 0, 0, 0, imagesx($filter) - 1, imagesy($filter) - 1);
+				imagepng($image, $file);
+				echo($file);
+		/*		$image = new Image([
 					'userId' => $_SESSION['userId'],
 					'path' => $file,
 				]);
-				$this->_imageManager->pushImage($image);
+				$this->_imageManager->pushImage($image);*/
 			}
         }
 		else {

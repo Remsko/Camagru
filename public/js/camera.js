@@ -4,8 +4,8 @@ cover = document.querySelector('#cover'),
 canvas = document.querySelector('#canvas'),
 photo =	document.querySelector('#photo'),
 startbutton	= document.querySelector('#startbutton'),
-width =	640,
-height = 400;
+width =	600,
+height = 600;
 filters = ['cock.png', 'banana.png', 'sax.png'];
 filtername = null;
 
@@ -49,11 +49,12 @@ function takepicture() {
 	canvas.width = width;
 	canvas.height = height;
 	canvas.getContext('2d').drawImage(video, 0, 0, width, height);
-	savebutton.style.opacity = 1;
+	canvas.style.display = 'none';
 }
 
 // Save Image button function
-function saveImage() {
+function saveImage(filtername) {
+	takepicture();
 	var data = canvas.toDataURL("image/png");
 	if (window.XMLHttpRequest) {
 		ajax = new XMLHttpRequest();
@@ -70,7 +71,8 @@ function saveImage() {
 	else
 		console.log(ajax.readyState);
 	}
-	ajax.send('image=' + data);
+	ajax.send('image=' + data + '&filter=' + filtername);
+	return true;
 }
 
 savebutton.addEventListener('click', function(ev) {
@@ -87,10 +89,8 @@ function selectFilter(e) {
 	id = e.currentTarget.id;
 	filtername = document.getElementById(id).src;
 	filtername = filtername.split('/')[5];
-	console.log(filtername);
 	if (filters.indexOf(filtername) !== -1) {
-		console.log(filtername);
-		$success = addFilter(filtername);
+		$success = saveImage(filtername);
 		if ($success === true) {
 			startbutton.style.opacity = 1;
 		}
