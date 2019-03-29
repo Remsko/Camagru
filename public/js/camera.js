@@ -94,9 +94,9 @@ function decide(e) {
 }
 
 function addEventListenerToClass(className, event, f) {
-    var classElements = document.getElementsByClassName(className);
-    for (var i = 0; i < classElements.length; i++) {
-        classElements[i].addEventListener(event, f, false);
+	var classElements = document.getElementsByClassName(className);
+	for (var i = 0; i < classElements.length; i++) {
+		classElements[i].addEventListener(event, f, false);
 	}
 }
 
