@@ -17,6 +17,6 @@ function request(url, data, success) {
 		else {
 			success(this.responseText);
 		}
-    };
+	};
 	ajax.send(data);
 }
