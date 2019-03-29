@@ -21,7 +21,8 @@ navigator.getMedia( {
 	video: true,
 	audio: false
 },
-// Starting camera
+
+// Start streaming webcam
 	function(stream) {
 		if (navigator.mozGetUserMedia) {
 			video.mozSrcObject = stream;
@@ -35,7 +36,7 @@ navigator.getMedia( {
 	}
 );
 
-// Adapt Size 
+// Adapt size of camera 
 video.addEventListener('canplay', function(ev){
 	if (!streaming) {
 		height = video.videoHeight / (video.videoWidth/width);
@@ -47,49 +48,55 @@ video.addEventListener('canplay', function(ev){
 	}
 }, false);
 
-// Take Picture Button function
-function takepicture() {
-	canvas.width = width;
-	canvas.height = height;
-	canvas.getContext('2d').drawImage(video, 0, 0, width, height);
-}
-
-// Save Image button function
-function saveImage(filtername) {
-	takepicture();
-	var data = canvas.toDataURL("image/png");
+function request(url, data, success) {
 	if (window.XMLHttpRequest) {
 		ajax = new XMLHttpRequest();
 	}
 	else if (window.ActiveXObject) {
 		ajax = new ActiveXObject("Microsoft.XMLHTTP");
 	}
-	ajax.open('POST', 'studio/saveimage', true);
+	ajax.open('POST', url, false);
 	ajax.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-	ajax.onreadystatechange = function() {
-		if (ajax.readyState == 4 && (ajax.status == 200)) {
-			path = ajax.responseText;
+	ajax.onload = function () {
+		console.log('Ajax request to ' + url + ' returned successfully.');
+		if (ajax.responseText === 'ERROR') {
+			console.log('An error occured.');
 		}
-	}
-	ajax.send('image=' + data + '&filter=' + filtername);
-	return path;
+		else {
+			success(this.responseText);
+		}
+    };
+	ajax.send(data);
 }
 
+// Takes the picture
+function saveeImage(filtername) {
+	canvas.width = width;
+	canvas.height = height;
+	canvas.getContext('2d').drawImage(video, 0, 0, width, height);
+	data = canvas.toDataURL("image/png");
+	request('studio/saveimage', ('image=' + data + '&filter=' + filtername), function (response) {
+		path = response;
+	});
+}
+
+// Select the clickable sticker
 function selectFilter(e) {
 	id = e.currentTarget.id;
 	filtername = document.getElementById(id).src;
 	filtername = filtername.split('/')[5];
-	if (filters.indexOf(filtername) !== -1) {
-		path = saveImage(filtername);
-		if (path !== undefined) {
-			document.getElementById("startbutton").disabled = false;
-			photo.src = path;
-		}
-	}
+	document.getElementById("startbutton").disabled = false;
 }
 
+// Show the picture
 function showPicture() {
-	photo.style.display = 'inline-block';
+	if (filters.indexOf(filtername) !== -1) {
+		saveeImage(filtername);
+		if (path !== undefined) {
+			photo.src = path;
+			photo.style.display = 'inline-block';
+		}
+	}
 }
 
 function addEventListenerToClass(className, event, f) {
