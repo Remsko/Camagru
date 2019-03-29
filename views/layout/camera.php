@@ -17,5 +17,6 @@
 
 <!-- <img src="/public/images/om" id="photo" alt="photo"> -->
 <script src="/public/js/camera.js"></script>
+<script src="/public/js/ajax.js"></script>
 <body>
 </html>
