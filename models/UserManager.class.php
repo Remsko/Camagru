@@ -121,6 +121,51 @@ class UserManager {
         return null;
     }
 
+    public function resetPassword() {
+        $mail = $_POST['mail'];
+        if (empty($mail)) {
+            return 'All fields need to be completed !';
+        }
+        $user = $this->getByMail($mail);
+        if (!$user) {
+            return 'No account is associated with this email address !';
+        }
+        $resetHash = md5(time());
+        $user->setResetHash($resetHash);
+        if (!$this->updateUser($user)) {
+            return 'An error occured.';
+        }
+        $to = $mail;
+    	$subject = 'Camagru Reset Password';
+        $message = '<html><body><a href="http://localhost:8080/user/newpassword&username='.$user->getUsername().'&hash='.$resetHash.'">Reset your password !</a></body><html>';
+        $header = 'Content-type: text/html; charset=UTF-8'.'\r\n';
+        
+        if (!mail($to, $subject, $message, $header)) {
+            return 'An error occurred.';
+        }
+        return null;
+    }
+
+    public function newPassword($user) {
+        $password = $_POST['password'];
+        $passwordConfirm = $_POST['passwordConfirm'];
+        if (empty($password) || empty($passwordConfirm)) {
+            return 'All fields need to be completed !';
+        }
+        if ($password !== $passwordConfirm) {
+            return 'Passwords does not match !';
+        }
+        if ($error = $this->checkPassword($password)) {
+            return $error;
+        }
+        $newPassword = password_hash($_POST['password'], PASSWORD_BCRYPT);
+        $user->setPassword($newPassword);
+        if (!$this->updateUser($user)) {
+            return 'Failed to update your password !';
+        }
+        return null;
+    }
+
     public function verificationMail($user) {
         $username = $user->getUsername();
         $mail = $user->getMail();
