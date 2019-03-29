@@ -56,6 +56,11 @@ class Router {
             $this->_view->generate(array('errorMsg' => $errorMsg));
         }
     }
+
+    public static function redirectionRequest($href) {
+        header('Location: http://localhost:8080/'.$href);
+        exit();
+    }
 }
 
 ?>
