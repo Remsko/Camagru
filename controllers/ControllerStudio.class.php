@@ -73,8 +73,6 @@ class ControllerStudio {
 			}
 			else {
 				echo('ERROR');
-			}
-			else {
 				throw new Exception('There is no image to save !');
 			}
     	}
