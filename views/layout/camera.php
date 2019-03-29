@@ -14,9 +14,9 @@
 </div>
 <canvas id="canvas"></canvas>
 <div id=" bar" class="post_icontray">
-	<img id="banana" class="filters" src="/public/filters/banana.png"/>
-	<img id="cock" class="filters" src="/public/filters/cock.png"/>
-	<img id="sax" class="filters" src="/public/filters/sax.png"/>
+	<img id="banana" class="filters" src="/public/filters/banana.jpg"/>
+	<img id="cock" class="filters" src="/public/filters/cock.jpg"/>
+	<img id="sax" class="filters" src="/public/filters/sax.jpg"/>
 </div>
 <script src="/public/js/camera.js"></script>
 <script src="/public/js/ajax.js"></script>
