@@ -42,6 +42,10 @@ class ControllerStudio {
 					echo('DISLIKE');
 				}
 			}
+			else {
+				echo('ERROR');
+				throw new Exception('You cannot access this page.');
+			}
 		}
 		else {
 			echo('ERROR');
