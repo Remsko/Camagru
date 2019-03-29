@@ -130,20 +130,23 @@ class ControllerUser {
         if (isset($_SESSION['userId'])) {
             throw new Exception('You are already connected !');
         }
+        if (empty($_GET['username']) || empty($_GET['hash'])) {
+            throw new Exception('Page not found');
+        }
         $username = $_GET['username'];
         $resetHash = $_GET['hash'];
 
         $this->_userManager = new UserManager();
         $user = $this->_userManager->getByUsername($username);
         if (empty($user)) {
-            throw new Exception('User not found.');
+            throw new Exception('User not found !');
         }
         $userResetHash = $user->getResetHash();
         if (empty($userResetHash)) {
-            throw new Exception('No reset hash.');
+            throw new Exception('There is no reset hash !');
         }
         if ($userResetHash != $resetHash) {
-            throw new Exception('Bad reset hash.');
+            throw new Exception('The reset hash is wrong !');
         }
 
         if (isset($_POST['newPasswordForm'])) {
