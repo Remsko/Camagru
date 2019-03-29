@@ -37,7 +37,6 @@ class Router {
             spl_autoload_register(function($class) {
                 require_once('models/'.$class.'.class.php');
             });
-
             $this->_url = $this->url();
             $this->_controller = $this->controller();
 
@@ -56,6 +55,11 @@ class Router {
             $this->_view = new View('Error');
             $this->_view->generate(array('errorMsg' => $errorMsg));
         }
+    }
+
+    public static function redirectionRequest($href) {
+        header('Location: http://localhost:8080/'.$href);
+        exit();
     }
 }
 
