@@ -19,24 +19,36 @@ class ControllerStudio {
 		$this->_view->generate([]);
 	}
 
-	public function addFilter() {
+	public function pushImage() {
 		if (isset($_SESSION['userId'])) {
-			if (isset($_POST['filter'])) {
-				$filter = $_POST['filter'];
-				$path = 'public/filters/'.$filter;
-				$file = imagecreatefrompng($path);
-				$file = imagescale($file, 600);
+			if (isset($_POST['path']) && isset($_POST['response'])) {
+				$response = $_POST['response'];
+				$path = $_POST['path'];
+				if ($response === 'like')
+				{
+					$this->_imageManager = new ImageManager();
+					$image = new Image([
+						'userId' => $_SESSION['userId'],
+						'path' => $path,
+					]);
+					$this->_imageManager->pushImage($image);
+					echo('LIKE');
+				}
+				else if ($response === 'dislike') {
+					unlink($path);
+					echo('DISLIKE');
+				}
 			}
-			else {
-				throw new Exception('An error occured while trying to put a sticker.');
-			}
+		}
+		else {
+			echo('ERROR');
+			throw new Exception('You must be connected to save images');
 		}
 	}
 
-	public function saveimage() {
+	public function saveImage() {
 		if (isset($_SESSION['userId'])) {
 			if (isset($_POST['image']) && isset($_POST['filter'])) {
-				$this->_imageManager = new ImageManager();
 				$image = $_POST['image'];
 				$image = str_replace('data:image/png;base64,', '', $image);
 				$image = str_replace(' ', '+', $image);
