@@ -18,39 +18,9 @@ class ControllerStudio {
 	}
 
 	private function studio() {
+		$this->_imageManager = new ImageManager();
 		$this->_view = new View('Studio');
 		$this->_view->generate([]);
-	}
-  
-	public function pushImage() {
-		if (isset($_SESSION['userId'])) {
-			if (isset($_POST['path']) && isset($_POST['response'])) {
-				$response = $_POST['response'];
-				$path = $_POST['path'];
-				if ($response === 'like')
-				{
-					$this->_imageManager = new ImageManager();
-					$image = new Image([
-						'userId' => $_SESSION['userId'],
-						'path' => $path,
-					]);
-					$this->_imageManager->pushImage($image);
-					echo('LIKE');
-				}
-				else if ($response === 'dislike') {
-					unlink($path);
-					echo('DISLIKE');
-				}
-			}
-			else {
-				echo('ERROR');
-				throw new Exception('You cannot access this page.');
-			}
-		}
-		else {
-			echo('ERROR');
-			throw new Exception('You must be connected to save images');
-		}
 	}
 
 	public function saveImage() {
@@ -73,18 +43,23 @@ class ControllerStudio {
 				$image = imagescale($image, 600);
 				imagecopy($image, $filter, 0, 0, 0, 0, imagesx($filter) - 1, imagesy($filter) - 1);
 				imagepng($image, $file);
+					$image = new Image([
+						'userId' => $_SESSION['userId'],
+						'path' => $file,
+					]);
+					$this->_imageManager->pushImage($image);
 				echo($file);
 			}
 			else {
 				echo('ERROR');
 				throw new Exception('There is no image to save !');
 			}
-    	}
+		}
 		else {
 			echo('ERROR');
 			throw new Exception('You must be connected to save images');
 		}
-  	}
+	}
 }
 
 ?>

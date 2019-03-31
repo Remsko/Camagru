@@ -1,6 +1,5 @@
 streaming =	false,
 video = document.querySelector('#video'),
-cover = document.querySelector('#cover'),
 canvas = document.querySelector('#canvas'),
 photo =	document.querySelector('#photo'),
 startbutton	= document.querySelector('#startbutton'),
@@ -75,21 +74,7 @@ function showPicture() {
 			choices = document.getElementsByClassName('choice');
 			photo.src = path;
 			photo.style.display = 'inline-block';
-			choices[0].style.display = 'inline-block';
-			choices[1].style.display = 'inline-block';
 		}
-	}
-}
-
-function decide(e) {
-	id = e.currentTarget.id;
-	if (path !== undefined) {
-		request('/studio/pushImage', ('path=' + path + '&response=' + id), function (choice) {
-			response = choice;
-			console.log(response);
-			choices[0].style.display = 'none';
-			choices[1].style.display = 'none';
-		});
 	}
 }
 
