@@ -14,6 +14,13 @@ class ImageManager {
 		return $images;
 	}
 
+	public function getImagesByUserId($userId) { 
+		$query = 'SELECT * FROM images WHERE userid=:userid';
+		$values = ['userid' => $userId];
+		$images = Database::selectAllObject($query, $values, 'Image');
+		return $images;
+	}
+
 	public static function getByImageId($imageId) {
 		$query = 'SELECT * FROM images WHERE id=:imageId';
 		$values = ['imageId' => $imageId];
