@@ -1,5 +1,5 @@
 <?php $this->_title = 'New Password'; ?>
-<form>
+<form method="post" action="">
     <span>Password: </span><br />
     <input type="password" name="password" value=""/><br />
 

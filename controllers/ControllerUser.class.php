@@ -152,8 +152,8 @@ class ControllerUser {
         if (isset($_POST['newPasswordForm'])) {
             $error = $this->_userManager->newPassword($user);
             if (!$error) {
-                echo '<span>Your password has been updated !</span><br />';
-            }
+				echo '<span>Your password has been updated !</span><br />';
+			}
         }
         $this->_view = new View('NewPassword');
         $this->_view->generate(['error' => $error]);
