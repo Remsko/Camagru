@@ -60,6 +60,16 @@ class ControllerStudio {
 			throw new Exception('You must be connected to save images');
 		}
 	}
+
+	public function showOldPictures() {
+		if (isset($_SESSION['userId'])) {
+			$images = $this->_imageManager->getImagesByUserId($_SESSION['userId']);
+		}
+		else {
+			echo('ERROR');
+			throw new Exception('You must be connected to save images');
+		}
+	}
 }
 
 ?>
