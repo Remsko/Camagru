@@ -1,11 +1,13 @@
 streaming =	false,
 video = document.querySelector('#video'),
-cover = document.querySelector('#cover'),
 canvas = document.querySelector('#canvas'),
 photo =	document.querySelector('#photo'),
 startbutton	= document.querySelector('#startbutton'),
-width =	640,
-height = 400;
+width =	600,
+height = 600;
+filters = ['cock.png', 'banana.png', 'sax.png'];
+filtername = null;
+var path;
 
 navigator.getMedia = (
 	navigator.getUserMedia ||
@@ -18,7 +20,8 @@ navigator.getMedia( {
 	video: true,
 	audio: false
 },
-// Starting camera
+
+// Start streaming webcam
 	function(stream) {
 		if (navigator.mozGetUserMedia) {
 			video.mozSrcObject = stream;
@@ -31,7 +34,8 @@ navigator.getMedia( {
 		console.log("An error occured! " + err);
 	}
 );
-// Adapt Size 
+
+// Adapt size of camera 
 video.addEventListener('canplay', function(ev){
 	if (!streaming) {
 		height = video.videoHeight / (video.videoWidth/width);
@@ -42,40 +46,48 @@ video.addEventListener('canplay', function(ev){
 		streaming = true;
 	}
 }, false);
-// Take Picture Button function
-function takepicture() {
+
+// Takes the picture
+function saveImage(filtername) {
 	canvas.width = width;
 	canvas.height = height;
 	canvas.getContext('2d').drawImage(video, 0, 0, width, height);
+	data = canvas.toDataURL("image/png");
+	request('studio/saveImage', ('image=' + data + '&filter=' + filtername), function (response) {
+		path = response;
+	});
+}
+
+// Select the clickable sticker
+function selectFilter(e) {
+	id = e.currentTarget.id;
+	filtername = document.getElementById(id).src;
+	filtername = filtername.split('/')[5];
+	document.getElementById("startbutton").disabled = false;
+}
+
+// Show the picture
+function showPicture() {
+	if (filters.indexOf(filtername) !== -1) {
+		saveImage(filtername);
+		if (path !== undefined) {
+			photo.src = path;
+			photo.style.display = 'inline-block';
+		}
+	}
+}
+
+function addEventListenerToClass(className, event, f) {
+	var classElements = document.getElementsByClassName(className);
+	for (var i = 0; i < classElements.length; i++) {
+		classElements[i].addEventListener(event, f, false);
+	}
 }
 
 startbutton.addEventListener('click', function(ev){
-	takepicture();
+	showPicture();
 	ev.preventDefault();
 }, false);
 
-// Save Image button function
-function saveImage() {
-	var data = canvas.toDataURL("image/png");
-	if (window.XMLHttpRequest) {
-		ajax = new XMLHttpRequest();
-	}
-	else if (window.ActiveXObject) {
-		ajax = new ActiveXObject("Microsoft.XMLHTTP");
-	}
-	ajax.open('POST', 'studio/saveimage', true);
-	ajax.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-	ajax.onreadystatechange = function() {
-	if (ajax.readyState == 4 && (ajax.status == 200)) {
-		console.log(ajax.responseText);
-	}
-	else
-		console.log(ajax.readyState);
-	}
-	ajax.send('image=' + data);
-}
 
-savebutton.addEventListener('click', function(ev) {
-	saveImage();
-	ev.preventDefault;
-}, false);
+addEventListenerToClass('filters', 'click', selectFilter); 
