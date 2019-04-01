@@ -71,7 +71,6 @@ function showPicture() {
 	if (filters.indexOf(filtername) !== -1) {
 		saveImage(filtername);
 		if (path !== undefined) {
-			choices = document.getElementsByClassName('choice');
 			photo.src = path;
 			photo.style.display = 'inline-block';
 		}

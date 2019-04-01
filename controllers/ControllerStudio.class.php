@@ -18,7 +18,6 @@ class ControllerStudio {
 	}
 
 	private function studio() {
-		$this->_imageManager = new ImageManager();
 		$this->_view = new View('Studio');
 		$this->_view->generate([]);
 	}
@@ -47,7 +46,8 @@ class ControllerStudio {
 						'userId' => $_SESSION['userId'],
 						'path' => $file,
 					]);
-					$this->_imageManager->pushImage($image);
+				$this->_imageManager = new ImageManager();
+				$this->_imageManager->pushImage($image);
 				echo($file);
 			}
 			else {
