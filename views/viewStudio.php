@@ -4,7 +4,7 @@
     if (isset($_SESSION['userId'])) {
 		require_once('layout/camera.php');
 		foreach ($images as $image) {
-			require('layout/image.php');
+			require('layout/oldpics.php');
 		}
     }
     else {

@@ -15,7 +15,7 @@ class ImageManager {
 	}
 
 	public function getImagesByUserId($userId) { 
-		$query = 'SELECT * FROM images WHERE userid=:userid';
+		$query = 'SELECT * FROM images WHERE userid=:userid ORDER BY id DESC';
 		$values = ['userid' => $userId];
 		$images = Database::selectAllObject($query, $values, 'Image');
 		return $images;
