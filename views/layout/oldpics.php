@@ -1,0 +1,1 @@
+<img class='oldPictures' src="<?= $image->getPath() ?>"><br/>
