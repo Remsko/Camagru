@@ -6,6 +6,10 @@
 <body>
 <video id="video"></video>
 <button id="startbutton" disabled>Take Picture</button>
+<form enctype="multipart/form-data" action="#" onsubmit="uploadImage();return false" method="post">
+	<input type="file" id="picturePath" name="picture" size=50 />
+	<input type="submit" value="Send" />
+</form>
 <div id='picture'>
 <img id='photo' src='#' />
 <br /><br />

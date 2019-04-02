@@ -83,6 +83,13 @@ function showPicture() {
 	}
 }
 
+function uploadImage() {
+	path = document.getElementById("picturePath").value;
+	photo.src = path;
+	photo.style.display = 'inline-block';
+	console.log(path);
+}
+
 function addEventListenerToClass(className, event, f) {
 	var classElements = document.getElementsByClassName(className);
 	for (var i = 0; i < classElements.length; i++) {
