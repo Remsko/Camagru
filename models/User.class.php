@@ -8,6 +8,7 @@ class User {
 	private $_notifications;
 	private $_validation;
 	private $_hash;
+	private $_resetHash;
 
 	public function __construct(array $data) {
 		$this->hydrate($data);
@@ -50,6 +51,10 @@ class User {
 		return $this->_hash;
 	}
 
+	public function getResetHash() {
+		return $this->_resetHash;
+	}
+
 	public function setId($id)
 	{
 		if (is_numeric($id)) {
@@ -88,6 +93,10 @@ class User {
 
 	public function setHash($hash) {
 		$this->_hash = $hash;
+	}
+
+	public function setResetHash($resetHash) {
+		$this->_resetHash = $resetHash;
 	}
 }
 

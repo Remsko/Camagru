@@ -107,4 +107,55 @@ class ControllerUser {
         $this->_view = new View('Verification');
         $this->_view->generate(['message' => $message]);
     }
+
+    public function reset() {
+        $error = null;
+        if (isset($_SESSION['userId'])) {
+            throw new Exception('You are already connected !');
+        }
+        if (isset($_POST['resetForm'])) {
+            echo 'reset form triggered';
+            $this->_userManager = new UserManager();
+            $error = $this->_userManager->resetPassword();
+            if (!$error) {
+                echo '<span>A reset mail has been send !</span><br />';
+            }
+        }
+        $this->_view = new View('Reset');
+        $this->_view->generate(['error' => $error]);
+    }
+
+    public function newpassword() {
+        $error = null;
+        if (isset($_SESSION['userId'])) {
+            throw new Exception('You are already connected !');
+        }
+        if (empty($_GET['username']) || empty($_GET['hash'])) {
+            throw new Exception('Page not found');
+        }
+        $username = $_GET['username'];
+        $resetHash = $_GET['hash'];
+
+        $this->_userManager = new UserManager();
+        $user = $this->_userManager->getByUsername($username);
+        if (empty($user)) {
+            throw new Exception('User not found !');
+        }
+        $userResetHash = $user->getResetHash();
+        if (empty($userResetHash)) {
+            throw new Exception('There is no reset hash !');
+        }
+        if ($userResetHash != $resetHash) {
+            throw new Exception('The reset hash is wrong !');
+        }
+
+        if (isset($_POST['newPasswordForm'])) {
+            $error = $this->_userManager->newPassword($user);
+            if (!$error) {
+				echo '<span>Your password has been updated !</span><br />';
+			}
+        }
+        $this->_view = new View('NewPassword');
+        $this->_view->generate(['error' => $error]);
+    }
 }

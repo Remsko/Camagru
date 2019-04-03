@@ -121,6 +121,52 @@ class UserManager {
         return null;
     }
 
+    public function resetPassword() {
+        $mail = $_POST['mail'];
+        if (empty($mail)) {
+            return 'All fields need to be completed !';
+        }
+        $user = $this->getByMail($mail);
+        if (!$user) {
+            return 'No account is associated with this email address !';
+        }
+        $resetHash = md5(time());
+        $user->setResetHash($resetHash);
+        if (!$this->updateUser($user)) {
+            return 'Failed password update.';
+        }
+        $to = $mail;
+		$subject = 'Camagru Reset Password';
+        $message = '<html><body><a href="http://localhost:8080/user/newpassword&username='.$user->getUsername().'&hash='.$resetHash.'">Reset your password !</a></body><html>';
+        $header = 'Content-type: text/html; charset=UTF-8'.'\r\n';
+        
+        if (!mail($to, $subject, $message, $header)) {
+            return 'Failed to send mail.';
+        }
+        return null;
+    }
+
+    public function newPassword($user) {
+        $password = $_POST['password'];
+        $passwordConfirm = $_POST['passwordConfirm'];
+        if (empty($password) || empty($passwordConfirm)) {
+            return 'All fields need to be completed !';
+        }
+        if ($password !== $passwordConfirm) {
+            return 'Passwords does not match !';
+        }
+        if ($error = $this->checkPassword($password)) {
+            return $error;
+        }
+        $newPassword = password_hash($_POST['password'], PASSWORD_BCRYPT);
+		$user->setPassword($newPassword);
+		$user->setResetHash(null);
+        if (!$this->updateUser($user)) {
+            return 'Failed to update your password !';
+        }
+        return null;
+    }
+
     public function verificationMail($user) {
         $username = $user->getUsername();
         $mail = $user->getMail();
@@ -228,20 +274,21 @@ class UserManager {
 			'username' => $user->getUsername(),
 			'mail' => $user->getMail(),
             'password' => $user->getPassword(),
-            'hash' => $user->getHash()
+			'hash' => $user->getHash()
 		];
 		return Database::safeExecute($query, $values);
     }
 
     public function updateUser($user) {
-        $query = 'UPDATE users SET username=:username, mail=:mail, password=:password, notifications=:notifications, validation=:validation WHERE id=:id';
+        $query = 'UPDATE users SET username=:username, mail=:mail, password=:password, notifications=:notifications, validation=:validation, resethash=:resethash WHERE id=:id';
         $values = [
             'id' => $user->getId(),
             'username' => $user->getUsername(),
             'mail' => $user->getMail(),
             'password' => $user->getPassword(),
             'notifications' => $user->getNotifications(),
-            'validation' => $user->getValidation()
+			'validation' => $user->getValidation(),
+			'resethash' => $user->getResetHash()
         ];
         return Database::safeExecute($query, $values);
     }

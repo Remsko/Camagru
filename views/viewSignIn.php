@@ -10,7 +10,8 @@
             <input type="password" name="password" value="" /><br />
 
             <input type="submit" name="signInForm" value="Sign In" />
-        </form>
+        </form><br/>
+        <a href="/user/reset">Forgot your password ?</a>
         <?php
             if(isset($error)) {
                echo '<font color="red">'.$error."</font>";
