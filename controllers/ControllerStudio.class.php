@@ -24,6 +24,34 @@ class ControllerStudio {
 		$this->_view->generate(['images' => $images]);
 	}
 
+	public function uploadImage() {
+		if (!isset($_SESSION['userId'])) {
+			throw new Exception('You must be connected to save images');	
+		}
+		if (!isset($_FILES['picture'])) {
+			throw new Exception('Something goes wrong, please try again.');
+		}
+		if (!is_uploaded_file($_FILES['picture']['tmp_name'])) {
+			throw new Exception('Please, select a picture you want to share.');
+		}
+		if ($_FILES['picture']['size'] > 5000000) {
+			throw new Exception('Your picture is too big, please select another one.');
+		}
+		$id = uniqid();
+		$file = 'public/images/' . $id . '.png';
+		$image = file_get_contents($_FILES['picture']['tmp_name']);
+		if(!file_put_contents($file, $image)) {
+			throw new Exception('An error occurred while trying to save image.');
+		}
+		$image = new Image([
+			'userId' => $_SESSION['userId'],
+			'path' => $file,
+		]);
+		$this->_imageManager = new ImageManager();
+		$this->_imageManager->pushImage($image);
+		Router::redirectionRequest('/studio');
+	}
+
 	public function saveImage() {
 		if (isset($_SESSION['userId'])) {
 			if (isset($_POST['image']) && isset($_POST['filter'])) {

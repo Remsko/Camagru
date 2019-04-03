@@ -7,6 +7,11 @@ canvas {
 	display :none;
 }
 
+.oldPictures {
+	width: 600px;
+	height: 600px;
+}
+
 #picture {
 	display:inline-block;
 }
