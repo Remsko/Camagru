@@ -1,7 +1,6 @@
 streaming =	false,
 video = document.querySelector('#video'),
 canvas = document.querySelector('#canvas'),
-photo =	document.querySelector('#photo'),
 startbutton	= document.querySelector('#startbutton'),
 width =	600,
 height = 600;
