@@ -21,9 +21,7 @@ class ControllerGallery {
         $imageId = isset($_POST['imageId']) ? $_POST['imageId'] : null;
         if (isset($userId) && isset($imageId)) {
 			$this->_imageManager = new ImageManager();
-            if (!$this->_imageManager->like($userId, $imageId)) {
-                echo 'ERROR';
-            }
+            $this->_imageManager->like($userId, $imageId);
             $view = new View('layout/like');
             $view->render(['image' => $this->_imageManager->getByImageId($imageId)]);
         }
@@ -37,9 +35,7 @@ class ControllerGallery {
         $imageId = isset($_POST['imageId']) ? $_POST['imageId'] : null;
         if (isset($userId) && isset($imageId)) {
 			$this->_imageManager = new ImageManager();
-            if (!$this->_imageManager->dislike($userId, $imageId)) {
-                echo 'ERROR';
-            }
+            $this->_imageManager->dislike($userId, $imageId);
             $view = new View('layout/like');
             $view->render(['image' => $this->_imageManager->getByImageId($imageId)]);
         }
