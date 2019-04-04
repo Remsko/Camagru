@@ -70,14 +70,16 @@ function selectFilter(e) {
 function showPicture() {
 	if (filters.indexOf(filtername) !== -1) {
 		saveImage(filtername);
-		window.setTimeout(editDom, 600);	
+		window.setTimeout(editDom, 600);
 	}
 }
 
 function editDom() {
 	if (path !== undefined) {
+		/*
 		photo.src = path;
 		photo.style.display = 'inline-block';
+		*/
 		container = document.getElementById('imgContainer');
 		newImg = document.createElement('img');
 		newImg.src = path;

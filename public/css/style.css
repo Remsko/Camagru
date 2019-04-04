@@ -48,8 +48,7 @@
 }
 
 .footer {
-    overflow: hidden;
-    position: sticky;
+    position: relative;
     left: 0;
     bottom: 0;
     width: 100%;
@@ -80,6 +79,37 @@
     border-radius: 2px;
 }
 
+#container3 {
+    position: relative;
+    margin:auto;
+    width: 600px;
+    right: 0;
+    background-color: #f1f1f1;
+    border-radius: 2px;
+}
+
+#container4 {
+    position: absolute;
+    margin:auto;
+    margin-left: 20%;
+    width: 600px;
+    bottom: 0;
+    background-color: #f1f1f1;
+    border-radius: 2px;
+}
+
+
+#container5 {
+    position: relative;
+    margin:auto;
+    margin-left: 55%;
+    width: 600px;
+    bottom: 0;
+    background-color: #f1f1f1;
+    border-radius: 2px;
+}
+
+
 .button_class, .button_comment, .button_delete {
     background-color: #F1F1F1;
     padding: 4px 2px;
@@ -106,7 +136,13 @@ img.gallery {
 }
 
 #block2 {
-    text-align: left;
+    left: 0;
+}
+
+#block3 {
+    position: absolute;
+    margin:auto;
+    margin-right: 20%;
 }
 
 input {
@@ -123,4 +159,9 @@ span, h1 {
 #checkbox {
     margin: auto;
     display: inline-block;
+}
+
+.imgblock {
+    position: relative;
+    float: right;
 }

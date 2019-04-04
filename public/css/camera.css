@@ -9,7 +9,7 @@ canvas {
 
 .oldPictures {
 	width: 600px;
-	height: 600px;
+	height: 450px;
 }
 
 #picture {
@@ -18,4 +18,13 @@ canvas {
 
 #photo {
 	display : none;
+}
+
+#banana:active, #sax:active, #cock:active {
+	border: 2px solid #474747;
+}
+
+#banana, #sax, #cock {
+	width: 193px;
+	height: 300px;
 }
