@@ -6,5 +6,3 @@
 		?>
 </div>
 <img src="<?= $image->getPath() ?>"><br/>
-<script src='/public/js/delete.js'></script>
-<script src="/public/js/ajax.js"></script>

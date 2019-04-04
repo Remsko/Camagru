@@ -7,5 +7,3 @@
         echo '<font color="red">'.$error."</font><br/>";
     }
 ?>
-<script src="/public/js/comment.js"></script>
-<script src="/public/js/ajax.js"></script>

@@ -15,5 +15,3 @@
     }
 ?>
 </div>
-<script src="/public/js/like.js"></script>
-<script src="/public/js/ajax.js"></script>

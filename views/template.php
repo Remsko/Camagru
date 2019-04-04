@@ -15,5 +15,9 @@
         <footer>
             <?php require_once('layout/footer.php'); ?>
         </footer>
+        <script src="/public/js/comment.js"></script>
+        <script src="/public/js/like.js"></script>
+        <script src='/public/js/delete.js'></script>
+        <script src="/public/js/ajax.js"></script>
     </body>
 </html>
