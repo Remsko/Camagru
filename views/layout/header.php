@@ -1,17 +1,16 @@
-<div class="header-div">
-    <span>Camagru<span>
-    <ul>
-        <li><a href="/" title="Gallery">Gallery</a></li>
-        <?php
-            if(!isset($_SESSION['userId'])) {
-                echo '<li><a href="/user/signin" title="Sign In">Sign In</a></li>';
-                echo '<li><a href="/user/signup" title="Sign Up">Sign Up</a></li>';
-            }
-            else {
-                echo '<li><a href="/studio" title="Studio">Studio</a></li>';
-                echo '<li><a href="/user/settings" title="Settings">Settings</a></li>';
-                echo '<li><a href="/user/logout" title="Logout">Logout</a></li>';
-            }
-        ?>
-    </ul>
+<div class="header">
+    <a class="active" href="/">Gallery</a>
+    <div class="header-right">
+    <?php
+        if(!isset($_SESSION['userId'])) {
+            echo '<a href="/user/signin">Sign In</a>';
+            echo '<a href="/user/signup">Sign Up</a>';
+        }
+        else {
+            echo '<a href="/studio">Studio</a>';
+            echo '<a href="/user/settings">Settings</a>';
+            echo '<a href="/user/logout">Logout</a>';
+        }
+    ?>
+    </div>
 </div>

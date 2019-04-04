@@ -62,7 +62,6 @@ class ControllerStudio {
 				$id = uniqid();
 				$file = 'public/images/' . $id . '.png';
 				if(!file_put_contents($file, $data)) {
-					echo('ERRROR');
 					throw new Exception('An error occurred while trying to save image.');
 				}
 				$filter = $_POST['filter'];
@@ -81,12 +80,10 @@ class ControllerStudio {
 				echo($file);
 			}
 			else {
-				echo('ERROR');
 				throw new Exception('There is no image to save !');
 			}
 		}
 		else {
-			echo('ERROR');
 			throw new Exception('You must be connected to save images');
 		}
 	}
