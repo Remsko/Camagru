@@ -11,7 +11,6 @@
 	</form>
 </div>
 	<div id='picture'>
-		<!-- <img id='photo' src='#'/> -->
 	</div>
 </div>
 <canvas id="canvas"></canvas>
