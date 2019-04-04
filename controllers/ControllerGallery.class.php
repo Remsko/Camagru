@@ -16,7 +16,6 @@ class ControllerGallery {
         }
     }
 
-<<<<<<< HEAD
     public function like() {
 		$userId = isset($_SESSION['userId']) ? $_SESSION['userId'] : null;
         $imageId = isset($_POST['imageId']) ? $_POST['imageId'] : null;
@@ -44,7 +43,6 @@ class ControllerGallery {
             throw new Exception('Page not found');
         }
     }
-=======
 	public function deletePicture() {
 		if (!isset($_SESSION['userId'])) {
 			throw new Exception('You must be connected to access this page.');
@@ -56,12 +54,6 @@ class ControllerGallery {
 		$this->_imageManager = new ImageManager();
 		$this->_imageManager->deleteImageById($imageId);
 	}
-
-    private function gallery() {
-        $error = null;
-        $userId = isset($_POST['userId']) ? htmlspecialchars($_POST['userId']) : null;
-        $imageId = isset($_POST['imageId']) ? htmlspecialchars($_POST['imageId']) : null;
->>>>>>> feat/ImageDelete
 
     public function comment() {
         $userId = isset($_SESSION['userId']) ? $_SESSION['userId'] : null;
