@@ -53,7 +53,7 @@ function saveImage(filtername) {
 	canvas.height = height;
 	canvas.getContext('2d').drawImage(video, 0, 0, width, height);
 	data = canvas.toDataURL("image/png");
-	request('studio/saveImage', ('image=' + data + '&filter=' + filtername), function (response) {
+	ajaxPost('studio/saveImage', ('image=' + data + '&filter=' + filtername), function (response) {
 		path = response;
 	});
 }
@@ -70,16 +70,20 @@ function selectFilter(e) {
 function showPicture() {
 	if (filters.indexOf(filtername) !== -1) {
 		saveImage(filtername);
-		if (path !== undefined) {
-			photo.src = path;
-			photo.style.display = 'inline-block';
-			container = document.getElementById('imgContainer');
-			newImg = document.createElement('img');
-			newImg.src = path;
-			newBr = document.createElement('br');
-			container.prepend(newBr);
-			container.prepend(newImg);
-		}
+		window.setTimeout(editDom, 600);	
+	}
+}
+
+function editDom() {
+	if (path !== undefined) {
+		photo.src = path;
+		photo.style.display = 'inline-block';
+		container = document.getElementById('imgContainer');
+		newImg = document.createElement('img');
+		newImg.src = path;
+		newBr = document.createElement('br');
+		container.prepend(newBr);
+		container.prepend(newImg);
 	}
 }
 
