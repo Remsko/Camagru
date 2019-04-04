@@ -1,6 +1,8 @@
 <?php $this->_title = 'Gallery'; ?>
 <?php
     foreach ($images as $image) {
+?><div id="<?= $image->getId() ?>" class='Images'>
+<?php
         require('layout/image.php');
         if (isset($_SESSION['userId'])) {
             require('layout/like.php');
@@ -10,7 +12,9 @@
                 require('layout/comment.php');
             }
             require('layout/commentForm.php');
-        }
+		}
+?></div>
+<?php
     }
     if ($currentPage == $pagesTotal) {
         echo '<h3>That\'s it ! There is no more pictures !</h3>';

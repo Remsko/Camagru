@@ -14,6 +14,20 @@ class ControllerGallery {
         $this->gallery();
     }
 
+	public function deletePicture() {
+		if (!isset($_SESSION['userId'])) {
+			throw new Exception('You must be connected to access this page.');
+		}
+		if (!isset($_POST['imageId'])) {
+			throw new Exception('Page noooot found');
+		}
+		$imageId = $_POST['imageId'];
+		$this->_imageManager = new ImageManager();
+		$this->_imageManager->deleteImageById($imageId);
+		$view = new View('layout/image');
+		$view->render(['image' => $this->_imageManager->getByImageId($imageId)]);
+	}
+
     private function gallery() {
         $error = null;
         $userId = isset($_POST['userId']) ? htmlspecialchars($_POST['userId']) : null;
