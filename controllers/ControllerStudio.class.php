@@ -69,7 +69,7 @@ class ControllerStudio {
 				$path = 'public/filters/'.$filter;
 				$filter = imagecreatefrompng($path);
 				$image = imagecreatefrompng($file);
-				$image = imagescale($image, 600);
+				$image = imagescale($image, 400);
 				imagecopy($image, $filter, 0, 0, 0, 0, imagesx($filter) - 1, imagesy($filter) - 1);
 				imagepng($image, $file);
 					$image = new Image([

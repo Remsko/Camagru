@@ -1,19 +1,38 @@
 .post_icon_tray {
     display: block;
-    width: 80%;
+    width: 60%;
 } 
+
+#imgContainer {
+	float: right;
+}
+
+#PageContent {
+	float: left;
+}
 
 canvas {
 	display :none;
 }
 
+.filters {
+	filter: brightness(50%);
+	-webkit-filter: brightness(50%);
+	position: relative
+	}
+	.filters:hover {
+	filter: brightness(100%);
+	-webkit-filter: brightness(100%);	
+	}
+
 .oldPictures {
-	width: 600px;
-	height: 600px;
+	width: 200px;
+	height: 200px;
 }
 
 #picture {
-	display:inline-block;
+	display:flex;
+	margin-left: 50%;
 }
 
 #photo {

@@ -3,8 +3,8 @@ video = document.querySelector('#video'),
 canvas = document.querySelector('#canvas'),
 photo =	document.querySelector('#photo'),
 startbutton	= document.querySelector('#startbutton'),
-width =	600,
-height = 600;
+width =	400,
+height = 400;
 filters = ['cock.png', 'banana.png', 'sax.png'];
 filtername = null;
 var path;
@@ -81,6 +81,8 @@ function editDom() {
 		container = document.getElementById('imgContainer');
 		newImg = document.createElement('img');
 		newImg.src = path;
+		newImg.style.width = '200px';
+		newImg.style.height = '200px';
 		newBr = document.createElement('br');
 		container.prepend(newBr);
 		container.prepend(newImg);
