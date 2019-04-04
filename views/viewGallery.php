@@ -1,26 +1,14 @@
 <?php $this->_title = 'Gallery'; ?>
 <?php
     foreach ($images as $image) {
-?><div id="<?= $image->getId() ?>" class='Images'>
-<?php
+        echo '<div id="'.$image->getId().'" class="Images">';
         require('layout/image.php');
         if (isset($_SESSION['userId'])) {
             require('layout/like.php');
-<<<<<<< HEAD
             require('layout/allComments.php');
             require('layout/newComment.php');
         }
-=======
-
-            $comments = $image->getComments();
-            foreach ($comments as $comment) {
-                require('layout/comment.php');
-            }
-            require('layout/commentForm.php');
-		}
-?></div>
-<?php
->>>>>>> feat/ImageDelete
+        echo '</div>';
     }
     if ($currentPage == $pagesTotal) {
         echo '<h3>That\'s it ! There is no more pictures !</h3>';
