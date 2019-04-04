@@ -10,8 +10,6 @@
 		<input type="submit" value="Send" />
 	</form>
 </div>
-	<div id='picture'>
-	</div>
 </div>
 <canvas id="canvas"></canvas>
 <br />
