@@ -52,7 +52,7 @@ class ControllerGallery {
             $this->_commentManager = new CommentManager();
             $error = $this->_commentManager->postComment();
             if (!$error) {
-                //$this->_commentManager->notif($imageId, $userId);
+                $this->_commentManager->notif($imageId, $userId);
             }
             $view = new View('layout/newComment');
             $this->_imageManager = new ImageManager();

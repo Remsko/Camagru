@@ -4,9 +4,7 @@
         require('layout/image.php');
         if (isset($_SESSION['userId'])) {
             require('layout/like.php');
-            
             require('layout/allComments.php');
-
             require('layout/newComment.php');
         }
     }
