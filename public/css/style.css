@@ -169,3 +169,9 @@ span, h1 {
     position: relative;
     float: right;
 }
+
+.imgform {
+    position: relative;
+    align-self: center;
+    background: white;
+}

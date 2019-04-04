@@ -76,10 +76,6 @@ function showPicture() {
 
 function editDom() {
 	if (path !== undefined) {
-		/*
-		photo.src = path;
-		photo.style.display = 'inline-block';
-		*/
 		container = document.getElementById('imgContainer');
 		newImg = document.createElement('img');
 		newImg.src = path;
