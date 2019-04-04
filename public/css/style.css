@@ -2,6 +2,7 @@
     overflow: hidden;
     background-color: #f1f1f1;
     padding: 20px 10px;
+    border-radius: 2px;
 }
   
 .header a {
@@ -12,7 +13,7 @@
     text-decoration: none;
     font-size: 18px; 
     line-height: 25px;
-    border-radius: 1px;
+    border-radius: 2px;
 }
   
 .header a.logo {
@@ -55,6 +56,7 @@
     background-color: #f1f1f1;
     color: #474747;
     text-align: center;
+    border-radius: 2px;
 }
 
 #container {
@@ -85,6 +87,7 @@
     text-align: center;
     text-decoration: none;
     display: inline-block;
+    border-radius: 2px;
 }
 
 h1 {
