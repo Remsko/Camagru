@@ -1,6 +1,6 @@
 <div>
 	<?php
-		if ($image->getUserId() === $_SESSION['userId']) {
+		if (isset($_SESSION['userId']) && $image->getUserId() === $_SESSION['userId']) {
 			echo '<button onclick="deletePicture(event);" data-imageid="'.$image->getId().'">Delete</button>';
 		}
 		?>
