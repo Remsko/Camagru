@@ -70,16 +70,20 @@ function selectFilter(e) {
 function showPicture() {
 	if (filters.indexOf(filtername) !== -1) {
 		saveImage(filtername);
-		if (path !== undefined) {
-			photo.src = path;
-			photo.style.display = 'inline-block';
-			container = document.getElementById('imgContainer');
-			newImg = document.createElement('img');
-			newImg.src = path;
-			newBr = document.createElement('br');
-			container.prepend(newBr);
-			container.prepend(newImg);
-		}
+		window.setTimeout(editDom, 400);	
+	}
+}
+
+function editDom() {
+	if (path !== undefined) {
+		photo.src = path;
+		photo.style.display = 'inline-block';
+		container = document.getElementById('imgContainer');
+		newImg = document.createElement('img');
+		newImg.src = path;
+		newBr = document.createElement('br');
+		container.prepend(newBr);
+		container.prepend(newImg);
 	}
 }
 

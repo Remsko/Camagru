@@ -7,7 +7,7 @@ function request(url, data, success) {
 	else if (window.ActiveXObject) {
 		ajax = new ActiveXObject("Microsoft.XMLHTTP");
 	}
-	ajax.open('POST', url, false);
+	ajax.open('POST', url, true);
 	ajax.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 	ajax.onload = function () {
 		console.log('Ajax request to ' + url + ' returned successfully.');
