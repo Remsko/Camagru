@@ -5,7 +5,7 @@ class View {
     private $_title;
 
     public function __construct($action) {
-        $this->_file = 'views/view'.$action.'.php';
+        $this->_file = 'views/'.$action.'.php';
     }
 
     public function generate($data) {
@@ -19,6 +19,16 @@ class View {
             $view = $this->generateFile('views/template.php', $templateData);
 
             echo $view;
+        }
+        catch (Exception $e) {
+            echo $e->getMessage();
+        }
+    }
+
+    public function render($data) {
+        try {
+            $content = $this->generateFile($this->_file, $data);
+            echo $content;
         }
         catch (Exception $e) {
             echo $e->getMessage();

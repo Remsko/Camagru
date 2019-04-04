@@ -24,7 +24,7 @@ class ControllerUser {
         if (isset($_SESSION['userId'])) {
             Router::redirectionRequest('');
         }
-        $this->_view = new View('SignIn');
+        $this->_view = new View('viewSignIn');
         $this->_view->generate(['error' => $error]);
     }
 
@@ -42,7 +42,7 @@ class ControllerUser {
 			}
         }
         
-        $this->_view = new View('SignUp');
+        $this->_view = new View('viewSignUp');
         $this->_view->generate(['error' => $error]);
     }
 
@@ -74,7 +74,7 @@ class ControllerUser {
 				echo '<span>Your password has been changed !</span><br />';
 			}
         }
-        $this->_view = new View('Settings');
+        $this->_view = new View('viewSettings');
         $this->_view->generate([
             'user' => $user,
             'error' => $error
@@ -104,7 +104,7 @@ class ControllerUser {
                 $this->_userManager->updateUser($user);
             }
         }
-        $this->_view = new View('Verification');
+        $this->_view = new View('viewVerification');
         $this->_view->generate(['message' => $message]);
     }
 
@@ -121,7 +121,7 @@ class ControllerUser {
                 echo '<span>A reset mail has been send !</span><br />';
             }
         }
-        $this->_view = new View('Reset');
+        $this->_view = new View('viewReset');
         $this->_view->generate(['error' => $error]);
     }
 
@@ -155,7 +155,7 @@ class ControllerUser {
 				echo '<span>Your password has been updated !</span><br />';
 			}
         }
-        $this->_view = new View('NewPassword');
+        $this->_view = new View('viewNewPassword');
         $this->_view->generate(['error' => $error]);
     }
 }
