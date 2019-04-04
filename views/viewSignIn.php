@@ -7,11 +7,11 @@
             <input type="text" name="username"/><br />
 
             <span>Password:</span><br />
-            <input type="password" name="password"/><br />
+            <input type="password" name="password"/><br /><br />
 
-            <input type="submit" name="signInForm" value="Send" />
+            <input class="button_class" type="submit" name="signInForm" value="Send" />
         </form><br/>
-        <a href="/user/reset">Forgot your password ?</a><br/><br/>
+        <a  href="/user/reset">Forgot your password ?</a><br/><br/>
         <?php
             if(isset($error)) {
                echo '<font color="red">'.$error."</font>";

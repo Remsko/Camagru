@@ -19,18 +19,13 @@
     }
     if ($pagesTotal > 1) {
         if ($currentPage != 1) {
-            echo '<a href="index.php?page='.($currentPage - 1).'"><<</a>';
+            echo '<a class="button_class" href="index.php?page='.($currentPage - 1).'"><<</a>';
         }
         for ($i = 1; $i <= $pagesTotal; $i++) {
-            if ($i == $currentPage){
-                echo $i;
-            }
-            else {
-                echo '<a href="/index.php?page='.$i.'">'.$i.'</a>';
-            }
+            echo '<a class="button_class" href="/index.php?page='.$i.'">'.$i.'</a>';
         }
         if ($currentPage != $pagesTotal) {
-            echo '<a href="index.php?page='.($currentPage + 1).'">>></a>';
+            echo '<a class="button_class" href="index.php?page='.($currentPage + 1).'">>></a>';
         }
     }
 ?>

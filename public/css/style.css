@@ -6,13 +6,13 @@
   
 .header a {
     float: left;
-    color: black;
+    color: #474747;
     text-align: center;
     padding: 12px;
     text-decoration: none;
     font-size: 18px; 
     line-height: 25px;
-    border-radius: 4px;
+    border-radius: 1px;
 }
   
 .header a.logo {
@@ -26,7 +26,7 @@
 }
   
 .header a.active {
-    background-color: dodgerblue;
+    background-color: #474747;
     color: white;
 }
   
@@ -51,7 +51,7 @@
     bottom: 0;
     width: 100%;
     background-color: #f1f1f1;
-    color: black;
+    color: #474747;
     text-align: center;
 }
 
@@ -62,7 +62,7 @@
     width: 600px;
     height: 600px;
     background-color: #FFFFFF;
-    border: 2px solid #f1f1f1;
+    border: 2px solid #474747;
 }
 
 #container2 {
@@ -70,8 +70,19 @@
     margin:auto;
     margin-top: 20px;
     width: 600px;
-    background-color: #FFFFFF;
-    border: 2px solid #f1f1f1;
+    bottom: 0;
+    background-color: #f1f1f1;
+    border: 1px solid #474747;
+}
+
+.button_class, .button_comment, .button_delete {
+    background-color: #F1F1F1;
+    padding: 4px 2px;
+    border: none;
+    color: #474747;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
 }
 
 h1 {
@@ -90,4 +101,20 @@ img.gallery {
 
 #block2 {
     text-align: left;
+}
+
+input {
+    position: bottom;
+    padding: 2px;
+    width: 88%;
+}
+
+span, h1 {
+    color: #474747;
+    font: medium;
+}
+
+#checkbox {
+    margin: auto;
+    display: inline-block;
 }

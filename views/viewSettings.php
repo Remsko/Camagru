@@ -12,14 +12,14 @@
             <span>Notifications</span>
             <?php
                 if ($user->getNotifications()) {
-                    echo '<input type="checkbox" name="notifications" checked="checked" />';
+                    echo '<input class="button_class" type="checkbox" name="notifications" checked="checked" />';
                 }
                 else {
-                    echo '<input type="checkbox" name="notifications" />';
+                    echo '<input class="button_class" type="checkbox" name="notifications" />';
                 }
             ?><br />
 
-            <input type='submit' name='editProfile' value='Send' />
+            <input class="button_class" type='submit' name='editProfile' value='Send' />
         </form>
     </div>
 
@@ -34,10 +34,10 @@
             <input type="password" name="newPassword" value="" /><br />
 
             <span>Confirm New Passord: </span><br />
-            <input type="password" name="confirmNewPassword" value="" /><br />
+            <input type="password" name="confirmNewPassword" value="" /><br /><br/>
 
-            <input type='submit' name='changePassword' value='Send' />
-        </form>
+            <input class="button_class" type='submit' name='changePassword' value='Send' />
+        </form><br/>
 
         <?php
             if(isset($error)) {
