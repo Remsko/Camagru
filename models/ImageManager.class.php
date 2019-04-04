@@ -46,8 +46,8 @@ class ImageManager {
 	}
 
 	public static function  deleteImageById($imageId) {
-		$query = 'DELETE FROM images WHERE id=:id';
-		$values = ['id' => $imageId];
+		$query = 'DELETE FROM images WHERE id=:imageid';
+		$values = ['imageid' => $imageId];
 		return Database::safeExecute($query, $values);
 	}
 

@@ -19,13 +19,11 @@ class ControllerGallery {
 			throw new Exception('You must be connected to access this page.');
 		}
 		if (!isset($_POST['imageId'])) {
-			throw new Exception('Page noooot found');
+			throw new Exception('Page not found');
 		}
 		$imageId = $_POST['imageId'];
 		$this->_imageManager = new ImageManager();
 		$this->_imageManager->deleteImageById($imageId);
-		$view = new View('layout/image');
-		$view->render(['image' => $this->_imageManager->getByImageId($imageId)]);
 	}
 
     private function gallery() {
