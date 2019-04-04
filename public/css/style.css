@@ -175,3 +175,8 @@ span, h1 {
     align-self: center;
     background: white;
 }
+
+.homeimg {
+    width:30;
+    height:30px;
+}

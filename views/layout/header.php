@@ -1,6 +1,7 @@
 <div class="header">
-    <a class="active" href="/">Gallery</a>
+    <a href="/"><img class="homeimg" href="/" src="/public/images/home.jpg" alt="home"/></a>
     <div class="header-right">
+    <a class="active" href="/">Gallery</a>
     <?php
         if(!isset($_SESSION['userId'])) {
             echo '<a href="/user/signin">Sign In</a>';
