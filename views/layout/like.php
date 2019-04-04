@@ -1,3 +1,4 @@
+<div id="<?= $image->getId() ?>">
 <strong>
 <?php
     $likeNumber = $image->getLikes();
@@ -5,15 +6,14 @@
     echo $likeNumber.' like'.$likePlurial;
 ?>
 </strong>
-<form method="post" action="">
-    <input type="hidden" name="imageId" value="<?= $image->getId() ?>" />
-    <input type="hidden" name="userId" value="<?= $_SESSION['userId'] ?>" />
-    <?php
-        if (!$image->getLiked()) {
-            echo '<input type="submit" name="like" value="like" />';
-        }
-        else {
-            echo '<input type="submit" name="dislike" value="dislike" />';
-        }
-    ?>
-</form>
+<?php
+    if ($image->getLiked()) {
+        echo '<button onclick="dislike(event);" data-imageid="'.$image->getId().'">Dislike</button>';
+    }
+    else {
+        echo '<button onclick="like(event);" data-imageid="'.$image->getId().'">Like</button>';
+    }
+?>
+<script src="/public/js/like.js"></script>
+<script src="/public/js/ajax.js"></script>
+</div>

@@ -18,7 +18,7 @@ class ControllerStudio {
 	}
 
 	private function studio() {
-		$this->_view = new View('Studio');
+		$this->_view = new View('viewStudio');
 		$this->_imageManager = new ImageManager();
 		$images = $this->_imageManager->getImagesByUserId($_SESSION['userId']);
 		$this->_view->generate(['images' => $images]);
