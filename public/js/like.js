@@ -4,7 +4,7 @@ function like(event) {
 	if (imageid === undefined) {
 		return ;
 	}
-	request("/gallery/like", ('imageId=' + imageid), function(response) {
+	ajaxPost("/gallery/like", ('imageId=' + imageid), function(response) {
 		document.getElementById(imageid).innerHTML = response;
 	})	
 }
@@ -15,7 +15,7 @@ function dislike(event) {
 	if (imageid === undefined) {
 		return ;
 	}
-	request("/gallery/dislike", ('imageId=' + imageid), function(response) {
+	ajaxPost("/gallery/dislike", ('imageId=' + imageid), function(response) {
 		document.getElementById(imageid).innerHTML = response;
 	})	
 }
