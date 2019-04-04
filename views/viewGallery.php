@@ -2,12 +2,16 @@
 <?php
     foreach ($images as $image) {
         echo '<div id="'.$image->getId().'" class="Images">';
+        echo '<div id="container2">';
+        echo '<div id="block2">';
         require('layout/image.php');
         if (isset($_SESSION['userId'])) {
             require('layout/like.php');
             require('layout/allComments.php');
             require('layout/newComment.php');
         }
+        echo '</div>';
+        echo '</div>';
         echo '</div>';
     }
     if ($currentPage == $pagesTotal) {

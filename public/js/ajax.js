@@ -10,6 +10,7 @@ function ajaxPost(url, data, action) {
 	ajax.open('POST', url, true);
 	ajax.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 	ajax.onload = function () {
+		console.log(this.responseText);
 		action(this.responseText);
 	};
 	ajax.send(data);

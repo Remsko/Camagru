@@ -114,11 +114,10 @@ class ControllerUser {
             throw new Exception('You are already connected !');
         }
         if (isset($_POST['resetForm'])) {
-            echo 'reset form triggered';
             $this->_userManager = new UserManager();
             $error = $this->_userManager->resetPassword();
             if (!$error) {
-                echo '<span>A reset mail has been send !</span><br />';
+                echo '<script>alert("A reset mail has been send !");</script>';
             }
         }
         $this->_view = new View('viewReset');

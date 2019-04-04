@@ -22,21 +22,25 @@ class CommentManager {
 
 	public function notif($imageId, $userId) {
 		if (empty($imageId) || empty($userId)) {
-			return ;
+			return 'ImageId or UserId empty.';
 		}
 		$userManager = new UserManager();
 		$send = $userManager->getByUserId($userId);
 		$receive = $userManager->getByImageId($imageId);
 		if (empty($send) || empty($receive)) {
-			return ;
+			return 'Mails were not found.';
 		}
 		if ($receive->getNotifications()) {
 			$to = $receive->getMail();
     		$subject = 'Camagru Notification';
-    		$message = 'Hello ! '.$send->getUsername().' commented your picture !';
+			$message = 'Hello ! '.$send->getUsername().' commented your picture !';
+			$header = 'Content-type: text/html; charset=UTF-8'.'\r\n';
 		
-			mail($to, $subject, $message);
+			if (!mail($to, $subject, $message, $header)) {
+				return 'Failed to send mail.';
+			}
 		}
+		return null;
 	}
 
 	public function postComment() {
