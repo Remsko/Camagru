@@ -15,7 +15,9 @@
         echo '</div>';
     }
     if ($currentPage == $pagesTotal) {
-        echo '<h3>That\'s it ! There is no more pictures !</h3>';
+        echo '<div id="block2">';
+        echo '<h1>That\'s it ! There is no more pictures !</h1>';
+        echo '</div>';
     }
     if ($pagesTotal > 1) {
         if ($currentPage != 1) {

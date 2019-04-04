@@ -7,9 +7,9 @@
             <input type="password" name="password" value=""/><br />
 
             <span>Confirm Password: </span><br />
-            <input type="password" name="passwordConfirm" value=""/><br />
+            <input type="password" name="passwordConfirm" value=""/><br /><br />
 
-            <input type="submit" name="newPasswordForm" value="Send" />
+            <input class="button_class" type="submit" name="newPasswordForm" value="Send" />
         </form>
         <?php
             if(isset($error)) {

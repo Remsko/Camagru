@@ -4,9 +4,9 @@
     <div id="block">
     <form method="post" action="">
         <span>Email Address:</span><br />
-        <input type="text" name="mail" value=""/><br />
+        <input type="text" name="mail" value=""/><br /><br />
 
-        <input type="submit" name="resetForm" value="Send" />
+        <input class="button_class" type="submit" name="resetForm" value="Send" />
     </form>
     <?php
         if(isset($error)) {

@@ -117,7 +117,7 @@ class ControllerUser {
             $this->_userManager = new UserManager();
             $error = $this->_userManager->resetPassword();
             if (!$error) {
-                echo '<script>alert("A reset mail has been send !");</script>';
+                echo 'A reset mail has been send !';
             }
         }
         $this->_view = new View('viewReset');

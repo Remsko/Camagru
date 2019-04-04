@@ -12,10 +12,10 @@
             <span>Notifications</span>
             <?php
                 if ($user->getNotifications()) {
-                    echo '<input class="button_class" type="checkbox" name="notifications" checked="checked" />';
+                    echo '<input type="checkbox" name="notifications" checked="checked" />';
                 }
                 else {
-                    echo '<input class="button_class" type="checkbox" name="notifications" />';
+                    echo '<input type="checkbox" name="notifications" />';
                 }
             ?><br />
 
