@@ -98,7 +98,6 @@
     border-radius: 2px;
 }
 
-
 #container5 {
     position: relative;
     margin:auto;
@@ -108,7 +107,6 @@
     background-color: #f1f1f1;
     border-radius: 2px;
 }
-
 
 .button_class, .button_comment, .button_delete {
     background-color: #F1F1F1;
@@ -137,12 +135,6 @@ img.gallery {
 
 #block2 {
     left: 0;
-}
-
-#block3 {
-    position: absolute;
-    margin:auto;
-    margin-right: 20%;
 }
 
 input {
