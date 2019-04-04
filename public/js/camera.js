@@ -53,7 +53,7 @@ function saveImage(filtername) {
 	canvas.height = height;
 	canvas.getContext('2d').drawImage(video, 0, 0, width, height);
 	data = canvas.toDataURL("image/png");
-	request('studio/saveImage', ('image=' + data + '&filter=' + filtername), function (response) {
+	ajaxPost('studio/saveImage', ('image=' + data + '&filter=' + filtername), function (response) {
 		path = response;
 	});
 }
