@@ -45,6 +45,12 @@ class ImageManager {
 		return Database::safeExecute($query, $values);
 	}
 
+	public static function  deleteImageById($imageId) {
+		$query = 'DELETE FROM images WHERE id=:imageid';
+		$values = ['imageid' => $imageId];
+		return Database::safeExecute($query, $values);
+	}
+
 	public static function isLiked($imageId) {
 		if (isset($_SESSION['userId'])) {
 			$userId = $_SESSION['userId'];
