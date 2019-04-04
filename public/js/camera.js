@@ -70,7 +70,7 @@ function selectFilter(e) {
 function showPicture() {
 	if (filters.indexOf(filtername) !== -1) {
 		saveImage(filtername);
-		window.setTimeout(editDom, 400);	
+		window.setTimeout(editDom, 600);	
 	}
 }
 
