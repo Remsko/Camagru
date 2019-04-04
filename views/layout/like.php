@@ -1,4 +1,4 @@
-<div id="<?= $image->getId() ?>">
+<div class="like" id="<?= $image->getId() ?>">
 <strong>
 <?php
     $likeNumber = $image->getLikes();
@@ -14,6 +14,6 @@
         echo '<button onclick="like(event);" data-imageid="'.$image->getId().'">Like</button>';
     }
 ?>
+</div>
 <script src="/public/js/like.js"></script>
 <script src="/public/js/ajax.js"></script>
-</div>

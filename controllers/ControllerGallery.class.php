@@ -37,7 +37,9 @@ class ControllerGallery {
         $imageId = isset($_POST['imageId']) ? $_POST['imageId'] : null;
         if (isset($userId) && isset($imageId)) {
 			$this->_imageManager = new ImageManager();
-            $this->_imageManager->dislike($userId, $imageId);
+            if (!$this->_imageManager->dislike($userId, $imageId)) {
+                echo 'ERROR';
+            }
             $view = new View('layout/like');
             $view->render(['image' => $this->_imageManager->getByImageId($imageId)]);
         }
@@ -47,14 +49,33 @@ class ControllerGallery {
     }
 
     public function comment() {
-        $userId = $_POST['userId'];
-        $imageId = $_POST['imageId'];
-        if (isset($userId) && isset($imageId)) {
+        $userId = isset($_SESSION['userId']) ? $_SESSION['userId'] : null;
+        $imageId = isset($_POST['imageId']) ? $_POST['imageId'] : null;
+        $comment = isset($_POST['comment']) ? $_POST['comment'] : null;
+        if (isset($userId) && isset($imageId) && isset($comment)) {
             $this->_commentManager = new CommentManager();
             $error = $this->_commentManager->postComment();
             if (!$error) {
-                $this->_commentManager->notif($imageId, $userId);
+                //$this->_commentManager->notif($imageId, $userId);
             }
+            $view = new View('layout/newComment');
+            $this->_imageManager = new ImageManager();
+            $view->render([
+                'image' => $this->_imageManager->getByImageId($imageId),
+                'error' => $error
+            ]);
+        }
+        else {
+            throw new Exception('Page not found');
+        }
+    }
+
+    public function reloadComments() {
+        $imageId = isset($_POST['imageId']) ? $_POST['imageId'] : null;
+        if (isset($imageId)) {
+            $view = new View('layout/allComments');
+            $this->_imageManager = new ImageManager();
+            $view->render(['image' => $this->_imageManager->getByImageId($imageId)]);
         }
         else {
             throw new Exception('Page not found');

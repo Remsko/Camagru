@@ -4,12 +4,10 @@
         require('layout/image.php');
         if (isset($_SESSION['userId'])) {
             require('layout/like.php');
+            
+            require('layout/allComments.php');
 
-            $comments = $image->getComments();
-            foreach ($comments as $comment) {
-                require('layout/comment.php');
-            }
-            require('layout/commentForm.php');
+            require('layout/newComment.php');
         }
     }
     if ($currentPage == $pagesTotal) {
