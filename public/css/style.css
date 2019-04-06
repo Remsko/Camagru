@@ -70,6 +70,14 @@ div.footer {
     border-radius: 2px;
 }
 
+.flex_parent {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
 #container {
     position: relative;
     margin:auto;
@@ -86,7 +94,6 @@ div.footer {
     margin:auto;
     margin-top: 20px;
     width: 600px;
-    bottom: 0;
     background-color: #f1f1f1;
     border-radius: 2px;
 }
@@ -101,23 +108,17 @@ div.footer {
 }
 
 #container4 {
-    position: absolute;
-    margin:auto;
-    margin-left: 20%;
-    width: 600px;
-    bottom: 0;
+    /* margin-top: -15px;
+    margin-left: 20%; */
     background-color: #f1f1f1;
-    border-radius: 2px;
+    display: inline-block;
 }
 
 #container5 {
-    position: relative;
-    margin:auto;
-    margin-left: 55%;
-    width: 600px;
-    bottom: 0;
+    /* position: relative;
+    margin-left: 60%; */
     background-color: #f1f1f1;
-    border-radius: 2px;
+    display: inline-block;
 }
 
 .button_class, .button_comment, .button_delete {

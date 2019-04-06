@@ -1,2 +1,2 @@
 <?php $this->_title = 'Verification'?>
-<?= $message ?>
+<span><?= $message ?></span>

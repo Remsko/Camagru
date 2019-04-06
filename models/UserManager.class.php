@@ -234,6 +234,9 @@ class UserManager {
         if (!$this->authUser($_POST['password'])) {
             return 'Your password is wrong !';
         }
+        if (!$this->_user->getValidation()) {
+            return 'Your account is not confirmed !';
+        }
         $this->setSessionUser();
         return null;
     }

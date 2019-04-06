@@ -21,8 +21,8 @@
             <input class="button_class" type="submit" name="signUpForm" value="Send" />
         </form><br/>
         <?php
-            if(isset($error)) {
-               echo '<font color="red">'.$error."</font>";
+            if(isset($message)) {
+               echo $message;
             }
         ?>
     </div>

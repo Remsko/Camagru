@@ -12,8 +12,8 @@
             <input class="button_class" type="submit" name="newPasswordForm" value="Send" />
         </form>
         <?php
-            if(isset($error)) {
-                echo '<font color="red">'.$error."</font>";
+            if(isset($message)) {
+                echo $message;
             }
         ?>
     </div>

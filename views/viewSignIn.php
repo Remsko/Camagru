@@ -13,8 +13,8 @@
         </form><br/><br/>
         <a  href="/user/reset"><span>Forgot your password ?</span></a><br/><br/>
         <?php
-            if(isset($error)) {
-               echo '<font color="red">'.$error."</font>";
+            if(isset($message)) {
+               echo $message;
             }
         ?>
     </div>

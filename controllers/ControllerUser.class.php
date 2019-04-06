@@ -13,37 +13,43 @@ class ControllerUser {
     }
 
     public function signin() {
-        $error = null;
+        $message = null;
         if (isset($_SESSION['userId'])) {
             throw new Exception('You are already connected !');
         }
         if (isset($_POST['signInForm'])) {
             $this->_userManager = new UserManager();
-            $error = $this->_userManager->connectUser();
+            $message = $this->_userManager->connectUser();
+            if ($message) {
+                $message = '<font color="red">'.$message.'</font>';
+            }
         }
         if (isset($_SESSION['userId'])) {
             Router::redirectionRequest('');
         }
         $this->_view = new View('viewSignIn');
-        $this->_view->generate(['error' => $error]);
+        $this->_view->generate(['message' => $message]);
     }
 
     public function signup() {
-        $error = null;
+        $message = null;
         if (isset($_SESSION['userId'])) {
             throw new Exception('You are already connected !');
         }
         if (isset($_POST['signUpForm'])) {
             $this->_userManager = new UserManager();
-            $error = $this->_userManager->createUser();
+            $message = $this->_userManager->createUser();
 
-			if (!$error) {
-				echo '<span>Your account has been created !</span><br />';
-			}
+			if (!$message) {
+				$message = '<span>Your account has been created !</span><br />';
+            }
+            else {
+                $message = '<font color="red">'.$message.'</font>';
+            }
         }
         
         $this->_view = new View('viewSignUp');
-        $this->_view->generate(['error' => $error]);
+        $this->_view->generate(['message' => $message]);
     }
 
     public function logout() {
@@ -54,30 +60,36 @@ class ControllerUser {
     }
 
     public function settings() {
-        $error = null;
+        $message = null;
         if (!isset($_SESSION['userId'])) {
             throw new Exception('You must be connected to access the settings !');
         }
         $this->_userManager = new UserManager();
         $user = $this->_userManager->getByUserId($_SESSION['userId']);
         if (isset($_POST['editProfile'])) {
-            $error = $this->_userManager->editUser($user);
+            $message = $this->_userManager->editUser($user);
 
-            if (!$error) {
-				echo '<span>Your account has been edited !</span><br />';
-			}
+            if (!$message) {
+				$message = '<span>Your account has been edited !</span><br />';
+            }
+            else {
+                $message = '<font color="red">'.$message.'</font>';
+            }
         }
         if (isset($_POST['changePassword'])) {
-            $error = $this->_userManager->changePassword($user);
+            $message = $this->_userManager->changePassword($user);
 
-            if (!$error) {
-				echo '<span>Your password has been changed !</span><br />';
-			}
+            if (!$message) {
+				$message = '<span>Your password has been changed !</span><br />';
+            }
+            else {
+                $message = '<font color="red">'.$message.'</font>';
+            }
         }
         $this->_view = new View('viewSettings');
         $this->_view->generate([
             'user' => $user,
-            'error' => $error
+            'message' => $message
         ]);
     }
 
@@ -109,23 +121,26 @@ class ControllerUser {
     }
 
     public function reset() {
-        $error = null;
+        $message = null;
         if (isset($_SESSION['userId'])) {
             throw new Exception('You are already connected !');
         }
         if (isset($_POST['resetForm'])) {
             $this->_userManager = new UserManager();
-            $error = $this->_userManager->resetPassword();
-            if (!$error) {
-                echo 'A reset mail has been send !';
+            $message = $this->_userManager->resetPassword();
+            if (!$message) {
+                $message = '<span>A reset mail has been send !</span>';
+            }
+            else {
+                $message = '<font color="red">'.$message.'</font>';
             }
         }
         $this->_view = new View('viewReset');
-        $this->_view->generate(['error' => $error]);
+        $this->_view->generate(['message' => $message]);
     }
 
     public function newpassword() {
-        $error = null;
+        $message = null;
         if (isset($_SESSION['userId'])) {
             throw new Exception('You are already connected !');
         }
@@ -149,12 +164,12 @@ class ControllerUser {
         }
 
         if (isset($_POST['newPasswordForm'])) {
-            $error = $this->_userManager->newPassword($user);
-            if (!$error) {
-				echo '<span>Your password has been updated !</span><br />';
+            $message = $this->_userManager->newPassword($user);
+            if (!$message) {
+				$message =  '<span>Your password has been updated !</span><br />';
 			}
         }
         $this->_view = new View('viewNewPassword');
-        $this->_view->generate(['error' => $error]);
+        $this->_view->generate(['message' => $message]);
     }
 }

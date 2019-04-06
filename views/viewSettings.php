@@ -40,8 +40,8 @@
         </form><br/>
 
         <?php
-            if(isset($error)) {
-                echo '<font color="red">'.$error."</font>";
+            if(isset($message)) {
+                echo $message;
             }
         ?>
     </div>
