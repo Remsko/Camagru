@@ -43,6 +43,10 @@ class ControllerStudio {
 		if(!file_put_contents($file, $image)) {
 			throw new Exception('An error occurred while trying to save image.');
 		}
+		$type = exif_imagetype($file);
+		if ($type !== 2 && $type !== 3) {
+			throw new Exception('Wrong file type, please upload a new image.');
+		}
 		$image = new Image([
 			'userId' => $_SESSION['userId'],
 			'path' => $file,
